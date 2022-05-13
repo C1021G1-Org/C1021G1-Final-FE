@@ -1,0 +1,13 @@
+a {
+  width: 70px;
+  margin: 0 15px;
+}
+
+.table {
+  border: solid 10px red;
+}
+
+.table .table-danger {
+  background-color: red;
+  color: white;
+}

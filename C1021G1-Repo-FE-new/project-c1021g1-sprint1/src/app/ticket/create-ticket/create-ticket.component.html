@@ -1,0 +1,1016 @@
+<div class="container">
+
+  <div class="row mt-3">
+    <div class="col-md-6 ">
+
+      <h4>Đăng ký thông tin khách hàng chuyến đi</h4>
+      <form [formGroup]="orderFrom" id="form-box">
+
+        <div formArrayName="myForm">
+
+          <div *ngFor="let item of myForm.controls;let i = index">
+
+            <div [formGroupName]="i" *ngIf="indexForm==i">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Họ và tên:
+                      <span
+                        *ngIf="myForm.at(i).get('buyerTicket').invalid && myForm.at(i).get('buyerTicket').touched
+                        ||myForm.at(i).get('buyerTicket').invalid && checkInvalid && indexForm==i"
+                        class="text-danger">
+                                          <span *ngIf="myForm.at(i).get('buyerTicket').errors?.required"> không được để trống</span>
+                                          <span *ngIf="myForm.at(i).get('buyerTicket').errors?.minlength"> phải nhìu hơn 3 ký tự</span>
+                                        </span>
+                    </label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Họ Và Tên"
+                             formControlName="buyerTicket" *ngIf="indexForm==i">
+                    </div>
+
+                  </div>
+                  <div class="form-group">
+                    <label>Điện Thoại:
+                      <span
+                        *ngIf="myForm.at(i).get('phoneTicket').invalid && myForm.at(i).get('phoneTicket').touched ||myForm.at(i).get('phoneTicket').invalid && checkInvalid && indexForm==i"
+                        class="text-danger">
+                                          <span *ngIf="myForm.at(i).get('phoneTicket').errors.required"> không được để trống</span>
+                                          <span *ngIf="myForm.at(i).get('phoneTicket').errors.pattern"> không đúng định dạng</span>
+                                        </span>
+                    </label>
+                    <input type="text" class="form-control" placeholder="Điện Thoại"
+                           formControlName="phoneTicket" *ngIf="indexForm==i">
+
+                  </div>
+                  <div class="form-group">
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" formControlName="genderTicket" value="true"
+                               *ngIf="indexForm==i">🙎‍♂
+                      </label>
+                    </div>
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" formControlName="genderTicket" value="false"
+                               *ngIf="indexForm==i">🙎🏻‍♀
+                      </label>
+                    </div>
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" formControlName="genderTicket" value="null"
+                               *ngIf="indexForm==i">⚧
+                      </label>
+                    </div>
+                    <div
+                      *ngIf="myForm.at(i).get('genderTicket').invalid && myForm.at(i).get('genderTicket').touched ||myForm.at(i).get('genderTicket').invalid && checkInvalid && indexForm==i"
+                      class="text-danger">
+                        <span
+                          *ngIf="myForm.at(i).get('genderTicket').errors.required">gới tính không được để trống.</span>
+
+                    </div>
+                  </div>
+                  <div class="form-group" *ngIf="indexForm==i">
+                    <label>CMND - Passport
+                      <span
+                        *ngIf="myForm.at(i).get('idCard').invalid && myForm.at(i).get('idCard').touched ||myForm.at(i).get('idCard').invalid && checkInvalid && indexForm==i"
+                        class="text-danger">
+                        <span *ngIf="myForm.at(i).get('idCard').errors.pattern"> phải 9 chữ số</span>
+
+                      </span>
+                      <span
+                        *ngIf="!child && checkInvalid && myForm.at(i).get('idCard').value==''
+                        ||myForm.at(i).get('idCard').touched && !child && myForm.at(i).get('idCard').value==''
+                        && myForm.at(i).get('birthdayTicket').value==''"
+                        class="text-danger">không được để trống</span>
+
+                      <span *ngIf="child && ageEro>=18 && myForm.at(i).get('idCard').value=='' && indexForm==i"
+                            class="text-danger">bắt buộc nhập khi trên 18 tuổi</span>
+                    </label>
+                    <input type="text" class="form-control" placeholder="CMND - Passport"
+                           formControlName="idCard"
+                           [readOnly]="child && ageEro<18 && indexForm==i">
+
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" *ngIf="indexForm==i">
+                    <label>Email:
+                      <span
+                        *ngIf="myForm.at(i).get('emailTicket').invalid && myForm.at(i).get('emailTicket').touched ||myForm.at(i).get('emailTicket').invalid && checkInvalid && indexForm==i"
+                        class="text-danger">
+                                          <span *ngIf="myForm.at(i).get('emailTicket').errors.required"> không được để trống.</span>
+                                          <span *ngIf="myForm.at(i).get('emailTicket').errors.email"> phải đúng định dạng.</span>
+                                        </span>
+                    </label>
+                    <input type="text" class="form-control" placeholder="email@example.com"
+                           formControlName="emailTicket">
+                  </div>
+
+
+                  <div class="form-group" *ngIf="indexForm==i">
+                    <label>Hành Lý <span class="text-danger"
+                                         *ngIf="myForm.at(i).get('priceTicket').invalid && myForm.at(i).get('priceTicket').touched
+                                         ||myForm.at(i).get('priceTicket').invalid && checkInvalid && indexForm==i"><span
+                      *ngIf="myForm.at(i).get('priceTicket').errors.required"> không được để trống.</span>
+                                        </span>:</label>
+                    <select class="form-control" formControlName="priceTicket">
+                      <option value="" disabled>--Hành lý--</option>
+                      <option [ngValue]="120000">Xách tay 10 kg</option>
+                      <option [ngValue]="230000">Ký gởi 23 kg</option>
+                    </select>
+                  </div>
+
+
+                  <!--                    <div class="form-check-inline">-->
+                  <!--                      <label class="form-check-label">-->
+                  <!--                        <input #childCheckBox type="checkbox" class="form-check-input" >-->
+                  <!--                        &lt;!&ndash;                           (change)="checkChild(childCheckBox.checked)"&ndash;&gt;-->
+                  <!--                        Hành Khách Là Trẻ Em-->
+                  <!--                      </label>-->
+                  <!--                    </div>-->
+                  <div class="form-group" *ngIf="indexForm==i">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" (change)="checkValue($event,i)"
+                        >
+                        Hành khách là trẻ em
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="form-group" *ngIf="indexForm==i">
+                    <label>Ngày sinh:
+                      <span
+                        *ngIf="myForm.at(i).get('birthdayTicket').invalid && myForm.at(i).get('birthdayTicket').touched
+                        ||myForm.at(i).get('birthdayTicket').invalid && checkInvalid && indexForm==i"
+                        class="text-danger">
+                                          <span
+                                            *ngIf="myForm.at(i).get('birthdayTicket').errors.required"> không được để trống.</span>
+                                        </span>
+                    </label>
+                    <input type="date" class="form-control" formControlName="birthdayTicket"
+                           (change)="checkAge(i)">
+
+
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-box " *ngIf="i>0" (click)="previousForm1()">
+
+                    Quay lại
+                  </button>
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-4">
+
+                  <button type="button" class="btn btn-box"
+                          (click)="inputValue(i)" *ngIf="indexForm==i">Tiếp tục
+                    <!--                          [disabled]="myForm.at(i).invalid"-->
+
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </form>
+
+
+
+    </div>
+    <div class="col-md-6 ">
+
+      <div class="row">
+        <div class="box-table">
+          <table class="table table-borderless">
+            <tr>
+              <td><h5 class="title-text">{{flightTicket1.fromFlight}}</h5></td>
+              <td><h3 class="text-warning"></h3>
+              </td>
+              <td><h5 class="title-text">{{flightTicket1.toFlight}}</h5></td>
+            </tr>
+            <tr>
+              <td colspan="3"><h3>Khơi Hành:<span class="text-time"> {{flightTicket1.dateStart}}</span></h3></td>
+
+            </tr>
+            <tr>
+<!--              <td><h5 class="title-text">Tân Sơn Nhất</h5></td>-->
+<!--              <td><h3 class="text-warning"></h3>-->
+<!--              </td>-->
+<!--&lt;!&ndash;              <td><h5 class="title-text">Nội Bài</h5></td>&ndash;&gt;-->
+            </tr>
+            <tr>
+              <td colspan="2">
+                <h5>Loại vé: <span class="text-time">{{ticketList1[0].seat?.seatType.nameSeatType|titlecase}}</span></h5>
+              </td>
+              <td>
+                <h5>Số vé:<span class="text-time"> {{ticketList1.length}}</span></h5>
+              </td>
+
+            </tr>
+            <tr>
+              <td colspan="2"><h5>Thuế và phí: <span
+                class="text-time">{{myForm.at(indexForm).get('priceTicket').value|currency :"VND"}}</span>
+              </h5></td>
+              <!--                        <td></td>-->
+              <td><h5>Đơn giá: <span class="text-time">{{ticketPrice1|currency :"VND"}}</span></h5></td>
+
+            </tr>
+            <tr>
+              <td colspan="2">
+
+              </td>
+              <td>
+                <h4>Tổng chi phí: <span class="text-time">{{sumPrice1|currency :"VND"}}</span></h4>
+              </td>
+
+            </tr>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row mt-2" *ngIf="myForm2">
+    <div class="col-md-6"  >
+
+      <h4>Đăng ký thông tin khách hàng chuyến khứ hồi</h4>
+      <form [formGroup]="orderFrom">
+
+        <div formArrayName="myForm2">
+
+          <div *ngFor="let item of myForm2.controls;let m = index">
+
+            <div [formGroupName]="m" *ngIf="indexForm2==m">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Họ và tên:
+                      <span
+                        *ngIf="myForm2.at(m).get('buyerTicket').invalid && myForm2.at(m).get('buyerTicket').touched
+                      ||myForm2.at(m).get('buyerTicket').invalid && checkInvalid2 && indexForm2==m"
+                        class="text-danger">
+                                        <span *ngIf="myForm2.at(m).get('buyerTicket').errors?.required"> không được để trống</span>
+                                        <span *ngIf="myForm2.at(m).get('buyerTicket').errors?.minlength"> phải nhìu hơn 3 ký tự</span>
+                                      </span>
+                    </label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Họ Và Tên"
+                             formControlName="buyerTicket" *ngIf="indexForm2==m">
+                    </div>
+
+                  </div>
+                  <div class="form-group">
+                    <label>Điện Thoại:
+                      <span
+                        *ngIf="myForm2.at(m).get('phoneTicket').invalid && myForm2.at(m).get('phoneTicket').touched ||myForm2.at(m).get('phoneTicket').invalid && checkInvalid2 && indexForm2==m"
+                        class="text-danger">
+                                        <span *ngIf="myForm2.at(m).get('phoneTicket').errors.required"> không được để trống</span>
+                                        <span *ngIf="myForm2.at(m).get('phoneTicket').errors.pattern"> không đúng định dạng</span>
+                                      </span>
+
+                    </label>
+                    <input type="text" class="form-control" placeholder="Điện Thoại"
+                           formControlName="phoneTicket" *ngIf="indexForm2==m">
+
+                  </div>
+                  <div class="form-group">
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" formControlName="genderTicket" value="true"
+                               *ngIf="indexForm2==m">🙎‍♂
+                      </label>
+                    </div>
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" formControlName="genderTicket" value="false"
+                               *ngIf="indexForm2==m">🙎🏻‍♀
+                      </label>
+                    </div>
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" formControlName="genderTicket" value="null"
+                               *ngIf="indexForm2==m">⚧
+                      </label>
+                    </div>
+                    <div
+                      *ngIf="myForm2.at(m).get('genderTicket').invalid && myForm2.at(m).get('genderTicket').touched ||myForm2.at(m).get('genderTicket').invalid && checkInvalid2 && indexForm2==m"
+                      class="text-danger">
+                      <span
+                        *ngIf="myForm2.at(m).get('genderTicket').errors.required">gới tính không được để trống.</span>
+
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>CMND - Passport
+                      <span
+                        *ngIf="myForm2.at(m).get('idCard').invalid && myForm2.at(m).get('idCard').touched ||myForm2.at(m).get('idCard').invalid && checkInvalid2 && indexForm2==m"
+                        class="text-danger">
+                      <span *ngIf="myForm.at(m).get('idCard').errors.pattern"> phải 9 chữ số</span>
+
+                    </span>
+                      <span
+                        *ngIf="!child2 && checkInvalid2 && myForm2.at(m).get('idCard').value==''
+                      ||myForm2.at(m).get('idCard').touched && !child2 && myForm2.at(m).get('idCard').value==''
+                      && myForm2.at(m).get('birthdayTicket').value==''"
+                        class="text-danger">không được để trống</span>
+
+                      <span *ngIf="child2 && ageEro2>=18 && myForm2.at(m).get('idCard').value=='' && indexForm2==m"
+                            class="text-danger">bắt buộc nhập khi trên 18 tuổi</span>
+                    </label>
+                    <input type="text" class="form-control" placeholder="CMND - Passport"
+                           formControlName="idCard"
+                           [readOnly]="child2 && ageEro2<18 && indexForm2==m">>
+
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" *ngIf="indexForm2==m">
+                    <label>Email:
+                      <span
+                        *ngIf="myForm2.at(m).get('emailTicket').invalid && myForm2.at(m).get('emailTicket').touched ||myForm2.at(m).get('emailTicket').invalid && checkInvalid2 && indexForm2==m"
+                        class="text-danger">
+                                        <span *ngIf="myForm2.at(m).get('emailTicket').errors.required"> không được để trống.</span>
+                                        <span *ngIf="myForm2.at(m).get('emailTicket').errors.email"> phải đúng định dạng.</span>
+                                      </span>
+                    </label>
+                    <input type="text" class="form-control" placeholder="email@example.com"
+                           formControlName="emailTicket">
+                  </div>
+
+
+                  <div class="form-group" *ngIf="indexForm2==m">
+                    <label>Hành Lý <span class="text-danger"
+                                         *ngIf="myForm2.at(m).get('priceTicket').invalid && myForm2.at(m).get('priceTicket').touched
+                                       ||myForm2.at(m).get('priceTicket').invalid && checkInvalid2 && indexForm2==m"><span
+                      *ngIf="myForm2.at(m).get('priceTicket').errors.required"> không được để trống.</span>
+                                      </span>:</label>
+                    <select class="form-control" formControlName="priceTicket">
+                      <option value="" disabled>--Hành lý--</option>
+                      <option [ngValue]="120000">Xách tay 10 kg</option>
+                      <option [ngValue]="230000">Ký gởi 23 kg</option>
+                    </select>
+                  </div>
+
+
+                  <!--                    <div class="form-check-inline">-->
+                  <!--                      <label class="form-check-label">-->
+                  <!--                        <input #childCheckBox type="checkbox" class="form-check-input" >-->
+                  <!--                        &lt;!&ndash;                           (change)="checkChild(childCheckBox.checked)"&ndash;&gt;-->
+                  <!--                        Hành Khách Là Trẻ Em-->
+                  <!--                      </label>-->
+                  <!--                    </div>-->
+                  <div class="form-group" *ngIf="indexForm2==m">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" (change)="checkValue2($event,m)"
+                        >
+                        Hành khách là trẻ em
+                      </label>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group" *ngIf="indexForm2==m">
+                    <label>Ngày sinh:
+                      <span
+                        *ngIf="myForm2.at(m).get('birthdayTicket').invalid && myForm2.at(m).get('birthdayTicket').touched
+                      ||myForm2.at(m).get('birthdayTicket').invalid && checkInvalid2 && indexForm2==m"
+                        class="text-danger">
+                                        <span
+                                          *ngIf="myForm2.at(m).get('birthdayTicket').errors.required"> không được để trống.</span>
+                                      </span>
+                    </label>
+                    <input type="date" class="form-control" formControlName="birthdayTicket"
+                           (change)="checkAge2(m)">
+
+
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-box " *ngIf="m>0" (click)="previousForm2()">
+
+                    Quay lại
+                  </button>
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-4">
+
+                  <button type="button" class="btn btn-box"
+                          (click)="inputValue2(m)" *ngIf="indexForm2==m">Tiếp tục
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </form>
+
+
+
+    </div>
+    <div class="col-md-6">
+
+      <div class="row mt-4">
+        <div class="box-table">
+          <table class="table table-borderless">
+            <tr>
+              <td><h5 class="title-text">{{flightTicket2.fromFlight}}</h5></td>
+              <td>
+              </td>
+              <td><h5 class="title-text">{{flightTicket2.toFlight}}</h5></td>
+            </tr>
+            <tr>
+              <td colspan="3"><h3>Khơi Hành:<span class="text-time">{{flightTicket2.dateStart}}</span></h3></td>
+
+            </tr>
+            <tr>
+              <td><h5 class="title-text">Tân Sơn Nhất</h5></td>
+              <td>
+              </td>
+              <td><h5 class="title-text">Nội Bài</h5></td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <h5>Loại vé:<span class="text-time"> {{ticketList2[0].seat?.seatType.nameSeatType|titlecase}}</span>
+                </h5>
+              </td>
+              <td>
+                <h5>Số vé:<span class="text-time"> {{ticketList2.length}}</span></h5>
+              </td>
+
+            </tr>
+            <tr>
+              <td colspan="2"><h5>Thuế và phí: <span class="text-time"></span>
+                <span class="text-time">{{myForm2.at(indexForm2).get('priceTicket').value|currency :"VND"}}</span>
+              </h5></td>
+              <!--                        <td></td>-->
+              <td><h5>Đơn giá: <span class="text-time">{{ticketPrice2|currency :"VND"}}</span></h5></td>
+
+            </tr>
+            <tr>
+              <td colspan="2">
+
+              </td>
+              <td>
+                <h4>Tổng chi phí: <span class="text-time">{{sumPrice2|currency :"VND"}}</span></h4>
+              </td>
+
+            </tr>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+      <button type="button" class="btn btn-box2" routerLink="/flight/search">
+
+        Quay lại
+      </button>
+      <!--            [disabled]="myForm.invalid||myForm2.invalid"-->
+      <button type="button" class="btn btn-box2" (click)="sendValue()">Đặt
+        vé
+
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--<div class="container">-->
+
+<!--  <div class="row mt-3">-->
+<!--    <div class="col-md-6 ">-->
+
+<!--      <h4>Đăng ký thông tin khách hàng chuyến đi</h4>-->
+<!--      <form [formGroup]="orderFrom" id="form-box">-->
+
+<!--        <div formArrayName="myForm">-->
+
+<!--          <div *ngFor="let item of myForm.controls;let i = index">-->
+
+<!--            <div [formGroupName]="i" *ngIf="indexForm==i">-->
+<!--              <div class="row">-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <label>Họ và tên:-->
+<!--                      <span-->
+<!--                        *ngIf="myForm.at(i).get('buyerTicket').invalid && myForm.at(i).get('buyerTicket').touched-->
+<!--                        ||myForm.at(i).get('buyerTicket').invalid && checkInvalid && indexForm==i"-->
+<!--                        class="text-danger">-->
+<!--                                          <span *ngIf="myForm.at(i).get('buyerTicket').errors?.required"> không được để trống</span>-->
+<!--                                          <span *ngIf="myForm.at(i).get('buyerTicket').errors?.minlength"> phải nhìu hơn 3 ký tự</span>-->
+<!--                                        </span>-->
+<!--                    </label>-->
+<!--                    <div class="input-group">-->
+<!--                      <input type="text" class="form-control" placeholder="Họ Và Tên"-->
+<!--                             formControlName="buyerTicket" *ngIf="indexForm==i">-->
+<!--                    </div>-->
+
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <label>Điện Thoại:-->
+<!--                      <span-->
+<!--                        *ngIf="myForm.at(i).get('phoneTicket').invalid && myForm.at(i).get('phoneTicket').touched ||myForm.at(i).get('phoneTicket').invalid && checkInvalid && indexForm==i"-->
+<!--                        class="text-danger">-->
+<!--                                          <span *ngIf="myForm.at(i).get('phoneTicket').errors.required"> không được để trống</span>-->
+<!--                                          <span *ngIf="myForm.at(i).get('phoneTicket').errors.pattern"> không đúng định dạng</span>-->
+<!--                                        </span>-->
+<!--                    </label>-->
+<!--                    <input type="text" class="form-control" placeholder="Điện Thoại"-->
+<!--                           formControlName="phoneTicket" *ngIf="indexForm==i">-->
+
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <div class="form-check-inline">-->
+<!--                      <label class="form-check-label">-->
+<!--                        <input type="radio" class="form-check-input" formControlName="genderTicket" value="true"-->
+<!--                               *ngIf="indexForm==i">🙎‍♂-->
+<!--                      </label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check-inline">-->
+<!--                      <label class="form-check-label">-->
+<!--                        <input type="radio" class="form-check-input" formControlName="genderTicket" value="false"-->
+<!--                               *ngIf="indexForm==i">🙎🏻‍♀-->
+<!--                      </label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check-inline">-->
+<!--                      <label class="form-check-label">-->
+<!--                        <input type="radio" class="form-check-input" formControlName="genderTicket" value="null"-->
+<!--                               *ngIf="indexForm==i">⚧-->
+<!--                      </label>-->
+<!--                    </div>-->
+<!--                    <div-->
+<!--                      *ngIf="myForm.at(i).get('genderTicket').invalid && myForm.at(i).get('genderTicket').touched ||myForm.at(i).get('genderTicket').invalid && checkInvalid && indexForm==i"-->
+<!--                      class="text-danger">-->
+<!--                        <span-->
+<!--                          *ngIf="myForm.at(i).get('genderTicket').errors.required">gới tính không được để trống.</span>-->
+
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="form-group" *ngIf="indexForm==i">-->
+<!--                    <label>CMND - Passport-->
+<!--                      <span-->
+<!--                        *ngIf="myForm.at(i).get('idCard').invalid && myForm.at(i).get('idCard').touched ||myForm.at(i).get('idCard').invalid && checkInvalid && indexForm==i"-->
+<!--                        class="text-danger">-->
+<!--                        <span *ngIf="myForm.at(i).get('idCard').errors.pattern"> phải 9 chữ số</span>-->
+
+<!--                      </span>-->
+<!--                      <span-->
+<!--                        *ngIf="!child && checkInvalid && myForm.at(i).get('idCard').value==''-->
+<!--                        ||myForm.at(i).get('idCard').touched && !child && myForm.at(i).get('idCard').value==''-->
+<!--                        && myForm.at(i).get('birthdayTicket').value==''"-->
+<!--                        class="text-danger">không được để trống</span>-->
+
+<!--                      <span *ngIf="child && ageEro>=18 && myForm.at(i).get('idCard').value=='' && indexForm==i"-->
+<!--                            class="text-danger">bắt buộc nhập khi trên 18 tuổi</span>-->
+<!--                    </label>-->
+<!--                    <input type="text" class="form-control" placeholder="CMND - Passport"-->
+<!--                           formControlName="idCard"-->
+<!--                           [readOnly]="child && ageEro<18 && indexForm==i">-->
+
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group" *ngIf="indexForm==i">-->
+<!--                    <label>Email:-->
+<!--                      <span-->
+<!--                        *ngIf="myForm.at(i).get('emailTicket').invalid && myForm.at(i).get('emailTicket').touched ||myForm.at(i).get('emailTicket').invalid && checkInvalid && indexForm==i"-->
+<!--                        class="text-danger">-->
+<!--                                          <span *ngIf="myForm.at(i).get('emailTicket').errors.required"> không được để trống.</span>-->
+<!--                                          <span *ngIf="myForm.at(i).get('emailTicket').errors.email"> phải đúng định dạng.</span>-->
+<!--                                        </span>-->
+<!--                    </label>-->
+<!--                    <input type="text" class="form-control" placeholder="email@example.com"-->
+<!--                           formControlName="emailTicket">-->
+<!--                  </div>-->
+
+
+<!--                  <div class="form-group" *ngIf="indexForm==i">-->
+<!--                    <label>Hành Lý <span class="text-danger"-->
+<!--                                         *ngIf="myForm.at(i).get('priceTicket').invalid && myForm.at(i).get('priceTicket').touched-->
+<!--                                         ||myForm.at(i).get('priceTicket').invalid && checkInvalid && indexForm==i"><span-->
+<!--                      *ngIf="myForm.at(i).get('priceTicket').errors.required"> không được để trống.</span>-->
+<!--                                        </span>:</label>-->
+<!--                    <select class="form-control" formControlName="priceTicket">-->
+<!--                      <option value="" disabled>&#45;&#45;Hành lý&#45;&#45;</option>-->
+<!--                      <option [ngValue]="120000">Xách tay 10 kg</option>-->
+<!--                      <option [ngValue]="230000">Ký gởi 23 kg</option>-->
+<!--                    </select>-->
+<!--                  </div>-->
+
+
+<!--                  &lt;!&ndash;                    <div class="form-check-inline">&ndash;&gt;-->
+<!--                  &lt;!&ndash;                      <label class="form-check-label">&ndash;&gt;-->
+<!--                  &lt;!&ndash;                        <input #childCheckBox type="checkbox" class="form-check-input" >&ndash;&gt;-->
+<!--                  &lt;!&ndash;                        &lt;!&ndash;                           (change)="checkChild(childCheckBox.checked)"&ndash;&gt;&ndash;&gt;-->
+<!--                  &lt;!&ndash;                        Hành Khách Là Trẻ Em&ndash;&gt;-->
+<!--                  &lt;!&ndash;                      </label>&ndash;&gt;-->
+<!--                  &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                  <div class="form-group" *ngIf="indexForm==i">-->
+<!--                    <div class="form-check">-->
+<!--                      <label class="form-check-label">-->
+<!--                        <input type="checkbox" class="form-check-input" (change)="checkValue($event,i)"-->
+<!--                        >-->
+<!--                        Hành khách là trẻ em-->
+<!--                      </label>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                  <div class="form-group" *ngIf="indexForm==i">-->
+<!--                    <label>Ngày sinh:-->
+<!--                      <span-->
+<!--                        *ngIf="myForm.at(i).get('birthdayTicket').invalid && myForm.at(i).get('birthdayTicket').touched-->
+<!--                        ||myForm.at(i).get('birthdayTicket').invalid && checkInvalid && indexForm==i"-->
+<!--                        class="text-danger">-->
+<!--                                          <span-->
+<!--                                            *ngIf="myForm.at(i).get('birthdayTicket').errors.required"> không được để trống.</span>-->
+<!--                                        </span>-->
+<!--                    </label>-->
+<!--                    <input type="date" class="form-control" formControlName="birthdayTicket"-->
+<!--                           (change)="checkAge(i)">-->
+
+
+<!--                  </div>-->
+
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="row">-->
+<!--                <div class="col-md-4">-->
+<!--                  <button type="button" class="btn btn-box " *ngIf="i>0" (click)="previousForm1()">-->
+
+<!--                    Quay lại-->
+<!--                  </button>-->
+<!--                </div>-->
+<!--                <div class="col-md-4">-->
+
+<!--                </div>-->
+<!--                <div class="col-md-4">-->
+
+<!--                  <button type="button" class="btn btn-box"-->
+<!--                          (click)="inputValue(i)" *ngIf="indexForm==i">Tiếp tục-->
+<!--                    &lt;!&ndash;                          [disabled]="myForm.at(i).invalid"&ndash;&gt;-->
+
+<!--                  </button>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--          </div>-->
+
+<!--        </div>-->
+
+
+<!--      </form>-->
+
+
+<!--    </div>-->
+<!--    <div class="col-md-6 ">-->
+
+<!--      <div class="row">-->
+<!--        <div class="box-table">-->
+<!--          <table class="table table-borderless">-->
+<!--            <tr>-->
+<!--              <td><h5 class="title-text">{{flightTicket1.fromFlight}}</h5></td>-->
+<!--              <td><h3 class="text-warning"></h3>-->
+<!--              </td>-->
+<!--              <td><h5 class="title-text">{{flightTicket1.toFlight}}</h5></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td colspan="3"><h3>Khơi Hành:<span class="text-time"> {{flightTicket1.dateStart}}</span></h3></td>-->
+
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td><h5 class="title-text">Tân Sơn Nhất</h5></td>-->
+<!--              <td><h3 class="text-warning"></h3>-->
+<!--              </td>-->
+<!--              <td><h5 class="title-text">Nội Bài</h5></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td colspan="2">-->
+<!--                <h5>Loại vé: <span class="text-time">{{ticketList1[0].seat?.seatType.nameSeatType|titlecase}}</span></h5>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <h5>Số vé:<span class="text-time"> {{ticketList1.length}}</span></h5>-->
+<!--              </td>-->
+
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td colspan="2"><h5>Thuế và phí: <span-->
+<!--                class="text-time">{{myForm.at(indexForm).get('priceTicket').value|currency :"VND"}}</span>-->
+<!--              </h5></td>-->
+<!--              &lt;!&ndash;                        <td></td>&ndash;&gt;-->
+<!--              <td><h5>Đơn giá:<span class="text-time">{{ticketPrice1|currency :"VND"}}</span></h5></td>-->
+
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td colspan="2">-->
+
+<!--              </td>-->
+<!--              <td>-->
+<!--                <h4>Tổng chi phí: <span class="text-time">{{sumPrice1|currency :"VND"}}</span></h4>-->
+<!--              </td>-->
+
+<!--            </tr>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="row mt-2" *ngIf="myForm2">-->
+<!--    <div class="col-md-6">-->
+
+<!--      <h4>Đăng ký thông tin khách hàng chuyến khứ hồi</h4>-->
+<!--      <form [formGroup]="orderFrom">-->
+
+<!--        <div formArrayName="myForm2">-->
+
+<!--          <div *ngFor="let item of myForm2.controls;let m = index">-->
+
+<!--            <div [formGroupName]="m" *ngIf="indexForm2==m">-->
+<!--              <div class="row">-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <label>Họ và tên:-->
+<!--                      <span-->
+<!--                        *ngIf="myForm2.at(m).get('buyerTicket').invalid && myForm2.at(m).get('buyerTicket').touched-->
+<!--                        ||myForm2.at(m).get('buyerTicket').invalid && checkInvalid2 && indexForm2==m"-->
+<!--                        class="text-danger">-->
+<!--                                          <span *ngIf="myForm2.at(m).get('buyerTicket').errors?.required"> không được để trống</span>-->
+<!--                                          <span *ngIf="myForm2.at(m).get('buyerTicket').errors?.minlength"> phải nhìu hơn 3 ký tự</span>-->
+<!--                                        </span>-->
+<!--                    </label>-->
+<!--                    <div class="input-group">-->
+<!--                      <input type="text" class="form-control" placeholder="Họ Và Tên"-->
+<!--                             formControlName="buyerTicket" *ngIf="indexForm2==m">-->
+<!--                    </div>-->
+
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <label>Điện Thoại:-->
+<!--                      <span-->
+<!--                        *ngIf="myForm2.at(m).get('phoneTicket').invalid && myForm2.at(m).get('phoneTicket').touched ||myForm2.at(m).get('phoneTicket').invalid && checkInvalid2 && indexForm2==m"-->
+<!--                        class="text-danger">-->
+<!--                                          <span *ngIf="myForm2.at(m).get('phoneTicket').errors.required"> không được để trống</span>-->
+<!--                                          <span *ngIf="myForm2.at(m).get('phoneTicket').errors.pattern"> không đúng định dạng</span>-->
+<!--                                        </span>-->
+
+<!--                    </label>-->
+<!--                    <input type="text" class="form-control" placeholder="Điện Thoại"-->
+<!--                           formControlName="phoneTicket" *ngIf="indexForm2==m">-->
+
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <div class="form-check-inline">-->
+<!--                      <label class="form-check-label">-->
+<!--                        <input type="radio" class="form-check-input" formControlName="genderTicket" value="true"-->
+<!--                               *ngIf="indexForm2==m">🙎‍♂-->
+<!--                      </label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check-inline">-->
+<!--                      <label class="form-check-label">-->
+<!--                        <input type="radio" class="form-check-input" formControlName="genderTicket" value="false"-->
+<!--                               *ngIf="indexForm2==m">🙎🏻‍♀-->
+<!--                      </label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check-inline">-->
+<!--                      <label class="form-check-label">-->
+<!--                        <input type="radio" class="form-check-input" formControlName="genderTicket" value="null"-->
+<!--                               *ngIf="indexForm2==m">⚧-->
+<!--                      </label>-->
+<!--                    </div>-->
+<!--                    <div-->
+<!--                      *ngIf="myForm2.at(m).get('genderTicket').invalid && myForm2.at(m).get('genderTicket').touched ||myForm2.at(m).get('genderTicket').invalid && checkInvalid2 && indexForm2==m"-->
+<!--                      class="text-danger">-->
+<!--                        <span-->
+<!--                          *ngIf="myForm2.at(m).get('genderTicket').errors.required">gới tính không được để trống.</span>-->
+
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <label>CMND - Passport-->
+<!--                      <span-->
+<!--                        *ngIf="myForm2.at(m).get('idCard').invalid && myForm2.at(m).get('idCard').touched ||myForm2.at(m).get('idCard').invalid && checkInvalid2 && indexForm2==m"-->
+<!--                        class="text-danger">-->
+<!--                        <span *ngIf="myForm.at(m).get('idCard').errors.pattern"> phải 9 chữ số</span>-->
+
+<!--                      </span>-->
+<!--                      <span-->
+<!--                        *ngIf="!child2 && checkInvalid2 && myForm2.at(m).get('idCard').value==''-->
+<!--                        ||myForm2.at(m).get('idCard').touched && !child2 && myForm2.at(m).get('idCard').value==''-->
+<!--                        && myForm2.at(m).get('birthdayTicket').value==''"-->
+<!--                        class="text-danger">không được để trống</span>-->
+
+<!--                      <span *ngIf="child2 && ageEro2>=18 && myForm2.at(m).get('idCard').value=='' && indexForm2==m"-->
+<!--                            class="text-danger">bắt buộc nhập khi trên 18 tuổi</span>-->
+<!--                    </label>-->
+<!--                    <input type="text" class="form-control" placeholder="CMND - Passport"-->
+<!--                           formControlName="idCard"-->
+<!--                           [readOnly]="child2 && ageEro2<18 && indexForm2==m">>-->
+
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group" *ngIf="indexForm2==m">-->
+<!--                    <label>Email:-->
+<!--                      <span-->
+<!--                        *ngIf="myForm2.at(m).get('emailTicket').invalid && myForm2.at(m).get('emailTicket').touched ||myForm2.at(m).get('emailTicket').invalid && checkInvalid2 && indexForm2==m"-->
+<!--                        class="text-danger">-->
+<!--                                          <span *ngIf="myForm2.at(m).get('emailTicket').errors.required"> không được để trống.</span>-->
+<!--                                          <span *ngIf="myForm2.at(m).get('emailTicket').errors.email"> phải đúng định dạng.</span>-->
+<!--                                        </span>-->
+<!--                    </label>-->
+<!--                    <input type="text" class="form-control" placeholder="email@example.com"-->
+<!--                           formControlName="emailTicket">-->
+<!--                  </div>-->
+
+
+<!--                  <div class="form-group" *ngIf="indexForm2==m">-->
+<!--                    <label>Hành Lý <span class="text-danger"-->
+<!--                                         *ngIf="myForm2.at(m).get('priceTicket').invalid && myForm2.at(m).get('priceTicket').touched-->
+<!--                                         ||myForm2.at(m).get('priceTicket').invalid && checkInvalid2 && indexForm2==m"><span-->
+<!--                      *ngIf="myForm2.at(m).get('priceTicket').errors.required"> không được để trống.</span>-->
+<!--                                        </span>:</label>-->
+<!--                    <select class="form-control" formControlName="priceTicket">-->
+<!--                      <option value="" disabled>&#45;&#45;Hành lý&#45;&#45;</option>-->
+<!--                      <option [ngValue]="120000">Xách tay 10 kg</option>-->
+<!--                      <option [ngValue]="230000">Ký gởi 23 kg</option>-->
+<!--                    </select>-->
+<!--                  </div>-->
+
+
+<!--                  &lt;!&ndash;                    <div class="form-check-inline">&ndash;&gt;-->
+<!--                  &lt;!&ndash;                      <label class="form-check-label">&ndash;&gt;-->
+<!--                  &lt;!&ndash;                        <input #childCheckBox type="checkbox" class="form-check-input" >&ndash;&gt;-->
+<!--                  &lt;!&ndash;                        &lt;!&ndash;                           (change)="checkChild(childCheckBox.checked)"&ndash;&gt;&ndash;&gt;-->
+<!--                  &lt;!&ndash;                        Hành Khách Là Trẻ Em&ndash;&gt;-->
+<!--                  &lt;!&ndash;                      </label>&ndash;&gt;-->
+<!--                  &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                  <div class="form-group" *ngIf="indexForm2==m">-->
+<!--                    <div class="form-check">-->
+<!--                      <label class="form-check-label">-->
+<!--                        <input type="checkbox" class="form-check-input" (change)="checkValue2($event,m)"-->
+<!--                        >-->
+<!--                        Hành khách là trẻ em-->
+<!--                      </label>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+
+<!--                  <div class="form-group" *ngIf="indexForm2==m">-->
+<!--                    <label>Ngày sinh:-->
+<!--                      <span-->
+<!--                        *ngIf="myForm2.at(m).get('birthdayTicket').invalid && myForm2.at(m).get('birthdayTicket').touched-->
+<!--                        ||myForm2.at(m).get('birthdayTicket').invalid && checkInvalid2 && indexForm2==m"-->
+<!--                        class="text-danger">-->
+<!--                                          <span-->
+<!--                                            *ngIf="myForm2.at(m).get('birthdayTicket').errors.required"> không được để trống.</span>-->
+<!--                                        </span>-->
+<!--                    </label>-->
+<!--                    <input type="date" class="form-control" formControlName="birthdayTicket"-->
+<!--                           (change)="checkAge2(m)">-->
+
+
+<!--                  </div>-->
+
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="row">-->
+<!--                <div class="col-md-4">-->
+<!--                  <button type="button" class="btn btn-box " *ngIf="m>0" (click)="previousForm2()">-->
+
+<!--                    Quay lại-->
+<!--                  </button>-->
+<!--                </div>-->
+<!--                <div class="col-md-4">-->
+
+<!--                </div>-->
+<!--                <div class="col-md-4">-->
+
+<!--                  <button type="button" class="btn btn-box"-->
+<!--                          (click)="inputValue2(m)" *ngIf="indexForm2==m">Tiếp tục-->
+<!--                  </button>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--          </div>-->
+
+<!--        </div>-->
+
+
+<!--      </form>-->
+
+
+<!--    </div>-->
+<!--    <div class="col-md-6">-->
+
+<!--      <div class="row mt-4">-->
+<!--        <div class="box-table">-->
+<!--          <table class="table table-borderless">-->
+<!--            <tr>-->
+<!--              <td><h5 class="title-text">{{flightTicket2.fromFlight}}</h5></td>-->
+<!--              <td>-->
+<!--              </td>-->
+<!--              <td><h5 class="title-text">{{flightTicket2.toFlight}}</h5></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td colspan="3"><h3>Khơi Hành:<span class="text-time">{{flightTicket2.dateStart}}</span></h3></td>-->
+
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td><h5 class="title-text">Tân Sơn Nhất</h5></td>-->
+<!--              <td>-->
+<!--              </td>-->
+<!--              <td><h5 class="title-text">Nội Bài</h5></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td colspan="2">-->
+<!--                <h5>Loại vé:<span class="text-time"> {{ticketList2[0].seat?.seatType.nameSeatType|titlecase}}</span>-->
+<!--                </h5>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <h5>Số vé:<span class="text-time"> {{ticketList2.length}}</span></h5>-->
+<!--              </td>-->
+
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td colspan="2"><h5>Thuế và phí: <span class="text-time"></span>-->
+<!--                <span class="text-time">{{myForm2.at(indexForm2).get('priceTicket').value|currency :"VND"}}</span>-->
+<!--              </h5></td>-->
+<!--              &lt;!&ndash;                        <td></td>&ndash;&gt;-->
+<!--              <td><h5>Đơn giá:<span class="text-time"> {{ticketPrice2|currency :"VND"}}</span></h5></td>-->
+
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td colspan="2">-->
+
+<!--              </td>-->
+<!--              <td>-->
+<!--                <h4>Tổng chi phí: <span class="text-time">{{sumPrice2|currency :"VND"}}</span></h4>-->
+<!--              </td>-->
+
+<!--            </tr>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="row mt-2">-->
+<!--    <div class="col-md-4">-->
+
+<!--    </div>-->
+<!--    <div class="col-md-4">-->
+
+<!--    </div>-->
+<!--    <div class="col-md-4">-->
+<!--      <button type="button" class="btn btn-box2" routerLink="/flight/search">-->
+
+<!--        Quay lại-->
+<!--      </button>-->
+<!--      &lt;!&ndash;      [disabled]="myForm.invalid||myForm2.invalid"&ndash;&gt;-->
+<!--      <button type="button" class="btn btn-box2" (click)="sendValue()">Đặt-->
+<!--        vé-->
+
+<!--      </button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+

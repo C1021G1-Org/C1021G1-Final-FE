@@ -1,0 +1,83 @@
+
+<div class="container nen">
+  <div class="col-md-12 order-md-1">
+    <h2 style="color: #de2121" align="center" class="mb-3">Chỉnh sửa thông tin vé</h2>
+    <form  [formGroup]="editTicketForm" (ngSubmit)="editTicket()">
+
+      <div class="mb-3">
+        <label for="customerName">Tên người bay<span class="text-danger">(*)</span>:</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="customerName" placeholder="Nhập tên khách hàng" formControlName="buyerTicket">
+          <div style="width: 100%; color: red" *ngIf="editTicketForm.get('buyerTicket').invalid && editTicketForm.controls.buyerTicket.touched">
+            <span *ngIf="editTicketForm.get('buyerTicket').errors.required">Vui lòng không để trống tên người bay</span>
+            <span *ngIf="editTicketForm.get('buyerTicket').errors.pattern">Tên người bay không chứa kí tự số và phải từ 3 - 50 kí tự</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="seatId">Mã Vé</label>
+          <input type="text" class="form-control" id="seatId" placeholder="{{ticket.codeTicket}}" disabled>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label for="seat">Ghế</label>
+          <input type="text" class="form-control" id="seat" placeholder="" value="{{ticket.seat.codeSeat}}" disabled>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label for="cmnd">CMND</label>
+          <input type="text" class="form-control" id="cmnd" placeholder="" value="{{ticket.idCard}}" disabled>
+        </div>
+
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <label for="trip">Chuyến Bay</label>
+          <input type="text" class="form-control" id="trip" placeholder="{{ticket.seat.flightSeat.fromFlight + ' - ' + ticket.seat.flightSeat.toFlight}}" disabled>
+        </div>
+        <div class="col-md-6 mb-4">
+          <label for="start">Ngày khởi hành</label>
+          <input type="text" class="form-control" id="start" placeholder="{{this.datetime1}}"  disabled>
+        </div>
+
+
+      </div>
+
+      <div class="mb-3">
+        <label for="email">Email thanh toán</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="email" placeholder="Nhập email thanh toán" formControlName="emailTicket">
+          <div style="width: 100%; color: red" *ngIf="editTicketForm.get('emailTicket').invalid && editTicketForm.controls.emailTicket.touched">
+            <span *ngIf="editTicketForm.get('emailTicket').errors.required">Vui lòng không để trống email</span>
+            <span *ngIf="editTicketForm.get('emailTicket').errors.pattern">Vui lòng nhập đúng định dạng email</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="mb-4">
+      <div class="row">
+        <div class="col-6">
+          <button class="btn btn-danger btn-lg btn-block " type="submit">Cập nhật</button>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-danger btn-lg btn-block" routerLink="/ticket/list">Hủy</button>
+        </div>
+
+      </div>
+      <hr class="mb-4">
+
+    </form>
+  </div>
+</div>
+
+<footer class="my-5 pt-5 text-muted text-center text-small">
+  <p class="mb-1">© 2022 CodeGym</p>
+  <ul class="list-inline">
+    <li class="list-inline-item"><a href="#">Privacy</a></li>
+    <li class="list-inline-item"><a href="#">Terms</a></li>
+    <li class="list-inline-item"><a href="#">Support</a></li>
+  </ul>
+</footer>

@@ -1,0 +1,109 @@
+.container-fluid {
+  font-family: Bahnschrift, sans-serif;
+  z-index: -1;
+}
+
+a {
+  cursor: pointer;
+}
+
+h1 {
+  text-align: center;
+}
+
+h6 {
+  float: right;
+  text-align: right;
+}
+
+.table-side-bar tbody tr:hover {
+  background-color: beige;
+  color: #403E10;
+  font-weight: bold;
+  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  transform: translate3d(6px, 1px, 0);
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-property: all;
+  /*transition-timing-function: line;*/
+  cursor: pointer;
+}
+
+.dropdown div a:hover {
+  background-color: #ffa8a8;
+  color: #403E10;
+  font-weight: bold;
+  box-shadow: red -1px 1px, red -2px 2px, red -3px 3px, red -4px 4px, red -5px 5px, red -6px 6px;
+  transform: translate3d(6px, 1px, 0);
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-property: all;
+  /*transition-timing-function: line;*/
+}
+
+#layout{
+  padding: 20px;
+}
+
+.table {
+  background-color: white;
+}
+
+.table-text-end {
+  text-align: right;
+}
+
+.btn-warning {
+  color: white;
+}
+
+.extra-small {
+  width: 70px;
+  font-size: 17px;
+}
+
+.small {
+  width: 130px;
+  font-size: 17px;
+}
+
+.medium {
+  width: 200px;
+  font-size: 17px;
+}
+
+.extra-medium {
+  width: 300px;
+  font-size: 17px;
+}
+
+.large {
+  width: 400px;
+  font-size: 17px;
+}
+
+.large p {
+  width: 380px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.large p:active {
+  overflow: revert;
+  color: red;
+  font-weight: bold;
+}
+
+
+.disableBtn {
+  cursor: not-allowed;
+}
+
+.display {
+  display: none;
+}
+
+.col-2 {
+  font-size: 17px;
+}

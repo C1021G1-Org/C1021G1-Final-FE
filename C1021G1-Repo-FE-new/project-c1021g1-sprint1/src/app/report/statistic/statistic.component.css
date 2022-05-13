@@ -1,0 +1,297 @@
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Bahnschrift';
+  z-index: -1;
+
+}
+/*.container-fluid{*/
+/*  background-image: url("https://balotrainghiem.com/wp-content/uploads/2017/05/DSC_3024.jpg");*/
+/*  background-size: cover;*/
+/*}*/
+section.section1{
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+
+}
+
+
+.cuthuan{
+  width: 15px;
+  height: 15px;
+  background: #00aced;
+  display: inline-block;
+}
+
+.cuthuan5cm{
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  background: #555555;
+}
+
+.navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  padding: 0 100px ;
+  box-sizing: border-box;
+  background-color: #e31b1b;
+  z-index: 10;
+}
+.login{
+  color: white;
+}
+nav .brand{
+  float: left;
+  height: 100%;
+  line-height: 80px;
+
+}
+nav .brand a{
+  margin-top: 0;
+  padding: 0;
+
+}
+nav ul{
+  float: right;
+  display: flex;
+  margin:0;
+  padding: 0;
+}
+nav ul li{
+  list-style: none;
+}
+nav ul li a{
+  position: relative;
+  display: block;
+  padding: 0 40px;
+  box-sizing: border-box;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.5s
+}
+nav ul li a:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  transform-origin: right;
+  z-index: -1;
+  transform: scaleX(0);
+  transition:  transform 0.5s;
+}
+
+section.section2{
+  padding: 150px;
+}
+
+.table a{
+  text-decoration: none;
+  color: black;
+}
+.table tbody tr:hover {
+
+  background-color: beige;
+  color: #403E10;
+  font-weight: bold;
+
+  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  transform: translate3d(6px, 1px, 0);
+
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+  transition-property: all;
+}
+.loginInput{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.loginInput1{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.jss1477{
+  color: #ffffff;
+  width: 14px;
+  height: 14px;
+}
+.jss1478{
+  color: #ffffff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 1.13;
+  margin-left: 7px;
+  font-stretch: normal;
+  letter-spacing: normal;
+}
+
+.jss1480 {
+  margin-right: 7px;
+}
+.btn-outline-light:hover {
+  color: #e31b1b;
+}
+
+.highcharts-figure,
+.highcharts-data-table table {
+  min-width: 320px;
+  max-width: 800px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ebebeb;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+  padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+
+input[type="number"] {
+  min-width: 50px;
+}
+
+#container {
+  height: 400px;
+}
+
+.highcharts-figure,
+.highcharts-data-table table {
+  min-width: 310px;
+  max-width: 800px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ebebeb;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+  padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+
+#whatToPrint {
+  padding: 10px;
+  background-color: antiquewhite;
+}
+
+.highcharts-figure,
+.highcharts-data-table table {
+  min-width: 310px;
+  max-width: 800px;
+  margin: 1em auto;
+}
+
+#container {
+  height: 400px;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ebebeb;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+  padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+
+
+

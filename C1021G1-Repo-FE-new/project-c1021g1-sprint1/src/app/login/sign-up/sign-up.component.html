@@ -1,0 +1,127 @@
+<div class="container-fluid ">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 background" >
+      <div class="wrapper-signup">
+        <div class="d-flex justify-content-center">
+          <h1 class="mb-1">Đăng Ký</h1>
+        </div>
+        <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 px-2 ">
+                <div class="form-group content">
+                  <p >Email(<span class="required">*</span>):</p>
+                  <input  (focus)="displayLabel('email')"  id="email" formControlName="email" autofocus type="text" class="form-control" placeholder="Email" >
+                  <p *ngIf="signUpForm.get('email').errors?.required && signUpForm.get('email').touched || checkForm &&signUpForm.get('email').errors?.required" style="color: red" >Trường này không được phép để trống.</p>
+                  <p *ngIf="signUpForm.get('email').errors?.email && signUpForm.get('email').touched" style="color: red" >Trường này phải có định dạng email.</p>
+                  <p *ngIf="errorEmail" style="color: red" >Email này đã được sủ dụng.</p>
+                </div>
+              </div>
+              <div class="col-md-6 px-2">
+                <div class="form-group content placeHoverRed">
+                  <p>Mật khẩu(<span class="required">*</span>): </p>
+                  <input id="ps" (focus)="displayLabel('password')"  formControlName="password" type="password" class="form-control"  placeholder="Mật khẩu (*)" >
+                  <p *ngIf="signUpForm.get('password').errors?.required && signUpForm.get('password').touched || checkForm&&signUpForm.get('password').errors?.required" style="color: red">Trường này không được để trống</p>
+                  <p *ngIf="signUpForm.get('password').errors?.errorPs && signUpForm.get('password').touched" style="color: red">Mật khẩu phải từ 8-20 ký tự, có bao gồm số, chữ viết thường và viết hoa</p>
+                </div>
+              </div>
+              <div class="col-md-6  px-2 ">
+                <div class="form-group content ">
+                  <p >Xác nhận mật khẩu(<span class="required">*</span>): </p>
+                  <input id="confirmPs" (change)="checkPsMatching()" (focus)="displayLabel('confirmPassword')" formControlName="confirmPassword" type="password" class="form-control"  placeholder="Xác nhận mật khẩu (*)" >
+                  <p *ngIf="signUpForm.get('confirmPassword').errors?.required && signUpForm.get('confirmPassword').touched || checkForm&&signUpForm.get('confirmPassword').errors?.required" style="color: red">Trường này không được để trống.</p>
+                  <p *ngIf="signUpForm.get('confirmPassword').errors?.mustMatching && signUpForm.get('confirmPassword').touched "
+                     style="color: red">Xác nhận mật chưa khớp với mật khẩu.</p>
+                </div>
+              </div>
+              <div class="col-md-6  px-2 ">
+                <div class="form-group content">
+                  <p>Số điện thoại:</p>
+                  <input (focus)="displayLabel('phone')" type="text" formControlName="phone" class="form-control"  placeholder="Số điện thoại">
+                  <p style="color: red" *ngIf="signUpForm.get('phone').errors?.required && signUpForm.get('phone').touched|| checkForm&&signUpForm.get('phone').errors?.required">Trường này không được phép để trống.</p>
+                  <p style="color: red" *ngIf="signUpForm.get('phone').errors?.pattern && signUpForm.get('phone').touched">Số điện thoại phải có định dạng +84/09X-XXXX-XXX.</p>
+                  <p *ngIf="errorPhone" style="color: red" >Số điện thoại này đã được sủ dụng.</p>
+                </div>
+              </div>
+              <div class="col-md-6  px-2 ">
+                <div class="form-group content">
+                  <p>Họ và tên:</p>
+                  <input (focus)="displayLabel('fullName')"  type="text" formControlName="fullName" class="form-control"  placeholder="Họ và tên" >
+                  <p style="color: red" *ngIf="signUpForm.get('fullName').errors?.required && signUpForm.get('fullName').touched || signUpForm.get('fullName').errors?.required &&checkForm">Trường này không được phép để trống.</p>
+                  <p style="color: red" *ngIf="signUpForm.get('fullName').errors?.pattern && signUpForm.get('fullName').touched ">Tên phải có độ dài từ 8 đến 50 kí tự.</p>
+
+                </div>
+              </div>
+              <div class="col-md-6  px-2 ">
+                <div class="form-group content">
+                  <p>Ngày tháng năm sinh:</p>
+                  <input type="Date" (focus)="displayLabel('birthday')"  formControlName="birthday" style="background: white" class="form-control" placeholder="Ngày tháng năm sinh" >
+                  <p style="color: red" *ngIf="signUpForm.get('birthday').errors?.required && signUpForm.get('birthday').touched || signUpForm.get('birthday').errors?.required &&checkForm">Trường này không được phép để trống.</p>
+                  <p style="color: red" *ngIf="signUpForm.get('birthday').errors?.errorAge && signUpForm.get('birthday').touched ">Tuổi phải có lớn hơn 18 và nhỏ hơn 150.</div>
+              </div>
+              <div class="col-md-6  px-2 ">
+                <div class="form-group content">
+                  <p>Địa chỉ:</p>
+                  <input type="text" (focus)="displayLabel('address')" formControlName="address" class="form-control" placeholder="Địa chỉ">
+                  <p style="color: red" *ngIf="signUpForm.get('address').errors?.required && signUpForm.get('address').touched || checkForm&&signUpForm.get('address').errors?.required">Trường này không được phép để trống.</p>
+
+                </div>
+              </div>
+              <div class="col-md-6  px-2 ">
+                <div class="form-group content">
+                  <p>Hộ chiếu/CMND:</p>
+                  <input type="text" (focus)="displayLabel('idCard')"  formControlName="idCard" placeholder="Hộ chiếu/CMND" class="form-control">
+                  <p style="color: red" *ngIf="signUpForm.get('idCard').errors?.required && signUpForm.get('idCard').touched || signUpForm.get('idCard').errors?.required &&checkForm">Trường này không được phép để trống.</p>
+                  <p style="color: red" *ngIf="signUpForm.get('idCard').errors?.pattern && signUpForm.get('idCard').touched">Trường này phải có dạng XXXX-XXXX-XXXX.</p>
+                  <p *ngIf="errorIdCard" style="color: red" >CMND/idCard này đã được sủ dụng.</p>
+
+                </div>
+              </div>
+              <div class="col-md-6  px-2 ">
+                <div class="form-group content" >
+                  <p>Gender:</p>
+                  <select name="" (focus)="displayLabel('gender')" formControlName="gender" class="form-control">
+                    <option value="" >Giới tính</option>
+                    <option [ngValue]="true">Nam</option>
+                    <option [ngValue]="false">Nữ</option>
+                    <option [ngValue]="null">Khác</option>
+                  </select>
+                  <p style="color: red" *ngIf="signUpForm.get('gender').errors?.inputNull && signUpForm.get('gender').touched|| checkForm&&signUpForm.get('gender').errors?.inputNull">Trường này không được phép để trống.</p>
+                </div>
+              </div>
+              <div class="col-md-6  px-2 ">
+                <div class="form-group content">
+                  <p>Country:</p>
+                  <select formControlName="country" class="form-control">
+                    <option value="">Quốc gia</option>
+                    <option [ngValue]="item" *ngFor="let item of countryList">{{item.country}}</option>
+                  </select>
+                  <p style="color: red" *ngIf="signUpForm.get('country').errors?.inputNull && signUpForm.get('country').touched || checkForm&&signUpForm.get('country').errors?.inputNull">Trường này không được phép để trống.</p>
+
+                </div>
+              </div>
+              <div class="col-md-6  px-2 ">
+                <div class="d-flex justify-content-end px-5">
+                  <button routerLink="/home" class="btn btn-danger p-2" mat-button mat-dialog-close>Huỷ</button>
+                </div>
+              </div>
+              <div class="col-md-6  px-2 ">
+                <div class="d-flex justify-content-start px-5">
+                  <button  class="btn btn-primary p-2">Đăng ký</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+        </form>
+
+      </div>
+
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>

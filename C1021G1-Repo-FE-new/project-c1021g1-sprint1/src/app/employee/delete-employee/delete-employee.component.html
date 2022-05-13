@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <table class="table table-bordered">
+    <thead class="table-danger">
+    <tr>
+      <th class="text-center" colspan="2">
+        <h2>Xoá Nhân Viên</h2>
+      </th>
+    </tr>
+    </thead>
+    <tbody class="table-borderless">
+    <tr>
+      <td colspan="2" class="table-borderless">
+        Bạn có chắc chắn muốn xoá thông tin của nhân viên có:
+      </td>
+    </tr>
+    <tr>
+      <td class="text-center">Mã Nhân Viên: <strong>{{this.data.employee.codeEmployee}}</strong></td>
+      <td class="text-center">Họ Tên: <strong>{{this.data.employee.nameEmployee}}</strong></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="text-center">
+        <a class="btn btn-secondary" (click)="onNoClick()">Không</a>
+        <a class="btn btn-danger" (click)="deleteEmployee()">Có</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

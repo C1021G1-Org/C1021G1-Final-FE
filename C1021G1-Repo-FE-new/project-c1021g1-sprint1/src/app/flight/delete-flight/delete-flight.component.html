@@ -1,0 +1,21 @@
+<h3 class="text-danger" style="font-weight: bold">Cảnh Báo!</h3>
+<hr>
+
+
+<p class="my-3"> Bạn chắc chắn xóa Chuyến bay có :
+  <span class="text-danger" style="font-weight: bold; font-size: 20px">
+    <br>
+    <br>
+    <h6>Hãng bay : {{flightDto?.airlineType.nameAirline}}</h6>
+    <h6>Mã vé : {{flightDto?.codeFlight}}</h6>
+    <h6>Điểm đi : {{flightDto?.fromFlight}}</h6>
+    <h6>Điểm đến : {{flightDto?.toFlight}}</h6>
+    <h6>Ngày bay : {{flightDto?.dateStart}}</h6>
+  </span>
+  <br> <span class="font-weight-bold">(Không thể hoàn tác lại!)</span>
+</p>
+<div class="row d-flex justify-content-end">
+  <button class="btn btn-danger mr-3" (click)="deleteFlight()">Xóa</button>
+  <button mat-dialog-close  class="btn btn-warning mr-3">Hủy</button>
+</div>
+

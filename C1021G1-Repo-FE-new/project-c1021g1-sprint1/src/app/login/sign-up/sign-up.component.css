@@ -1,0 +1,33 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.content{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.wrapper-signup{
+  /*padding: 50px;*/
+  background: rgb(255, 251, 251,0.2);
+}
+#email::placeholder, #ps::placeholder,
+#confirmPs::placeholder{
+
+  opacity: 1; /* Firefox */
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: red;
+}
+
+/*.background{*/
+/*  background: url("https://as2.ftcdn.net/v2/jpg/01/90/10/03/1000_F_190100397_SbErftTx5aMHImgkpXrbGBykR2XylPJ3.jpg");*/
+/*  background-size: cover;*/
+/*}*/
+.required{
+  color: red;
+}

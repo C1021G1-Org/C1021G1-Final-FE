@@ -1,0 +1,316 @@
+<form [formGroup]="createReportForm" (ngSubmit)="reportStatistic()" >
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <table class="table table-side-bar">
+        <thead class="table-dark">
+        <tr>
+          <th>
+            Chức Năng
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            <a>Thông tin Admin</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a routerLink="/employee">Quản lý nhân viên</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a routerLink="/list-customer">Quản lý khách hàng</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a routerLink="/report">Thống kê</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-10">
+      <div class="text-center">
+        <h3 style="background: black ; color: white ; padding: 9px">Tạo báo cáo</h3>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="row">
+            <div class="col-6">
+              <label for="ck" style="font-weight: bold">Chọn kiểu:</label>
+              <select id="ck" #shape class="form-control" formControlName="chart" (change)="setSelectShape(shape)">
+                <option value="">---Chọn---</option>
+                <option value="1">Hình tròn</option>
+                <option value="2">Hình trụ</option>
+                <option value="3">Hình đường</option>
+              </select>
+              <h6 style="color:red;"
+                  *ngIf="createReportForm.get('chart').errors?.required && createReportForm.get('chart').touched">Vui
+                lòng chọn kiểu báo cáo</h6>
+            </div>
+            <div class="col-6">
+              <label for="cl" style="font-weight: bold"> Chọn loại:</label>
+              <select id="cl" formControlName="revenue" #revenue class="form-control"
+                      (change)="setSelectRevenue(revenue)">
+                <option value="">---Chọn---</option>
+                <option *ngIf="shape.value == 1 || shape.value ==0" [value]="1">Doanh thu</option>
+                <option *ngIf="shape.value == 2 || shape.value ==0" [value]="2">Top nhân viên</option>
+                <option *ngIf="shape.value == 3 || shape.value ==0" [value]="3">Doanh thu của hãng</option>
+              </select>
+              <h6 style="color:red;"
+                  *ngIf="createReportForm.get('revenue').errors?.required && createReportForm.get('revenue').touched">
+                Vui lòng chọn loại báo cáo</h6>
+            </div>
+          </div>
+          <div *ngIf="shape.value == 1 || shape.value == 2 || shape.value == 0">
+            <div class="row">
+              <div class="col-12">
+                <label for="tg" style="font-weight: bold"> Thời gian 1:</label>
+                <select id="tg" class="form-control" formControlName="select1" (change)="checkDisable()"
+                        [(ngModel)]="select1">
+                  <option value="">---Chọn---</option>
+                  <option value="1">Tháng 1</option>
+                  <option value="2">Tháng 2</option>
+                  <option value="3">Tháng 3</option>
+                  <option value="4">Tháng 4</option>
+                  <option value="5">Tháng 5</option>
+                  <option value="6">Tháng 6</option>
+                  <option value="7">Tháng 7</option>
+                  <option value="8">Tháng 8</option>
+                  <option value="9">Tháng 9</option>
+                  <option value="10">Tháng 10</option>
+                  <option value="11">Tháng 11</option>
+                  <option value="12">Tháng 12</option>
+                </select>
+                <h6 style="color:red;"
+                    *ngIf="createReportForm.get('select1').errors?.required && createReportForm.get('select1').touched">
+                  Vui lòng chọn tháng</h6>
+              </div>
+
+            </div>
+          </div>
+          <div *ngIf="shape.value == 3 || shape.value == 0">
+            <div class="row">
+              <div class="col-6">
+                <label for="tu" style="font-weight: bold">Từ:</label>
+                <input id="tu" type="date" #fromDate formControlName="startDate"
+                       (change)="setFromDateAirline(fromDate)" placeholder="Ngày bắt đầu" class="form-control">
+                <h6 style="color:red;"
+                    *ngIf="createReportForm.get('startDate').errors?.required && createReportForm.get('startDate').touched">
+                  Vui lòng nhập!!</h6>
+              </div>
+              <div class="col-6">
+                <label for="to" style="font-weight: bold">Đến:</label>
+                <input id="to" type="date" #toDate formControlName="endtDate" (change)="setToDateAirline(toDate)"
+                       placeholder="Ngày kết thúc" class="form-control">
+                <h6 style="color:red;"
+                    *ngIf="createReportForm.get('endtDate').errors?.required && createReportForm.get('endtDate').touched">
+                  Vui lòng nhập!!</h6>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div *ngIf="shape.value == 1 || shape.value==0">
+            <h6>So sách với:</h6>
+          </div>
+          <br>
+          <div *ngIf="shape.value == 1 || shape.value == 0">
+            <div class="row">
+              <div class="col-12">
+                <label for="time" style="font-weight: bold">Thời gian 2:</label>
+                <select id="time" class="form-control" formControlName="select2" (change)="checkDisable()"
+                        [(ngModel)]="select2">
+                  <option value="">---Chọn---</option>
+                  <option value="1">Tháng 1</option>
+                  <option value="2">Tháng 2</option>
+                  <option value="3">Tháng 3</option>
+                  <option value="4">Tháng 4</option>
+                  <option value="5">Tháng 5</option>
+                  <option value="6">Tháng 6</option>
+                  <option value="7">Tháng 7</option>
+                  <option value="8">Tháng 8</option>
+                  <option value="9">Tháng 9</option>
+                  <option value="10">Tháng 10</option>
+                  <option value="11">Tháng 11</option>
+                  <option value="12">Tháng 12</option>
+                </select>
+                <h6 style="color:red;"
+                    *ngIf="createReportForm.get('select2').errors?.required && createReportForm.get('select2').touched">
+                  Vui lòng chọn tháng</h6>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="shape.value == 0">
+            <div class="row">
+              <div class="col-6">
+                <label for="t" style="font-weight: bold">Từ:</label>
+                <input id="t" type="date" formControlName="date3" placeholder="Ngày bắt đầu" class="form-control">
+                <h6 style="color:red;"
+                    *ngIf="createReportForm.get('date3').errors?.required && createReportForm.get('date3').touched">
+                  Vui lòng chọn ngày</h6>
+              </div>
+              <div class="col-6">
+                <label for="d" style="font-weight: bold"> Đến: </label>
+                <input id="d" formControlName="date4" type="date" aria-describedby="inputGroup-sizing-em"
+                       placeholder="Ngày kết thúc" class="form-control">
+                <h6 style="color:red;"
+                    *ngIf="createReportForm.get('date4').errors?.required && createReportForm.get('date4').touched">
+                  Vui lòng chọn ngày</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-1">
+
+          </div>
+          <div class="row">
+            <div class="col-12" style="text-align: center">
+              <button class="btn btn-dark m-3" type="reset">Nhập lại</button>
+              <button type="submit" class="btn btn-primary m-3" data-toggle="modal"
+                      data-target=".bd-example-modal-lg" [disabled]="!checkModal">Xem chi tiết
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-1">
+
+        </div>
+        <div class="col-6">
+          <div *ngIf="shape.value == ''" style="text-align: center">
+            <h6 style="text-align: center">Biểu đồ</h6>
+            <div class="col-12">
+              <img src="https://st.a1digihub.com/wp-content/uploads/2019/05/bieu-do-tron-1024x530.jpg" alt="" width="80%" height="75%">
+              <!--               <h6 style="text-align: center">Biểu đồ tròn</h6>-->
+            </div>
+            <div class="col-12">
+              <img src="https://st.a1digihub.com/wp-content/uploads/2019/05/bieu-do-histogram-1024x482.jpg"  width="80%" height="75%" alt="">
+              <!--                <h6 style="text-align: center">Biểu đồ cột</h6>-->
+            </div>
+            <div class="col-12">
+              <img src="https://cdntm.24hstatic.com/2022/3/16/6/48eab122f4cd4deb9a6f1a742ac39200.png"  width="80%" height="75%" alt="">
+              <!--                <h6 style="text-align: center">Biểu đồ đường</h6>-->
+            </div>
+          </div>
+          <div class="container-fluid" id="contentToConvert">
+            <div *ngIf="shape.value == 1">
+              <h4 style="text-align: center">Doanh thu vé máy bay tháng</h4>
+              <table class="table table-bordered">
+                <thead style="background: black;color: white">
+                <tr>
+                  <th>Thời gian 1</th>
+                  <th>Thời gian 2</th>
+                  <th>Doanh thu 1</th>
+                  <th>Doanh thu 2</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>Tháng {{select1}}</td>
+                  <td>Tháng {{select2}}</td>
+                  <td>{{startMonth | currency:'VND'}} </td>
+                  <td>{{endMonth | currency:'VND'}} </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div *ngIf="shape.value == 2">
+              <h4 style="text-align: center">Top nhân viên bán nhiều vé nhất</h4>
+              <table class="table table-bordered">
+                <thead style="background: black;color: white">
+                <tr>
+                  <th>Tên nhân viên</th>
+                  <th>Điểm</th>
+                </tr>
+                </thead>
+                <tr *ngFor="let item of iReportEmployee">
+                  <td>{{item.name_employee}}</td>
+                  <td>{{item.sumPoint}} </td>
+                </tr>
+              </table>
+            </div>
+            <div *ngIf="shape.value == 3">
+              <h4 style="text-align: center">Hãng bay bán được nhiều vé nhất</h4>
+              <table class="table table-bordered">
+                <thead style="background: black;color: white">
+                <tr>
+                  <th>Thời gian</th>
+                  <th>Tên hãng bay</th>
+                  <th>Số lượng</th>
+                </tr>
+                </thead>
+                <tr *ngFor="let item of iReportAirline">
+                  <td>Từ {{fromDateAirline}} đến {{toDateAirline}}</td>
+                  <td>{{item.name_airline}}</td>
+                  <td>{{item.countAirline}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="text-center">
+        <h3 style="background: black ; color: white ; padding: 9px">Kết quả thống kê</h3>
+      </div>
+      <div *ngIf="shape.value ==1">
+        <p class="m-3">Thời gian 1: Tháng {{select1}}</p>
+        <p class="m-3">Thời gian 2: Tháng {{select2}}</p>
+      </div>
+      <div *ngIf="shape.value == 3">
+        <p class="m-3">Thời gian: Từ: {{fromDateAirline | date: 'dd/MM/yyyy'}} đến: {{toDateAirline | date: 'dd/MM/yyyy'}} </p>
+      </div>
+      <div *ngIf="shape.value == 2">
+        <p>Thời gian: Tháng {{select1}}</p>
+      </div>
+      <h6 style="text-align: center; color: red" *ngIf="checkNullData == false">{{errorBadRequest}}</h6>
+      <h6 style="text-align: center;color: red" *ngIf=" shape.value == 1 && select1 == select2">Bạn
+        đang so sánh tháng trùng nhau</h6>
+      <div *ngIf="(shape.value == 1) && (startMonth != endMonth)" id="container"></div>
+      <div *ngIf="(shape.value== 2) && (checkNullData  == true)" id="chart"></div>
+      <div *ngIf="(shape.value == 3) && (checkNullData == true)" id="charts"></div>
+      <div
+        *ngIf="shape.value == 1 && startMonth != endMonth"
+        style="text-align: center">
+        <span class="text-center">
+            <span class="cuthuan">  </span>{{startMonth.toLocaleString()}} VND |
+          <span class="cuthuan5cm">  </span> {{endMonth.toLocaleString()}} VND
+           </span>
+      </div>
+      <p></p>
+      <div class="row m-auto">
+        <button
+          *ngIf="checkNullData != false && this.select1 != this.select2 && shape.value != ''"
+          class="btn btn-success d-flex" (click)="generatePDF()" data-dismiss="modal">
+          <i class="material-icons">local_printshop</i>
+          <span style="margin: unset">In báo cáo</span>
+        </button>
+      </div>
+
+      <div class="row m-auto">
+        <h6></h6>
+      </div>
+      <div class="row m-auto">
+        <h6></h6>
+      </div>
+      <div class="row m-auto">
+        <h6></h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+

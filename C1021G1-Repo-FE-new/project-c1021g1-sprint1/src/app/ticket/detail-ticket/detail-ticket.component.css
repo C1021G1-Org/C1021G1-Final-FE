@@ -1,0 +1,312 @@
+/** {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*  font-family: Bahnschrift;*/
+/*}*/
+/*body{*/
+/*  background-image: url("https://phunugioi.com/wp-content/uploads/2021/11/Background-bau-troi-background-sky-may-hong.jpg");*/
+/*  background-size: cover;*/
+/*  background-attachment: fixed;*/
+/*}*/
+/*.ticked {*/
+/*  position: absolute;*/
+/*  width: 80%;*/
+/*  height: 400px;*/
+/*  top: 10%;*/
+/*  left: 20%;*/
+/*}*/
+
+.ticked-left {
+  background: linear-gradient(to right, rgba(153, 113, 229, 0.71), rgba(219, 130, 22, 0.85));
+  border-right: 3px dashed #ffffff;
+  color: #a0f1d5;
+}
+
+.ticked-right {
+  background: linear-gradient(to right, rgba(236, 180, 39, 0.84), rgba(101, 209, 229, 0.86));
+  /*border-left: 3px dashed #ffffff;*/
+
+}
+
+.ticked-left:before,
+.ticked-left:after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 50%;
+  position: absolute;
+  right: -10px;
+
+}
+
+.ticked-left:before {
+  top: -10px;
+}
+
+.ticked-left:after {
+  bottom: -10px;
+}
+
+.span-left:before,
+.span-left:after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 50%;
+  position: absolute;
+  left: -10px;
+}
+
+.span-left:before {
+  top: -10px;
+}
+
+.span-left:after {
+  bottom: -10px;
+}
+
+.ticked-right:before, .ticked-right:after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 50%;
+  position: absolute;
+  right: -10px;
+}
+
+.ticked-right:before {
+  top: -10px;
+}
+
+.ticked-right:after {
+  bottom: -10px;
+}
+
+.text-color {
+  color: rgba(19, 2, 232, 0.8);
+  /*text-shadow: 0 0 20px #ef0619;*/
+}
+
+.title-text {
+  color: #06e7ef;
+  text-shadow: 0 0 30px #ef7e06;
+}
+
+.bottom-box {
+  /*position: absolute;*/
+
+  height: 60px;
+
+
+}
+
+.btn-box {
+  /*position: absolute;*/
+  /*top: 10%;*/
+  background: linear-gradient(to right, rgba(229, 17, 127, 0.86), rgba(219, 91, 22, 0.85));
+  height: 40px;
+  margin: 0 10px;
+  border-radius: 10px;
+  border: 0;
+  outline: none;
+  color: #ffffff;
+}
+
+.btn-box2 {
+  /*position: absolute;*/
+  /*top: 10%;*/
+  background: linear-gradient(to right, rgba(15, 61, 231, 0.86), rgb(250, 62, 3));
+  height: 40px;
+  margin: 0 10px;
+  border-radius: 10px;
+  border: 0;
+  outline: none;
+  color: #ffffff;
+}
+
+.text-time {
+  color: darkblue;
+}
+
+.seat-box {
+  /*background: green;*/
+  height: 85%;
+  width: 50%;
+  /*margin: 0 10px;*/
+  border-radius: 10px;
+
+  border: 0;
+  outline: none;
+  color: #ffffff;
+}
+
+.border-seat{
+  background: rgba(255, 255, 255, 0.84);
+  padding: 10px;
+  width: 500px;
+
+}
+
+
+
+
+
+
+
+
+
+
+/*!** {*!*/
+/*!*  margin: 0;*!*/
+/*!*  padding: 0;*!*/
+/*!*  font-family: Bahnschrift;*!*/
+/*!*}*!*/
+/*!*body{*!*/
+/*!*  background-image: url("https://phunugioi.com/wp-content/uploads/2021/11/Background-bau-troi-background-sky-may-hong.jpg");*!*/
+/*!*  background-size: cover;*!*/
+/*!*  background-attachment: fixed;*!*/
+/*!*}*!*/
+/*!*.ticked {*!*/
+/*!*  position: absolute;*!*/
+/*!*  width: 80%;*!*/
+/*!*  height: 400px;*!*/
+/*!*  top: 10%;*!*/
+/*!*  left: 20%;*!*/
+/*!*}*!*/
+
+/*.ticked-left {*/
+/*  background: linear-gradient(to right, rgba(153, 113, 229, 0.71), rgba(219, 130, 22, 0.85));*/
+/*  border-right: 3px dashed #ffffff;*/
+/*  color: #a0f1d5;*/
+/*}*/
+
+/*.ticked-right {*/
+/*  background: linear-gradient(to right, rgba(236, 180, 39, 0.84), rgba(101, 209, 229, 0.86));*/
+/*  !*border-left: 3px dashed #ffffff;*!*/
+
+/*}*/
+
+/*.ticked-left:before,*/
+/*.ticked-left:after {*/
+/*  content: '';*/
+/*  width: 20px;*/
+/*  height: 20px;*/
+/*  background: rgba(255, 255, 255, 0);*/
+/*  border-radius: 50%;*/
+/*  position: absolute;*/
+/*  right: -10px;*/
+
+/*}*/
+
+/*.ticked-left:before {*/
+/*  top: -10px;*/
+/*}*/
+
+/*.ticked-left:after {*/
+/*  bottom: -10px;*/
+/*}*/
+
+/*.span-left:before,*/
+/*.span-left:after {*/
+/*  content: '';*/
+/*  width: 20px;*/
+/*  height: 20px;*/
+/*  background: rgba(255, 255, 255, 0);*/
+/*  border-radius: 50%;*/
+/*  position: absolute;*/
+/*  left: -10px;*/
+/*}*/
+
+/*.span-left:before {*/
+/*  top: -10px;*/
+/*}*/
+
+/*.span-left:after {*/
+/*  bottom: -10px;*/
+/*}*/
+
+/*.ticked-right:before, .ticked-right:after {*/
+/*  content: '';*/
+/*  width: 20px;*/
+/*  height: 20px;*/
+/*  background: rgba(255, 255, 255, 0);*/
+/*  border-radius: 50%;*/
+/*  position: absolute;*/
+/*  right: -10px;*/
+/*}*/
+
+/*.ticked-right:before {*/
+/*  top: -10px;*/
+/*}*/
+
+/*.ticked-right:after {*/
+/*  bottom: -10px;*/
+/*}*/
+
+/*.text-color {*/
+/*  color: rgba(19, 2, 232, 0.8);*/
+/*  !*text-shadow: 0 0 20px #ef0619;*!*/
+/*}*/
+
+/*.title-text {*/
+/*  color: #06e7ef;*/
+/*  text-shadow: 0 0 30px #ef7e06;*/
+/*}*/
+
+/*.bottom-box {*/
+/*  !*position: absolute;*!*/
+
+/*  height: 60px;*/
+
+
+/*}*/
+
+/*.btn-box {*/
+/*  !*position: absolute;*!*/
+/*  !*top: 10%;*!*/
+/*  background: linear-gradient(to right, rgba(229, 17, 127, 0.86), rgba(219, 91, 22, 0.85));*/
+/*  height: 40px;*/
+/*  margin: 0 10px;*/
+/*  border-radius: 10px;*/
+/*  border: 0;*/
+/*  outline: none;*/
+/*  color: #ffffff;*/
+/*}*/
+
+/*.btn-box2 {*/
+/*  !*position: absolute;*!*/
+/*  !*top: 10%;*!*/
+/*  background: linear-gradient(to right, rgba(15, 61, 231, 0.86), rgb(250, 62, 3));*/
+/*  height: 40px;*/
+/*  margin: 0 10px;*/
+/*  border-radius: 10px;*/
+/*  border: 0;*/
+/*  outline: none;*/
+/*  color: #ffffff;*/
+/*}*/
+
+/*.text-time {*/
+/*  color: darkblue;*/
+/*}*/
+
+/*.seat-box {*/
+/*  !*background: green;*!*/
+/*  height: auto;*/
+/*  width: 50px;*/
+/*  !*margin: 0 10px;*!*/
+/*  border-radius: 10px;*/
+
+/*  border: 0;*/
+/*  outline: none;*/
+/*  color: #ffffff;*/
+/*}*/
+
+/*.border-seat{*/
+/*  background: rgba(255, 255, 255, 0.84);*/
+/*  padding: 10px;*/
+/*  width: 500px;*/
+
+/*}*/

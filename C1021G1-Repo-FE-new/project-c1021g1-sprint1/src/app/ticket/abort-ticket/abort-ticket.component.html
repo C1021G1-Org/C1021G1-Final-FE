@@ -1,0 +1,10 @@
+<h3>Xác nhận hủy vé!</h3>
+<hr>
+<p class="my-3"> Bạn có chắc chắn muốn hủy vé <span class="text-danger">{{ticket?.codeTicket}}
+  <br><span>của người đặt</span><span class="font-weight-bold">{{ticket?.customer.nameCustomer}}</span>
+  <span class="font-weight-bold">(Thao tác không thể hoàn tác)</span>
+</span></p>
+<div class="row d-flex justify-content-end">
+  <button class="btn btn-danger mr-3" (click)="abortTicket()">Hủy vé</button>
+  <button  class="btn btn-warning mr-3" [mat-dialog-close]>Thoát</button>
+</div>

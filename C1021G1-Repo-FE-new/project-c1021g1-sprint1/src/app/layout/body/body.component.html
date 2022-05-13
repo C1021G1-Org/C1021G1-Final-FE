@@ -1,0 +1,714 @@
+<div class="body">
+  <!--carousel-->
+  <div id="slides" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+      <li data-target="#slides" data-slide-to="0" class="active"></li>
+      <li data-target="#slides" data-slide-to="1"></li>
+      <li data-target="#slides" data-slide-to="2"></li>
+      <li data-target="#slides" data-slide-to="3"></li>
+      <li data-target="#slides" data-slide-to="4"></li>
+    </ul>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <a href="https://www.vietjetair.com/vi/pages/huong-dan-nhan-e-voucher-xet-nghiem-covid-19-1634808875376"
+           target="_blank">
+          <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/ula3-1645684283598.png"
+               alt="First slide">
+        </a>
+      </div>
+      <div class="carousel-item ">
+        <img
+          src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/bannerpc-1651802756105.png"
+          alt="Second slide">
+      </div>
+      <div class="carousel-item ">
+        <a href="https://www.vietjetair.com/vi/pages/huong-dan-nhan-e-voucher-xet-nghiem-covid-19-1634808875376"
+           target="_blank">
+          <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/topbanner1920x9600000-1649062570149.jpg"
+               alt="Third slide">
+        </a>
+
+      </div>
+      <div class="carousel-item ">
+        <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/topbanner1920x960vn-1649486017878.jpg"
+             alt="Four slide">
+      </div>
+      <div class="carousel-item ">
+        <a
+          href="https://www.vietjetair.com/vi/news/tin-tuc-1648117491415/vietjet-tang-tan-suat-mo-loat-duong-bay-den-phu-quoc-nha-trang-can-tho-da-nang-1646970691695"
+          target="_blank">
+          <img
+            src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/topbanner1920x960vnnnnn-1648449294824.jpg"
+            alt="Five slide">
+        </a>
+      </div>
+      <div id="booking" class="section">
+        <div class="section-center">
+          <div class="container">
+            <div class="row">
+              <div class="booking-form">
+                <div class="form-header">
+                  <h1>Đặt vé</h1>
+                </div>
+                <form [formGroup]="searchForm" (ngSubmit)="search()">
+                  <div class="form-group">
+                    <div class="form-checkbox">
+                      <span>
+                        <label for="roundtrip">
+                          <input type="radio" formControlName="searchOption" id="roundtrip" value="oneway" name="searchOption">
+                          <span class="form-label">Khứ hồi &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        </label>
+                      </span>
+                        <span>
+                          <label for="one-way">
+                          <input #searchOption type="radio" id="one-way" formControlName="searchOption"  name="searchOption">
+                          <span class="form-label"> Một chiều</span>
+                        </label>
+                        </span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <span class="form-label">Điểm khởi hành</span>
+                    <input list="fromFlight" #departDes  class="destination form-control day-fly " name="fromFlight" formControlName="fromFlight" placeholder="Chọn điểm đi">
+                    <datalist id="fromFlight">
+                      <option value="Hồ Chí Minh (SGN)">Hồ Chí Minh (SGN)</option>
+                      <option value="Cần Thơ (VCA)">Cần Thơ (VCA)</option>
+                      <option value="Côn Đảo (VCS)">Côn Đảo (VCS)</option>
+                      <option value="Phú Quốc (PQC)">Phú Quốc (PQC)</option>
+                      <option value="Rạch Giá (VKG)">Rạch Giá (VKG)</option>
+                      <option value="Cà Mau (CAH)">Cà Mau (CAH)</option>
+
+                      <option value="Hà Nội (HAN)">Hà Nội (HAN)</option>
+                      <option value="Hải Phòng (HPH)">Hải Phòng (HPH)</option>
+                      <option value="Vân Đồn (VDO)">Vân Đồn (VDO)</option>
+                      <option value="Điện Biên (DIN)">Điện Biên (DIN)</option>
+
+                      <option value="Đà Nẵng (DAD)">Đà Nẵng (DAD)</option>
+                      <option value="Thanh Hóa (THD)">Thanh Hóa (THD)</option>
+                      <option value="Vinh (VII)">Vinh (VII)</option>
+                      <option value="Huế (HUI)">Huế (HUI)</option>
+                      <option value="Đồng Hới (VDH)">Đồng Hới (VDH)</option>
+                      <option value="Chu Lai (VCL)">Chu Lai (VCL)</option>
+                      <option value="Quy Nhơn (UIH)">Quy Nhơn (UIH)</option>
+                      <option value="Tuy Hòa (TBB)">Tuy Hòa (TBB)</option>
+                      <option value="Nha Trang (NHA)">Nha Trang (NHA)</option>
+                      <option value="Pleiku (PXU)">Pleiku (PXU)</option>
+                      <option value="Ban Mê Thuột (BMV)">Ban Mê Thuột (BMV)</option>
+                      <option value="Đà Lạt (DLI)">Đà Lạt (DLI)</option>
+                    </datalist>
+
+                  </div>
+                  <div class="form-group">
+                    <span class="form-label">Điểm đến</span>
+                    <input list="toFlight" #arrDes value="" class="destination form-control day-fly" name="toFlight" formControlName="toFlight" placeholder="Chọn điểm đến">
+                    <datalist id="toFlight">
+                      <option value="Hồ Chí Minh (SGN)">Hồ Chí Minh (SGN)</option>
+                      <option value="Cần Thơ (VCA)">Cần Thơ (VCA)</option>
+                      <option value="Côn Đảo (VCS)">Côn Đảo (VCS)</option>
+                      <option value="Phú Quốc (PQC)">Phú Quốc (PQC)</option>
+                      <option value="Rạch Giá (VKG)">Rạch Giá (VKG)</option>
+                      <option value="Cà Mau (CAH)">Cà Mau (CAH)</option>
+
+                      <option value="Hà Nội (HAN)">Hà Nội (HAN)</option>
+                      <option value="Hải Phòng (HPH)">Hải Phòng (HPH)</option>
+                      <option value="Vân Đồn (VDO)">Vân Đồn (VDO)</option>
+                      <option value="Điện Biên (DIN)">Điện Biên (DIN)</option>
+
+                      <option value="Đà Nẵng (DAD)">Đà Nẵng (DAD)</option>
+                      <option value="Thanh Hóa (THD)">Thanh Hóa (THD)</option>
+                      <option value="Vinh (VII)">Vinh (VII)</option>
+                      <option value="Huế (HUI)">Huế (HUI)</option>
+                      <option value="Đồng Hới (VDH)">Đồng Hới (VDH)</option>
+                      <option value="Chu Lai (VCL)">Chu Lai (VCL)</option>
+                      <option value="Quy Nhơn (UIH)">Quy Nhơn (UIH)</option>
+                      <option value="Tuy Hòa (TBB)">Tuy Hòa (TBB)</option>
+                      <option value="Nha Trang (NHA)">Nha Trang (NHA)</option>
+                      <option value="Pleiku (PXU)">Pleiku (PXU)</option>
+                      <option value="Ban Mê Thuột (BMV)">Ban Mê Thuột (BMV)</option>
+                      <option value="Đà Lạt (DLI)">Đà Lạt (DLI)</option>
+                    </datalist>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <span class="form-label">Ngày đi</span>
+                        <input #dateStart class="form-control" min="{{minDate}}" formControlName="dateStart" type="date">
+
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <span class="form-label">Ngày về</span>
+                        <input class="form-control" #dateEnd min="{{minDate}}" formControlName="dateEnd" type="date">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="form-group">
+                        <span class="form-label">Hạng ghế</span>
+                        <select class="form-control">
+                          <option>Thường</option>
+                          <option>Vip</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">Người lớn</span>
+                        <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <span class="form-label">Trẻ em</span>
+                        <select class="form-control">
+                          <option>0</option>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-btn">
+                    <button class="btn btn-form" routerLink="/flight/search">Tìm chuyến bay</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--body-->
+  <div class="card-custom">
+    <div class="card">
+      <div class="container-fluid">
+        <div class="box">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-1"></div>
+              <div class="col-md-2" *ngFor="let item of layoutList, index as i">
+                <div *ngIf="i<5">
+                  <figure class="text-center">
+                    <p class="box-test-heading">Từ {{item.fromFlight}}</p>
+                    <img src="/assets/image-layout/49vn-1621505158847-removebg-preview.png" alt="img1">
+                    <p class="box-test-footer">Đến {{item.toFlight}}</p>
+                  </figure>
+                </div>
+              </div>
+              <div class="col-md-1"></div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-1"></div>
+              <div class="col-md-2" *ngFor="let item of lastArray">
+                <div>
+                  <figure class="text-center">
+                    <p class="box-test-heading">Từ {{item.fromFlight}}</p>
+                    <img src="/assets/image-layout/49vn-1621505158847-removebg-preview.png" alt="img1">
+                    <p class="box-test-footer" >Đến {{item.toFlight}}</p>
+                  </figure>
+                </div>
+              </div>
+              <div class="col-md-1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h3 class="mb-3">Thông tin cần thiết</h3>
+      </div>
+      <div class="col-6 text-right">
+        <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+          <i class="fa fa-arrow-left"></i>
+        </a>
+        <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+          <i class="fa fa-arrow-right"></i>
+        </a>
+      </div>
+      <div class="col-12">
+        <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item  active">
+              <div class="row">
+
+                <div class="col-md-6 mb-5">
+                  <div>
+                    <img class="img-fluid img-border"
+                         src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/second-slide600x300-1649825995999.jpg">
+                  </div>
+                </div>
+                <div class="col-md-6 mb-5">
+                  <div>
+                    <img class="img-fluid img-border"
+                         src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/1200x600vn-1647922449867.jpg">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="carousel-item ">
+              <div class="row">
+
+                <div class="col-md-6 mb-5">
+                  <div>
+                    <img class="img-fluid img-border" alt="100%x280"
+                         src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/artboard-2-1641803127834.png">
+                  </div>
+                </div>
+                <div class="col-md-6 mb-5">
+                  <div>
+                    <img class="img-fluid img-border" alt="100%x280"
+                         src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/second-slide600x300-1649825995999.jpg">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="carousel-item ">
+              <div class="row">
+
+                <div class="col-md-6 mb-5">
+                  <div>
+                    <img class="img-fluid img-border" alt="100%x280"
+                         src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/1200x600vn-1647922449867.jpg">
+
+                  </div>
+                </div>
+                <div class="col-md-6 mb-5">
+                  <div>
+                    <img class="img-fluid img-border" alt="100%x280"
+                         src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/artboard-2-1641803127834.png">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/booking-1634319183743.svg">
+        <p style="text-align: center;font-weight: bolder">Đặt chuyến bay</p>
+      </div>
+      <div class="col-md-2">
+        <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/buymore-1634319183745.svg">
+        <p style="text-align: center;font-weight: bolder">Mua hành lý, xuất ăn, chọn chỗ...</p>
+      </div>
+      <div class="col-md-2">
+        <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/checkin-1634319183747.svg">
+        <p style="text-align: center;font-weight: bolder">Ưu tiên làm thủ tục nhanh</p>
+      </div>
+      <div class="col-md-2">
+        <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/skyshop-1634319233320.svg">
+        <p style="text-align: center;font-weight: bolder">Quà lưu niệm</p>
+      </div>
+      <div class="col-md-2">
+        <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/insurance-1634319183751.svg">
+        <p style="text-align: center;font-weight: bolder">Bảo Hiểm</p>
+      </div>
+      <div class="col-md-2">
+        <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/hotelbus-1634319183749.svg">
+        <p style="text-align: center;font-weight: bolder">Khách sạn, xe bus</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 ">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="tag">
+                <h3 style="color: white">Tận Hưởng Chuyến Bay</h3>
+              </div>
+              <div>
+                <a
+                  href="https://www.vietjetair.com/vi/pages/mua-hanh-ly-suat-an-chon-cho-ngoi-va-hon-the-nua-1607076148589/dat-truoc-suat-an---jet-cafe-1606899669939">
+                  <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/files/banner2-1598436826784.jpg"
+                       class="d-block img-border w-100" alt="...">
+                </a>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="tag">
+                <h3 style="color: white">Tận Hưởng Chuyến Bay</h3>
+              </div>
+              <div>
+                <a
+                  href="https://www.vietjetair.com/vi/pages/mua-hanh-ly-suat-an-chon-cho-ngoi-va-hon-the-nua-1607076148589/mua-truoc-hanh-ly-1606894306295"
+                  target="_blank">
+                  <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/banner3-1621512417834.jpg"
+                       class="d-block img-border w-100" alt="...">
+                </a>
+              </div>
+
+            </div>
+            <div class="carousel-item">
+              <div class="tag">
+                <h3 style="color: white">Tận Hưởng Chuyến Bay</h3>
+              </div>
+              <div>
+                <a
+                  href="https://www.vietjetair.com/vi/pages/mua-hanh-ly-suat-an-chon-cho-ngoi-va-hon-the-nua-1607076148589/%C6%B0u-tien-lam-thu-tuc-nhanh-1608349053225"
+                  target="_blank">
+                  <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/files/banner1-1598436826781.jpg"
+                       class="d-block img-border w-100" alt="...">
+                </a>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="tag">
+                <h3 style="color: white">Tận Hưởng Chuyến Bay</h3>
+              </div>
+              <div>
+                <a href="https://cardonline.hdbank.com.vn/partner/vj_plt?utm_source=VJHDBank_Web_" target="_blank">
+                  <img
+                    src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/bottom-banner-pc1200x240-1649834272318.jpg "
+                    class="d-block img-border w-100" alt="...">
+                </a>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card-group">
+        <div class="col-4 mt-lg-4">
+          <div class="card">
+            <div class="tag">
+              <h3 style="color: white">Bảo Hiểm</h3>
+            </div>
+            <div>
+              <a href="https://www.vietjetair.com/vi/pages/bao-hiem-1619494868035" target="_blank">
+                <img class="img-border"
+                     src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/baohiem-1620115781619.jpg"
+                     alt="Card image cap">
+              </a>
+              <div class="card-body">
+
+                <h4 class="card-title">An tâm trọn vẹn</h4>
+                <ul class="card-text">
+                  <li>Các chương trình bảo hiểm uy tín đến từ các đối tác bảo hiểm tin cậy của Vietjet</li>
+                  <li>Quyền lợi bảo hiểm đa dạng, hấp dẫn</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 mt-lg-4 ">
+          <div class="card">
+            <div class="tag">
+              <h3 style="color: white">Ưu tiên làm thủ tục</h3>
+            </div>
+            <div>
+            <a href="https://www.vietjetair.com/vi/my/search-booking?service=priorityCheckIn" target="_blank">
+              <img class="img-border"
+                   src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/files/uutiencheckin-1592284373823.png"
+                   alt="Card image cap">
+            </a>
+            <div class="card-body">
+              <h4 class="card-title">Nhanh chóng, tiết kiệm thời gian</h4>
+              <ul class="card-text">
+                <li>Làm thủ tục nhanh nhất tại quầy SkyBoss</li>
+                <li>Giảm thời gian xếp hàng, chờ đợi</li>
+              </ul>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 mt-lg-4">
+          <div class="card">
+            <div class="tag">
+              <h3 style="color: white">Gửi hàng nhanh</h3>
+            </div>
+            <div>
+            <a href="https://swift247.vn/" target="_blank">
+              <img class="img-border"
+                   src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/files/swift247-1592284169014.png"
+                   alt="Card image cap">
+            </a>
+            <div class="card-body">
+              <h4 class="card-title">Vận chuyển siêu tốc,tiện lợi</h4>
+              <ul class="card-text">
+                <li>Rút ngắn khoảng cách hàng nghìn km trong thời gian ngắn nhất</li>
+                <li>Đặt đơn, gửi và nhận hàng 24/7</li>
+              </ul>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel2">
+      <div class="row">
+        <div class="col-12 ">
+          <div id="carouselExampleControls2" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="tag">
+                  <h3 style="color: white">Mua sắm, giải trí trên mây</h3>
+                </div>
+                <div>
+                  <a
+                    href="https://www.vietjetair.com/vi/pages/mua-hanh-ly-suat-an-chon-cho-ngoi-va-hon-the-nua-1607076148589/hang-mien-thue-1578484071183"
+                    target="_blank">
+                    <img
+                      src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/files/shopping1-1598436856424.jpg"
+                      class="d-block img-border w-100" alt="...">
+                  </a>
+                </div>
+
+              </div>
+              <div class="carousel-item">
+                <div class="tag">
+                  <h3 style="color: white">Mua sắm, giải trí trên mây</h3>
+                </div>
+                <div>
+                  <a
+                    href="https://www.vietjetair.com/vi/pages/mua-hanh-ly-suat-an-chon-cho-ngoi-va-hon-the-nua-1607076148589/qua-luu-niem-1578484137052"
+                    target="_blank">
+                    <img src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/banner3-1621512417834.jpg"
+                         class="d-block img-border w-100" alt="...">
+                  </a>
+                </div>
+
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls2"
+                    data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-target="#carouselExampleControls2"
+                    data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card-group">
+        <div class="col-4 mt-lg-4">
+          <div class="card">
+            <div class="tag">
+              <h3 style="color: white">Khách sạn</h3>
+            </div>
+            <div>
+              <a href="https://www.agoda.com/vi-vn/vietjetair" target="_blank">
+                <img class="img-border"
+                     src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/km2-1620415285304.jpg"
+                     alt="Card image cap">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 mt-lg-4 ">
+          <div class="card">
+            <div class="tag">
+              <h3 style="color: white">Xe đưa đón sân bay</h3>
+            </div>
+            <div>
+              <a href="https://www.vietjetair.com/vi/pages/mua-hanh-ly-suat-an-chon-cho-ngoi-va-hon-the-nua-1607076148589/xe-dua-don-san-bay-1609383761062" target="_blank">
+                <img class="img-border"
+                     src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/busvn-1620725800033.jpg"
+                     alt="Card image cap">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 mt-lg-4">
+          <div class="card">
+            <div class="tag">
+              <h3 style="color: white">Du lịch trọn gói</h3>
+            </div>
+            <div>
+              <a href="https://www.agoda.com/vi-vn/vietjetair" target="_blank">
+                <img class="img-border"
+                     src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/km1-1620415285301.jpg"
+                     alt="Card image cap">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card-group">
+        <div class="col-4 mt-lg-4">
+          <div class="card">
+            <div class="tag">
+              <h3 style="color: white">Điểm đến hấp dẫn</h3>
+            </div>
+            <div>
+              <a href="https://www.vietjetair.com/vi/news/diem-den-1621659595295/quang-binh-1632706592801" target="_blank">
+                <img class="img-border"
+                     src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/quangbinhvi-1621704971898.png"
+                     alt="Card image cap">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 mt-lg-4 ">
+          <div class="card">
+            <div>
+              <a href="https://www.vietjetair.com/vi/news/diem-den-1621659595295/gia-lai-1621661035276" target="_blank">
+                <img class="img-border"
+                     src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/gialaivi-1621704971875.png"
+                     alt="Card image cap">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 mt-lg-4">
+          <div class="card">
+            <div>
+              <a href="https://www.vietjetair.com/vi/news/diem-den-1621659595295/phu-quoc-1621670680470" target="_blank">
+                <img class="img-border"
+                     src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/phuquocvi-1621704971895.png"
+                     alt="Card image cap">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card-group">
+        <div class="col-4 mt-lg-4">
+          <div class="card">
+            <div>
+              <a href="https://www.vietjetair.com/vi/news/diem-den-1621659595295/nghe-an-1621659892412" target="_blank">
+                <img class="img-border"
+                     src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/ngheanvi-1621705324180.png"
+                     alt="Card image cap">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 mt-lg-4 ">
+          <div class="card">
+            <div>
+              <a href="https://www.vietjetair.com/vi/news/diem-den-1621659595295/thanh-hoa-1621670408233" target="_blank">
+                <img class="img-border"
+                     src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/thanhhoavi-1624007210031.png"
+                     alt="Card image cap">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 mt-lg-4">
+          <div class="card">
+            <div>
+              <a href="https://www.vietjetair.com/vi/news/diem-den-1621659595295/ha-noi-1621670017397" target="_blank">
+                <img class="img-border"
+                     src="https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/hanoivi-1621705324176.png"
+                     alt="Card image cap">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <img
+          src="/assets/image-layout/C1021G1_Airline_Logo__1_-removebg-preview.png" style="height: auto;max-width: 400px"
+          alt="">
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <table style="border-collapse: collapse;width: 100%;border-style: none;">
+        <tbody>
+        <tr style="height: 55px;text-align: center">
+          <td style="border-style: none;width: 18.4429%;height: 55px;vertical-align: top;">
+            <p>
+                <span style="font-size: 50px">
+                  <span style="white-space: pre-wrap;color: rgb(224,62,45);">120+</span>
+                </span>
+            </p>
+            <p>
+              <span style="line-height: 1.3;font-size: 16px">Đường bay nội địa và quốc tế</span>
+            </p>
+          </td>
+          <td style="border-style: none;width: 18.6697%;height: 55px;vertical-align: top;">
+            <p>
+                <span style="font-size: 50px">
+                  <span style="white-space: pre-wrap;color: rgb(224,62,45);">400+</span>
+                </span>
+            </p>
+            <p>
+              <span style="line-height: 1.3;font-size: 16px">Chuyến bay mỗi ngày</span>
+            </p>
+          </td>
+          <td style="border-style: none;width: 18.972%;height: 55px;vertical-align: top;">
+            <p>
+                <span style="font-size: 50px">
+                  <span style="white-space: pre-wrap;color: rgb(224,62,45);">18+</span>
+                </span>
+            </p>
+            <p>
+              <span style="line-height: 1.3;font-size: 16px">Nhân viên thân thiện, tận tình </span>
+            </p>
+          </td>
+          <td style="border-style: none;width: 18.7453%;height: 55px;vertical-align: top;">
+            <p>
+                <span style="font-size: 50px">
+                  <span style="white-space: pre-wrap;color: rgb(224,62,45);">100+</span>
+                </span>
+            </p>
+            <p>
+              <span style="line-height: 1.3;font-size: 16px">Hãng bay trên toàn thế giới</span>
+            </p>
+          </td>
+          <td style="border-style: none;width: 25.1701%;height: 55px;vertical-align: top;">
+            <p>
+                <span style="font-size: 50px">
+                  <span style="white-space: pre-wrap;color: rgb(224,62,45);">5★</span>
+                </span>
+            </p>
+            <p>
+              <span style="line-height: 1.3;font-size: 16px">Xếp hạng trang web booking uy tín nhất thế giới</span>
+            </p>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,125 @@
+.word-title {
+/*  background-image: url("https://balotrainghiem.com/wp-content/uploads/2017/05/DSC_3024.jpg");*/
+/*  height:40em; background-size:cover; width:auto;*/
+/*  !*background-position:50% 50%;*!*/
+/*  z-index: 1;*/
+  font-family: Bahnschrift;
+  text-align: center;
+  /*color: white;*/
+  font-size: 18px;
+}
+.person  {
+  width: 120px;
+  padding: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.destination  {
+  width: 200px;
+  padding: 0;
+}
+.day-fly {
+  width: 200px;
+  padding: 0;
+}
+
+input {
+  margin-left: 5px;
+}
+nav ul li button:hover:before{
+
+    transform: scaleY(1);
+}
+nav ul li button:hover{
+    color: #e31b1b;
+}
+
+th {
+  text-align: center;
+}
+
+.table {
+  border-radius: 18px;
+  text-decoration: none;
+  background-color: white;
+}
+.table tbody tr:hover {
+
+  background-color: beige;
+  color: #403E10;
+  font-weight: bold;
+
+  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  transform: translate3d(6px, 1px, 0);
+
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+  transition-property: all;
+  /*transition-timing-function: line;*/
+}
+
+.number {
+  text-align: center;
+}
+
+.word {
+  text-align: left;
+}
+
+input[type="radio"]:checked ~ label:after {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  tranform: translateY(-50%);
+  left: 4px;
+  content: '';
+  background: blue;
+}
+
+label {
+  padding: 0px;
+  position: relative;
+  margin: 0;
+  line-height: 20px;
+}
+
+/*form*/
+.section {
+  right: 150px;
+  width: 470px;
+  height: 550px;
+  min-height: 315px;
+  background: rgba(217, 26, 33, 0.73);
+}
+
+.booking-form .form-header {
+  text-align: center;
+  /*padding: 10px;*/
+
+  /*margin: 0px -40px 10px;*/
+  background: rgba(224, 224, 77, 0.64);
+  color: white;
+}
+
+button:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}a,
+ a:hover {
+   text-decoration: none;
+   display: inline-block;
+   -webkit-transition: 0.3s ease-in-out;
+   transition: 0.3s ease-in-out;
+ }
+
+img {
+  display: inline-block;
+  width: 100%;
+}
+
+
+
+

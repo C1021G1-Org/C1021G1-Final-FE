@@ -1,0 +1,278 @@
+.nen {
+  background: rgba(255, 251, 251,0.8);
+  width: 100%;
+  height: 100%;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Bahnschrift';
+  background: url("https://www.vietjetair.com/static/media/bg_footer.8da9d038.png");
+  background-size:  cover;
+  z-index: -1;
+}
+section.section1{
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  background: url(https://balotrainghiem.com/wp-content/uploads/2017/05/DSC_3024.jpg);
+  background-size: cover;
+}
+
+section.section2{
+  padding: 150px;
+}
+.loginInput{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.loginInput1{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.jss1477{
+  color: #ffffff;
+  width: 14px;
+  height: 14px;
+}
+.jss1478{
+  color: #ffffff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 1.13;
+  margin-left: 7px;
+  font-stretch: normal;
+  letter-spacing: normal;
+}
+
+.jss1480 {
+  margin-right: 7px;
+}
+.btn-outline-light:hover {
+  color: #e31b1b;
+}
+h4{
+  margin-top:20px;
+  margin-bottom: 10px;
+}
+
+.footer-section {
+  background-color: #e31b1b;
+  position: relative;
+}
+.footer-cta {
+  border-bottom: 1px solid #373636;
+}
+.single-cta i {
+  color: #211f1e;
+  font-size: 30px;
+  float: left;
+  margin-top: 8px;
+}
+.cta-text {
+  padding-left: 15px;
+  display: inline-block;
+}
+.cta-text h4 {
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.cta-text span {
+  color: #090808;
+  font-size: 18px;
+}
+.footer-content {
+  position: relative;
+  z-index: 2;
+}
+.footer-pattern img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 330px;
+  background-size: cover;
+  background-position: 100% 100%;
+}
+.footer-logo {
+  margin-bottom: 30px;
+}
+.footer-logo img {
+  max-width: 200px;
+}
+.footer-text p {
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: #7e7e7e;
+  line-height: 28px;
+}
+.footer-social-icon span {
+  color: #fff;
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px;
+}
+.footer-social-icon a {
+  color: #fff;
+  font-size: 16px;
+  margin-right: 15px;
+}
+.footer-social-icon i {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 38px;
+  border-radius: 50%;
+}
+
+.twitter-bg{
+  background: #55ACEE;
+}
+.google-bg{
+  background: #DD4B39;
+}
+.footer-widget-heading h3 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  position: relative;
+}
+.footer-widget-heading h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  height: 2px;
+  width: 50px;
+  background: #130b07;
+}
+.footer-widget ul li {
+  display: inline-block;
+  float: left;
+  width: 50%;
+  margin-bottom: 12px;
+}
+.footer-widget ul li a:hover{
+  color: #1147ce;
+}
+.footer-widget ul li a {
+  color: #130b07;
+  text-transform: capitalize;
+}
+.subscribe-form {
+  position: relative;
+  overflow: hidden;
+}
+.subscribe-form input {
+  width: 100%;
+  padding: 14px 28px;
+  background: #2E2E2E;
+  border: 1px solid #2E2E2E;
+  color: #fff;
+}
+.subscribe-form button {
+  position: absolute;
+  right: 0;
+  background: #ff5e14;
+  padding: 13px 20px;
+  border: 1px solid #ff5e14;
+  top: 0;
+}
+.subscribe-form button i {
+  color: #fff;
+  font-size: 22px;
+  transform: rotate(-6deg);
+}
+.copyright-area{
+  background: #202020;
+  padding: 25px 0;
+}
+.copyright-text p {
+  margin: 0;
+  font-size: 14px;
+  color: #878787;
+  text-align: center;
+}
+.copyright-text p a{
+  color: #ff5e14;
+}
+.footer-menu li {
+  display: inline-block;
+  margin-left: 20px;
+}
+.footer-menu li:hover a{
+  color: #ff5e14;
+}
+.footer-menu li a {
+  font-size: 14px;
+  color: #090808;
+}
+.footer-text p{
+  color: black;
+
+}
+.box-input-1{
+  text-align: center;
+  padding: 4.5rem 1.25rem;
+  margin-bottom: 30px;
+}
+#filesel_3{
+  width: 200px;
+  min-height: 2.5em;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+  padding: 7px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+#filechoose_3{
+  width: 160px;
+  min-height: 2.5em;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+  padding: 7px;
+  text-align: center;
+  background-color: #d3394c;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+  font-family: "Times New Roman", Times, serif;
+}
+.custom-file-3:hover{
+  border-color: #007bff;
+}
+.custom-file-3:hover #filechoose_3{
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.loader-wrapper{
+  width:100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color:#242f2f;
+}
+/**/
+

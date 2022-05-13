@@ -1,0 +1,62 @@
+<div id="popup1" class="overlay">
+  <div class="popup">
+    <h2 style="text-align: center">Xác Nhận</h2>
+
+    <div class="container sticky-top">
+      <label style="color: red;  margin-left: 50px">Bạn có muốn xóa khách hàng này không?</label><br>
+
+      <table class="table table-bordered table-two">
+<!--        <thead ></thead>-->
+<!--        <tbody></tbody>-->
+<!--        <hr>-->
+<!--        <tr>-->
+<!--          <th scope="col">STT</th>-->
+<!--          <td colspan="2">{{customer?.id}}</td>-->
+<!--        </tr>-->
+        <tr>
+          <th scope="col">Họ Tên</th>
+          <td colspan="2">{{customer?.nameCustomer}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Giới Tính</th>
+          <td colspan="2">{{customer?.emailCustomer}}</td>
+
+        </tr>
+        <tr>
+          <th scope="col">Ngày Sinh</th>
+          <td colspan="2">{{customer?.birthdayCustomer | date: "dd-MM-yyyy"}}</td>
+        </tr>
+        <tr>
+          <th scope="col" >Email</th>
+          <td colspan="2">{{customer?.emailCustomer ? "Nam" : customer.genderCustomer == false ? "Nữ" : "Khác"}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Địa Chỉ</th>
+          <td colspan="2">{{customer?.addressCustomer}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Quốc Tịch</th>
+          <td colspan="2">{{customer?.countries.country}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Loại Khách</th>
+          <td colspan="2">{{customer?.customerType.nameCustomerType}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Điểm</th>
+          <td colspan="2">{{customer?.pointCustomer}}</td>
+        </tr>
+        <tr>
+          <th >Thao tác</th>
+          <td style="text-align: center">
+            <a style="margin-left: 20px" [mat-dialog-close] class="btn btn-secondary">Không</a>
+            <a class="btn btn-danger"  style="margin-left: 20px; width: 70px;" (click)="submitDelete()">Có</a>
+          </td>
+
+        </tr>
+      </table>
+      <p style="color: red;  margin-left: 100px">Lưu ý: Không thể hoàn tác lại.</p>
+    </div>
+  </div>
+</div>
+

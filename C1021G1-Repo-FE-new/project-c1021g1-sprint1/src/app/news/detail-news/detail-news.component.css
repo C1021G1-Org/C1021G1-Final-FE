@@ -1,0 +1,13 @@
+.form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body{
+  background-image: url("https://www.vietjetair.com/static/media/bg_footer.8da9d038.png");
+  background-size:  cover;
+  font-family: Bahnschrift, serif;
+}
+.borderDetail{
+  background-color: #f3eeee ;
+}

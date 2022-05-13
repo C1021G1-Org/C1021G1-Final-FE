@@ -1,0 +1,697 @@
+<div class="container-fluid image">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="parent">
+        <div class="details mt-2" style="border-style: ridge; border-radius: 15px" *ngIf="departDes.value != null && arrDes.value != null && !checkDate ">
+          <h1 class="word-title"> Chọn vé cho chiều đi</h1>
+          <p class="word-title">Danh sách các chuyến bay từ {{ departDes.value}} tới {{ arrDes.value}}</p>
+          <p class="word-title"> Ngày {{ dateStart.value | date:'dd/MM/yyyy' }}</p>
+
+        <div class="col-sm-12 d-flex justify-content-center mb-2">
+          <div class="card" style="width: 12rem; background:rgba(255, 251, 251,0.4)">
+              <a (click) = "getFlightByDate(dateTime[0])" class="card-link btn">
+                <h5 class="card-title">{{ dateDes[0] | titlecase }}</h5>
+              </a>
+          </div>
+          <div class="card" style="width: 12rem; background:rgba(255, 251, 251,0.4)">
+              <a (click) = "getFlightByDate(dateTime[1])" class="card-link btn">
+                <h5 class="card-title">{{ dateDes[1] | titlecase }}</h5>
+              </a>
+          </div>
+          <div class="card" style="width: 12rem; background:rgba(255, 251, 251,0.4)">
+              <a (click) = "getFlightByDate(dateTime[2])" class="card-link btn">
+                <h5 class="card-title">{{ dateDes[2] | titlecase }}</h5>
+              </a>
+          </div>
+          <div class="card" style="width: 12rem; background:rgba(255, 251, 251,0.4)">
+              <a (click) = "getFlightByDate(dateTime[3])" class="card-link btn">
+                <h5 class="card-title">{{ dateDes[3] | titlecase }}</h5>
+              </a>
+          </div>
+          <div class="card" style="width: 12rem; background:rgba(255, 251, 251,0.4)">
+              <a (click) = "getFlightByDate(dateTime[4])" class="card-link btn">
+                <h5 class="card-title">{{ dateDes[4] | titlecase }}</h5>
+              </a>
+          </div>
+        </div>
+
+          <div class="row">
+            <div class="col-sm-12 d-flex justify-content-center mb-2 " >
+            <table class="table-bordered table-hover" style="background: rgba(255, 251, 251,0.4); width: 100%">
+              <thead class="table-dark">
+            <tr>
+              <th>Hãng</th>
+              <th>Mã chuyến bay</th>
+              <th>Địa chỉ đi và đến</th>
+              <th>Thời gian đi và đến</th>
+              <th>Giá (VND)</th>
+<!--              <th>Chi tiết</th>-->
+              <th>Đặt vé</th>
+            </tr>
+            </thead>
+              <tbody *ngIf="onewayList.length==0" style="text-align: center; font-weight: bolder; font-size: 16px">Không tìm thấy chuyến bay nào!</tbody>
+              <tbody *ngIf="onewayList.length!=0">
+              <tr *ngFor="let item of onewayList">
+                <td><img style="height: 80px" src="{{ item.image_airline }}"></td>
+                <td>{{ item.code_flight }}</td>
+                <td>từ {{ item.from_flight }} tới {{ item.to_flight }}</td>
+                <td>{{ item.date_start | date:'shortTime'}} - {{ item.date_end | date:'shortTime'}}</td>
+                <td>{{ item.price_airline | currency : 'VND':true : '3.0' }}</td>
+<!--                <td><button class="btn btn-dark" button mat-raised-button  routerLink="/ticket/detail">Chi tiết</button></td>-->
+                <td><label for="datve1">
+                  <input type="radio" id="datve1" [(ngModel)]="startDate" value="{{item.id}}" class="ml-2" name="startDate">
+                </label></td>
+              </tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+      <div class="parent">
+        <div style="border-style: ridge; border-radius: 15px" *ngIf="departDes.value != null && arrDes.value != null && check==false && !checkDate" class="details">
+          <h1 class="word-title"> Chọn vé cho chiều về</h1>
+          <p class="word-title">Danh sách các chuyến bay từ {{ arrDes.value}} tới {{ departDes.value}}</p>
+          <p class="word-title">Ngày {{ dateEnd.value | date:'dd/MM/yyyy' }}</p>
+
+          <div class="col-sm-12 d-flex justify-content-center mb-2">
+            <div class="card" style="width: 12rem; background:rgba(255, 251, 251,0.4)">
+              <a (click) = "getFlightByDate(dateTime[0])" class="card-link btn">
+<!--              <a class="card-link btn">-->
+                <h5 class="card-title">{{ dateArr[0] | titlecase }}</h5>
+              </a>
+            </div>
+            <div class="card" style="width: 12rem; background:rgba(255, 251, 251,0.4)">
+              <a (click) = "getFlightByDate(dateTime[1])" class="card-link btn">
+<!--              <a class="card-link btn">-->
+                <h5 class="card-title">{{ dateArr[1] | titlecase }}</h5>
+              </a>
+            </div>
+            <div class="card" style="width: 12rem; background:rgba(255, 251, 251,0.4)">
+              <a (click) = "getFlightByDate(dateTime[2])" class="card-link btn">
+<!--              <a class="card-link btn">-->
+                <h5 class="card-title">{{ dateArr[2] | titlecase }}</h5>
+              </a>
+            </div>
+            <div class="card" style="width: 12rem; background:rgba(255, 251, 251,0.4)">
+              <a (click) = "getFlightByDate(dateTime[3])" class="card-link btn">
+<!--              <a class="card-link btn">-->
+                <h5 class="card-title">{{ dateArr[3] | titlecase }}</h5>
+              </a>
+            </div>
+            <div class="card" style="width: 12rem; background:rgba(255, 251, 251,0.4)">
+              <a (click) = "getFlightByDate(dateTime[4])" class="card-link btn">
+<!--              <a class="card-link btn">-->
+                <h5 class="card-title">{{ dateArr[4] | titlecase }}</h5>
+              </a>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 d-flex justify-content-center mb-2 " *ngIf="searchOption.value == 'oneway'">
+              <table class="table-bordered table-hover" style="background: rgba(255, 251, 251,0.4); width: 100%">
+                <thead class="table-dark">
+                <tr>
+                  <th>Hãng</th>
+                  <th>Mã chuyến bay</th>
+                  <th>Địa chỉ đi và đến</th>
+                  <th>Thời gian đi và đến</th>
+                  <th>Giá (VND)</th>
+<!--                  <th>Chi tiết</th>-->
+                  <th>Đặt vé</th>
+                </tr>
+                </thead>
+                <tbody *ngIf="twowayList.length==0" style="text-align: center; font-weight: bolder; font-size: 16px">Không tìm thấy chuyến bay nào!</tbody>
+                <tbody *ngIf="twowayList.length!=0">
+                <tr *ngFor="let item of twowayList ">
+                  <td><img style="height: 80px" src="{{ item.image_airline }}"></td>
+                  <td>{{ item.code_flight }}</td>
+                  <td>từ {{ item.from_flight }} tới {{ item.to_flight }}</td>
+                  <td>{{ item.date_start | date:'shortTime'}} - {{ item.date_end | date:'shortTime'}}</td>
+                  <td>{{ item.price_airline | currency : 'VND':true : '3.0' }}</td>
+<!--                  <td><button class="btn btn-dark" mat-raised-button routerLink="/ticket/detail">Chi tiết</button></td>-->
+                  <td><label for="datve2">
+                    <input type="radio" id="datve2" value="{{item.id}}"  [(ngModel)]="endDate" class="ml-2" name="endDate">
+                  </label></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div class="details mt-2" style="border-style: ridge; border-radius: 15px" *ngIf="(departDes.value != null && arrDes.value != null) && checkDate">
+          <h1 class="word-title"> Danh sách chuyến bay ngày {{ currentClick }} </h1>
+      <div class="col-sm-12 d-flex justify-content-center mb-2 " >
+        <table class="table-bordered table-hover" style="background: rgba(255, 251, 251,0.4); width: 100%">
+          <thead class="table-dark">
+          <tr>
+            <th>Hãng</th>
+            <th>Mã chuyến bay</th>
+            <th>Địa chỉ đi và đến</th>
+            <th>Thời gian đi và đến</th>
+            <th>Giá (VND)</th>
+<!--            <th>Chi tiết</th>-->
+            <th>Đặt vé</th>
+          </tr>
+          </thead>
+          <tbody *ngIf="isSearch" style="text-align: center; font-weight: bolder; font-size: 16px">Vui lòng nhập dữ liệu</tbody>
+          <tbody *ngIf="onewayList==null " style="text-align: center; font-weight: bolder; font-size: 16px">Không tìm thấy chuyến bay nào!</tbody>
+          <tbody *ngIf="onewayList!=null">
+          <tr *ngFor="let item of onewayList ">
+            <td><img style="height: 80px" src="{{ item.image_airline }}"></td>
+            <td>{{ item.code_flight }}</td>
+            <td>từ {{ item.from_flight }} tới {{ item.to_flight }}</td>
+            <td>{{ item.date_start | date:'shortTime'}} - {{ item.date_end | date:'shortTime'}}</td>
+            <td>{{ item.price_airline | currency : 'VND':true : '3.0' }}</td>
+<!--            <td><button class="btn btn-dark" mat-raised-button routerLink="/ticket/detail">Chi tiết</button></td>-->
+            <td><label for="datve3">
+              <input class="ml-2" id="datve3" value="{{item.id}}" [(ngModel)]="endDate" type="radio" name="date-End">
+            </label></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+      </div>
+      <div style="text-align: right">
+        <input class="btn btn-success display:inline-block mt-2" type="button" routerLink="/ticket/detail" (click)="sendDataIdFlight()" value="Xác nhận">
+      </div>
+    </div>
+
+    <div id="booking" class="section mt-3">
+      <div class="section-center">
+        <div class="container">
+          <div class="row">
+            <div class="booking-form">
+              <div class="form-header">
+                <h1>Đặt vé</h1>
+              </div>
+<!--              <form [formGroup]="searchForm" (ngSubmit)="search()">-->
+<!--                <div class="form-group">-->
+<!--                  <div class="form-checkbox d-flex justify-content-around">-->
+<!--                    <div>-->
+<!--                      <label>Sắp xếp theo-->
+<!--                      <select #sortOption formControlName="sortOption" class="form-control" name="sortOption">-->
+<!--                        <option>Đề xuất</option>-->
+<!--                        <option>Giá (Từ thấp tới cao)</option>-->
+<!--                        <option>Thời gian khởi hành</option>-->
+<!--                        <option>Hãng hàng không</option>-->
+<!--                      </select>-->
+<!--                      </label>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                      <label for="oneway">-->
+<!--                        <input #searchOption formControlName="searchOption" id="oneway" type="radio" value="oneway" name="searchOption">-->
+<!--                        <span class="form-label">Một chiều</span>-->
+<!--                      </label>-->
+<!--                    </div>-->
+
+<!--                    <div>-->
+<!--                      <label for="twoway">-->
+<!--                        <input type="radio" id="twoway" formControlName="searchOption"-->
+<!--                               value="twoway" name="searchOption">-->
+<!--                        <span class="form-label">Khứ hồi</span>-->
+<!--                      </label>-->
+<!--                    </div>-->
+<!--                    <label></label>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                  <label>-->
+<!--                  <span class="form-label ml-3" >Điểm khởi hành</span>-->
+<!--                  <select class="form-control" #departDes name="fromFlight" formControlName="fromFlight" style="width: 400px;margin-left: 10px">-->
+<!--                    <option value="Hồ Chí Minh (SGN)">Hồ Chí Minh (SGN)</option>&ndash;&gt;-->
+<!--                    <option value="Cần Thơ (VCA)">Cần Thơ (VCA)</option>-->
+<!--                    <option value="Côn Đảo (VCS)">Côn Đảo (VCS)</option>-->
+<!--                    <option value="Phú Quốc (PQC)">Phú Quốc (PQC)</option>-->
+<!--                    <option value="Rạch Giá (VKG)">Rạch Giá (VKG)</option>-->
+<!--                    <option value="Cà Mau (CAH)">Cà Mau (CAH)</option>-->
+
+<!--                    <option value="Hà Nội (HAN)">Hà Nội (HAN)</option>-->
+<!--                    <option value="Hải Phòng (HPH)">Hải Phòng (HPH)</option>-->
+<!--                    <option value="Vân Đồn (VDO)">Vân Đồn (VDO)</option>-->
+<!--                    <option value="Điện Biên (DIN)">Điện Biên (DIN)</option>-->
+
+<!--                    <option value="Đà Nẵng (DAD)">Đà Nẵng (DAD)</option>-->
+<!--                    <option value="Thanh Hóa (THD)">Thanh Hóa (THD)</option>-->
+<!--                    <option value="Vinh (VII)">Vinh (VII)</option>-->
+<!--                    <option value="Huế (HUI)">Huế (HUI)</option>-->
+<!--                    <option value="Đồng Hới (VDH)">Đồng Hới (VDH)</option>-->
+<!--                    <option value="Chu Lai (VCL)">Chu Lai (VCL)</option>-->
+<!--                    <option value="Tuy Hòa (TBB)">Tuy Hòa (TBB)</option>-->
+<!--                    <option value="Nha Trang (NHA)">Nha Trang (NHA)</option>-->
+<!--                    <option value="Pleiku (PXU)">Pleiku (PXU)</option>-->
+<!--                    <option value="Ban Mê Thuột (BMV)">Ban Mê Thuột (BMV)</option>-->
+<!--                    <option value="Đà Lạt (DLI)">Đà Lạt (DLI)</option>-->
+<!--                  </select>-->
+<!--                  </label>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                  <label>-->
+<!--                  <span class="form-label ml-3">Điểm đến</span>-->
+<!--                  <select class="form-control" #arrDes name="toFlight" formControlName="toFlight"  style="width: 400px;margin-left: 10px">-->
+<!--                    <option value="Hồ Chí Minh (SGN)">Hồ Chí Minh (SGN)</option>&ndash;&gt;-->
+<!--                    <option value="Cần Thơ (VCA)">Cần Thơ (VCA)</option>-->
+<!--                    <option value="Côn Đảo (VCS)">Côn Đảo (VCS)</option>-->
+<!--                    <option value="Phú Quốc (PQC)">Phú Quốc (PQC)</option>-->
+<!--                    <option value="Rạch Giá (VKG)">Rạch Giá (VKG)</option>-->
+<!--                    <option value="Cà Mau (CAH)">Cà Mau (CAH)</option>-->
+
+<!--                    <option value="Hà Nội (HAN)">Hà Nội (HAN)</option>-->
+<!--                    <option value="Hải Phòng (HPH)">Hải Phòng (HPH)</option>-->
+<!--                    <option value="Vân Đồn (VDO)">Vân Đồn (VDO)</option>-->
+<!--                    <option value="Điện Biên (DIN)">Điện Biên (DIN)</option>-->
+
+<!--                    <option value="Đà Nẵng (DAD)">Đà Nẵng (DAD)</option>-->
+<!--                    <option value="Thanh Hóa (THD)">Thanh Hóa (THD)</option>-->
+<!--                    <option value="Vinh (VII)">Vinh (VII)</option>-->
+<!--                    <option value="Huế (HUI)">Huế (HUI)</option>-->
+<!--                    <option value="Đồng Hới (VDH)">Đồng Hới (VDH)</option>-->
+<!--                    <option value="Chu Lai (VCL)">Chu Lai (VCL)</option>-->
+<!--                    <option value="Quy Nhơn (UIH)">Quy Nhơn (UIH)</option>-->
+<!--                    <option value="Tuy Hòa (TBB)">Tuy Hòa (TBB)</option>-->
+<!--                    <option value="Nha Trang (NHA)">Nha Trang (NHA)</option>-->
+<!--                    <option value="Pleiku (PXU)">Pleiku (PXU)</option>-->
+<!--                    <option value="Ban Mê Thuột (BMV)">Ban Mê Thuột (BMV)</option>-->
+<!--                    <option value="Đà Lạt (DLI)">Đà Lạt (DLI)</option>-->
+<!--                  </select>-->
+<!--                  </label>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                  <div class="col-md-6">-->
+<!--                    <div class="form-group">-->
+<!--                      <span class="form-label ml-3">Ngày đi</span>-->
+<!--                        <input type="date" min="{{minDate}}" formControlName="dateStart" name="dateStart"-->
+<!--                             #dateStart style="background-color:white" class="form-control day-fly m-2"-->
+<!--                             placeholder="Ngày đi">-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="col-md-6">-->
+<!--                    <div class="form-group">-->
+<!--                      <span class="form-label ml-3">Ngày về</span>-->
+<!--                        <input type="date" #dateEnd min="{{minDate}}" formControlName="dateEnd" style="background-color:white;-->
+<!--                             margin-left: 30px" name="dateEnd" class="form-control day-fly m-2" placeholder="Ngày về">-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                  <div class="col-md-6">-->
+<!--                    <div class="form-group">-->
+<!--                      <select class="form-control" style="width: 200px;margin-left: 10px">-->
+<!--                        <option>Thường</option>-->
+<!--                        <option>Vip</option>-->
+<!--                      </select>-->
+<!--                      <span class="select-arrow"></span>-->
+<!--                      <span class="form-label ml-3">Hạng ghế</span>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="col-md-3">-->
+<!--                    <div class="form-group">-->
+<!--                      <select class="form-control" style="width: 85px;margin-left: 10px">-->
+<!--                        <option>1</option>-->
+<!--                        <option>2</option>-->
+<!--                        <option>3</option>-->
+<!--                        <option>4</option>-->
+<!--                        <option>5</option>-->
+<!--                      </select>-->
+<!--                      <span class="select-arrow"></span>-->
+<!--                      <span class="form-label ml-2">Người lớn</span>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="col-md-3">-->
+<!--                    <div class="form-group">-->
+<!--                      <select class="form-control" style="width: 85px">-->
+<!--                        <option>0</option>-->
+<!--                        <option>1</option>-->
+<!--                        <option>2</option>-->
+<!--                        <option>3</option>-->
+<!--                        <option>4</option>-->
+<!--                        <option>5</option>-->
+<!--                      </select>-->
+<!--                      <span class="select-arrow"></span>-->
+<!--                      <span class="form-label">Trẻ em</span>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="form-btn" style="text-align: right">-->
+<!--                  <button class="btn btn-success display:inline-block" type="submit">Tìm chuyến bay</button>-->
+<!--                </div>-->
+<!--              </form>-->
+
+
+
+
+
+
+              <form [formGroup]="searchForm" (ngSubmit)="search()">
+                <div class="form-group">
+                  <div class="form-checkbox d-flex justify-content-around">
+                    <div>
+                      <label style="color: white">Sắp xếp theo
+                        <select #sortOption formControlName="sortOption" class="form-control" name="sortOption">
+                          <option>Đề xuất</option>
+                          <option>Giá (Từ thấp tới cao)</option>
+                          <option>Thời gian khởi hành</option>
+                          <option>Hãng hàng không</option>
+                        </select>
+                      </label>
+                      <p *ngIf="searchForm.controls.sortOption.errors?.required && searchForm.get('sortOption').touched"> Trường này không được để trống! </p>
+                    </div>
+                    <div>
+                      <label for="oneway">
+                        <input #searchOption formControlName="searchOption" id="oneway" type="radio" value="oneway" checked name="searchOption">
+                        <span class="form-label" style="color: white">Một chiều</span>
+                      </label>
+                      <p *ngIf="searchForm.controls.searchOption.errors?.required && searchForm.get('searchOption').touched"> Trường này không được để trống! </p>
+                    </div>
+
+                    <div>
+                      <label for="twoway">
+                        <input type="radio" id="twoway" formControlName="searchOption"
+                               value="twoway" name="searchOption">
+                        <span class="form-label" style="color: white">Khứ hồi</span>
+                      </label>
+                      <p *ngIf="searchForm.controls.searchOption.errors?.required && searchForm.get('searchOption').touched"> Trường này không được để trống! </p>
+                    </div>
+                    <label></label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>
+                    <span class="form-label ml-3" style="color: white">Điểm khởi hành</span>
+                    <select class="form-control" #departDes name="fromFlight" formControlName="fromFlight" style="width: 400px;margin-left: 10px">
+                      <option value="" selected disabled>Chọn</option>
+                      <option value="Hồ Chí Minh (SGN)">Hồ Chí Minh (SGN)</option>-->
+                      <option value="Cần Thơ (VCA)">Cần Thơ (VCA)</option>
+                      <option value="Côn Đảo (VCS)">Côn Đảo (VCS)</option>
+                      <option value="Phú Quốc (PQC)">Phú Quốc (PQC)</option>
+                      <option value="Rạch Giá (VKG)">Rạch Giá (VKG)</option>
+                      <option value="Cà Mau (CAH)">Cà Mau (CAH)</option>
+
+                      <option value="Hà Nội (HAN)">Hà Nội (HAN)</option>
+                      <option value="Hải Phòng (HPH)">Hải Phòng (HPH)</option>
+                      <option value="Vân Đồn (VDO)">Vân Đồn (VDO)</option>
+                      <option value="Điện Biên (DIN)">Điện Biên (DIN)</option>
+
+                      <option value="Đà Nẵng (DAD)">Đà Nẵng (DAD)</option>
+                      <option value="Thanh Hóa (THD)">Thanh Hóa (THD)</option>
+                      <option value="Vinh (VII)">Vinh (VII)</option>
+                      <option value="Huế (HUI)">Huế (HUI)</option>
+                      <option value="Đồng Hới (VDH)">Đồng Hới (VDH)</option>
+                      <option value="Chu Lai (VCL)">Chu Lai (VCL)</option>
+                      <option value="Tuy Hòa (TBB)">Tuy Hòa (TBB)</option>
+                      <option value="Nha Trang (NHA)">Nha Trang (NHA)</option>
+                      <option value="Pleiku (PXU)">Pleiku (PXU)</option>
+                      <option value="Ban Mê Thuột (BMV)">Ban Mê Thuột (BMV)</option>
+                      <option value="Đà Lạt (DLI)">Đà Lạt (DLI)</option>
+                    </select>
+                  </label>
+                  <p *ngIf="searchForm.controls.fromFlight.errors?.required && searchForm.get('fromFlight').touched"> Trường này không được để trống! </p>
+                </div>
+                <div class="form-group">
+                  <label>
+                    <span class="form-label ml-3" style="color: white">Điểm đến</span>
+                    <select class="form-control" #arrDes name="toFlight" formControlName="toFlight"  style="width: 400px;margin-left: 10px">
+                      <option value="" selected disabled>Chọn</option>
+                      <option value="Hồ Chí Minh (SGN)">Hồ Chí Minh (SGN)</option>-->
+                      <option value="Cần Thơ (VCA)">Cần Thơ (VCA)</option>
+                      <option value="Côn Đảo (VCS)">Côn Đảo (VCS)</option>
+                      <option value="Phú Quốc (PQC)">Phú Quốc (PQC)</option>
+                      <option value="Rạch Giá (VKG)">Rạch Giá (VKG)</option>
+                      <option value="Cà Mau (CAH)">Cà Mau (CAH)</option>
+
+                      <option value="Hà Nội (HAN)">Hà Nội (HAN)</option>
+                      <option value="Hải Phòng (HPH)">Hải Phòng (HPH)</option>
+                      <option value="Vân Đồn (VDO)">Vân Đồn (VDO)</option>
+                      <option value="Điện Biên (DIN)">Điện Biên (DIN)</option>
+
+                      <option value="Đà Nẵng (DAD)">Đà Nẵng (DAD)</option>
+                      <option value="Thanh Hóa (THD)">Thanh Hóa (THD)</option>
+                      <option value="Vinh (VII)">Vinh (VII)</option>
+                      <option value="Huế (HUI)">Huế (HUI)</option>
+                      <option value="Đồng Hới (VDH)">Đồng Hới (VDH)</option>
+                      <option value="Chu Lai (VCL)">Chu Lai (VCL)</option>
+                      <option value="Quy Nhơn (UIH)">Quy Nhơn (UIH)</option>
+                      <option value="Tuy Hòa (TBB)">Tuy Hòa (TBB)</option>
+                      <option value="Nha Trang (NHA)">Nha Trang (NHA)</option>
+                      <option value="Pleiku (PXU)">Pleiku (PXU)</option>
+                      <option value="Ban Mê Thuột (BMV)">Ban Mê Thuột (BMV)</option>
+                      <option value="Đà Lạt (DLI)">Đà Lạt (DLI)</option>
+                    </select>
+                  </label>
+                  <p *ngIf="searchForm.controls.toFlight.errors?.required && searchForm.get('toFlight').touched"> Trường này không được để trống! </p>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <span class="form-label ml-3" style="color: white">Ngày đi</span>
+                      <input type="date" min="{{minDate}}" formControlName="dateStart" name="dateStart"
+                             #dateStart style="background-color:white" class="form-control day-fly m-2"
+                             placeholder="Ngày đi">
+                    </div>
+                    <p *ngIf="searchForm.controls.dateStart.errors?.required && searchForm.get('dateStart').touched"> Trường này không được để trống! </p>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <span class="form-label ml-3" style="color: white">Ngày về</span>
+                      <input type="date" #dateEnd min="{{minDate}}" formControlName="dateEnd" style="background-color:white;
+               margin-left: 30px" name="dateEnd" class="form-control day-fly m-2" placeholder="Ngày về">
+                    </div>
+                    <p *ngIf="searchForm.hasError('dateNotSuccess') && searchForm.get('dateEnd').touched"> Ngày về phải chọn sau ngày đi! </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <select class="form-control" style="width: 200px;margin-left: 10px">
+                        <option>Thường</option>
+                        <option>Vip</option>
+                      </select>
+                      <span class="select-arrow"></span>
+                      <span class="form-label ml-3" style="color: white">Hạng ghế</span>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <select class="form-control" style="width: 85px;margin-left: 10px">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                      <span class="select-arrow"></span>
+                      <span class="form-label ml-2" style="color: white">Người lớn</span>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <select class="form-control" style="width: 85px">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                      <span class="select-arrow"></span>
+                      <span class="form-label" style="color: white">Trẻ em</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-btn" style="text-align: right">
+                  <button class="btn btn-success display:inline-block" type="submit">Tìm chuyến bay</button>
+                </div>
+              </form>
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--    <div class="col-sm-4" style="margin-top: 50px">-->
+<!--      <div style="background: rgba(255, 251, 251,0.4); width: 100%">-->
+<!--        <form [formGroup]="searchForm" (ngSubmit)="search()">-->
+<!--          <div class="row">-->
+<!--            <div class="col">-->
+<!--              <input formControlName="sortOption" type="radio" name="sortOption" value="from_flight"> Đề xuất-->
+<!--            </div>-->
+<!--            <div class="col">-->
+<!--              <input formControlName="sortOption" type="radio" name="sortOption" value="price_airline">  Giá (Thấp đến cao)-->
+<!--            </div>-->
+<!--            <div class="col">-->
+<!--              <input formControlName="sortOption" type="radio" name="sortOption" value="date_start"> Thời gian khởi hành-->
+<!--            </div>-->
+<!--            <div class="col">-->
+<!--              <input formControlName="sortOption" type="radio" name="sortOption" value="image_airline"> Hãng hàng không-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <br>-->
+<!--          <div class="row">-->
+<!--            <div class="col">-->
+<!--              <input  formControlName="searchOption" style="margin-left: 10px" type="radio" value="twoway" name="searchOption">Khứ hồi-->
+<!--            </div>-->
+<!--            <div class="col">-->
+<!--              <input #searchOption formControlName="searchOption" type="radio" value="oneway" name="searchOption">Một chiều-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="row">-->
+<!--            <div class="col">-->
+<!--              <input list="fromFlight" #departDes value="" class=" destination form-control day-fly m-2" name="fromFlight" formControlName="fromFlight" placeholder="Chọn điểm đi">-->
+<!--              <datalist id="fromFlight" >-->
+<!--                <option value="Hồ Chí Minh (SGN)">Hồ Chí Minh (SGN)</option>-->
+<!--                <option value="Cần Thơ (VCA)">Cần Thơ (VCA)</option>-->
+<!--                <option value="Côn Đảo (VCS)">Côn Đảo (VCS)</option>-->
+<!--                <option value="Phú Quốc (PQC)">Phú Quốc (PQC)</option>-->
+<!--                <option value="Rạch Giá (VKG)">Rạch Giá (VKG)</option>-->
+<!--                <option value="Cà Mau (CAH)">Cà Mau (CAH)</option>-->
+
+<!--                <option value="Hà Nội (HAN)">Hà Nội (HAN)</option>-->
+<!--                <option value="Hải Phòng (HPH)">Hải Phòng (HPH)</option>-->
+<!--                <option value="Vân Đồn (VDO)">Vân Đồn (VDO)</option>-->
+<!--                <option value="Điện Biên (DIN)">Điện Biên (DIN)</option>-->
+
+<!--                <option value="Đà Nẵng (DAD)">Đà Nẵng (DAD)</option>-->
+<!--                <option value="Thanh Hóa (THD)">Thanh Hóa (THD)</option>-->
+<!--                <option value="Vinh (VII)">Vinh (VII)</option>-->
+<!--                <option value="Huế (HUI)">Huế (HUI)</option>-->
+<!--                <option value="Đồng Hới (VDH)">Đồng Hới (VDH)</option>-->
+<!--                <option value="Chu Lai (VCL)">Chu Lai (VCL)</option>-->
+<!--                <option value="Quy Nhơn (UIH)">Quy Nhơn (UIH)</option>-->
+<!--                <option value="Tuy Hòa (TBB)">Tuy Hòa (TBB)</option>-->
+<!--                <option value="Nha Trang (NHA)">Nha Trang (NHA)</option>-->
+<!--                <option value="Pleiku (PXU)">Pleiku (PXU)</option>-->
+<!--                <option value="Ban Mê Thuột (BMV)">Ban Mê Thuột (BMV)</option>-->
+<!--                <option value="Đà Lạt (DLI)">Đà Lạt (DLI)</option>-->
+<!--              </datalist>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="row">-->
+<!--            <div class="col">-->
+<!--              <input list="toFlight" #arrDes value="" class="destination form-control day-fly m-2" name="toFlight" formControlName="toFlight" placeholder="Chọn điểm đến">-->
+<!--            <datalist id="toFlight">-->
+<!--              <option value="Hồ Chí Minh (SGN)">Hồ Chí Minh (SGN)</option>-->
+<!--              <option value="Cần Thơ (VCA)">Cần Thơ (VCA)</option>-->
+<!--              <option value="Côn Đảo (VCS)">Côn Đảo (VCS)</option>-->
+<!--              <option value="Phú Quốc (PQC)">Phú Quốc (PQC)</option>-->
+<!--              <option value="Rạch Giá (VKG)">Rạch Giá (VKG)</option>-->
+<!--              <option value="Cà Mau (CAH)">Cà Mau (CAH)</option>-->
+
+<!--              <option value="Hà Nội (HAN)">Hà Nội (HAN)</option>-->
+<!--              <option value="Hải Phòng (HPH)">Hải Phòng (HPH)</option>-->
+<!--              <option value="Vân Đồn (VDO)">Vân Đồn (VDO)</option>-->
+<!--              <option value="Điện Biên (DIN)">Điện Biên (DIN)</option>-->
+
+<!--              <option value="Đà Nẵng (DAD)">Đà Nẵng (DAD)</option>-->
+<!--              <option value="Thanh Hóa (THD)">Thanh Hóa (THD)</option>-->
+<!--              <option value="Vinh (VII)">Vinh (VII)</option>-->
+<!--              <option value="Huế (HUI)">Huế (HUI)</option>-->
+<!--              <option value="Đồng Hới (VDH)">Đồng Hới (VDH)</option>-->
+<!--              <option value="Chu Lai (VCL)">Chu Lai (VCL)</option>-->
+<!--              <option value="Quy Nhơn (UIH)">Quy Nhơn (UIH)</option>-->
+<!--              <option value="Tuy Hòa (TBB)">Tuy Hòa (TBB)</option>-->
+<!--              <option value="Nha Trang (NHA)">Nha Trang (NHA)</option>-->
+<!--              <option value="Pleiku (PXU)">Pleiku (PXU)</option>-->
+<!--              <option value="Ban Mê Thuột (BMV)">Ban Mê Thuột (BMV)</option>-->
+<!--              <option value="Đà Lạt (DLI)">Đà Lạt (DLI)</option>-->
+<!--            </datalist>-->
+<!--          </div>-->
+<!--          </div>-->
+
+
+<!--          <div class="row">-->
+<!--            <div class="col">-->
+<!--              <input min="{{minDate}}" formControlName="dateStart" name="dateStart" #dateStart style="background-color:white" class="form-control day-fly m-2"-->
+<!--                     type="date" placeholder="Ngày đi">-->
+<!--            </div>-->
+<!--            <div class="col">-->
+<!--              <input #dateEnd min="{{minDate}}" formControlName="dateEnd" style="background-color:white; margin-left: 30px" name="dateEnd" class="form-control day-fly m-2"-->
+<!--                     type="date" placeholder="Ngày về">-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="row">-->
+<!--            <div class="col">-->
+<!--              <input list="adult" class="person form-control" style="border-radius: 5px; margin-left:15px" placeholder="Người lớn">-->
+<!--              <datalist id="adult">-->
+<!--                <option value="0">0</option>-->
+<!--                <option value="1" selected="selected">1</option>-->
+<!--                <option value="2">2</option>-->
+<!--                <option value="3">3</option>-->
+<!--                <option value="4">4</option>-->
+<!--                <option value="5">5</option>-->
+<!--                <option value="6">6</option>-->
+<!--                <option value="7">7</option>-->
+<!--                <option value="8">8</option>-->
+<!--                <option value="9">9</option>-->
+<!--                <option value="10">10</option>-->
+<!--                <option value="11">11</option>-->
+<!--                <option value="12">12</option>-->
+<!--                <option value="13">13</option>-->
+<!--                <option value="14">14</option>-->
+<!--                <option value="15">15</option>-->
+<!--                <option value="16">16</option>-->
+<!--                <option value="17">17</option>-->
+<!--                <option value="18">18</option>-->
+<!--                <option value="19">19</option>-->
+<!--                <option value="20">20</option>-->
+<!--              </datalist>-->
+<!--            </div>-->
+
+<!--            <div class="col">-->
+<!--              <input list="child" class="person form-control" style="border-radius: 5px; margin-left:15px" placeholder="Trẻ em">-->
+<!--              <datalist id="child">-->
+<!--                <option value="0" selected="selected">0</option>-->
+<!--                <option value="1">1</option>-->
+<!--                <option value="2">2</option>-->
+<!--                <option value="3">3</option>-->
+<!--                <option value="4">4</option>-->
+<!--                <option value="5">5</option>-->
+<!--                <option value="6">6</option>-->
+<!--                <option value="7">7</option>-->
+<!--                <option value="8">8</option>-->
+<!--                <option value="9">9</option>-->
+<!--              </datalist>-->
+<!--            </div>-->
+
+<!--            <div class="col">-->
+<!--              <input list="infant" class="person form-control" style="border-radius: 5px; margin-left:15px" placeholder="Em bé">-->
+<!--              <datalist id="infant">-->
+<!--                <option value="0" selected="selected">0</option>-->
+<!--                <option value="1">1</option>-->
+<!--                <option value="2">2</option>-->
+<!--                <option value="3">3</option>-->
+<!--                <option value="4">4</option>-->
+<!--                <option value="5">5</option>-->
+<!--                <option value="6">6</option>-->
+<!--                <option value="7">7</option>-->
+<!--                <option value="8">8</option>-->
+<!--                <option value="9">9</option>-->
+<!--                <option value="10">10</option>-->
+<!--              </datalist>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div style="text-align: right">-->
+<!--            <input type="submit" value="TÌM KIẾM" class="display: inline-block btn btn-success m-1"-->
+<!--                   style="height: 50%; width: 150px">-->
+<!--            <input type="hidden" id="depcode" name="depcode" value="HAN">-->
+<!--            <input type="hidden" id="descode" name="descode" value="SGN">-->
+<!--            <input type="hidden" id="ck_nonce" name="ck_nonce" value="c7223bbe74">-->
+<!--            <input type="hidden" name="_wp_http_referer" value="/dat-ve-may-bay">-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

@@ -1,0 +1,291 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 mt-5">
+      <table class="table table-side-bar">
+        <thead class="table-dark">
+        <tr>
+          <th>
+            Chức Năng
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            <a href="">Thông tin Admin</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a routerLink="/employee">Quản lý nhân viên</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a routerLink="/employee/report">Thống kê</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-8 order-md-1">
+      <div class="mb-3 mt-5 table-dark " style="height:50px; ">
+        <h4  class = "text-center" style=" padding-top: 12px;">Chỉnh sửa thông tin nhân viên</h4>
+      </div>
+      <form class="needs-validation was-validated" novalidate="" [formGroup]="editEmployeeForm" >
+        <div class="container">
+          <input type="hidden" formControlName="id">
+          <div class="mb-3">
+            <label >Mã Nhân Viên <span class="text-danger">(*)</span>:</label>
+            <div class="input-group">
+              <input disabled type="text" class="form-control"  placeholder="Mã Nhân Viên"  formControlName = "code_Employee" >
+            </div>
+            <div *ngIf="editEmployeeForm.controls.code_Employee.errors?.required && editEmployeeForm.controls.code_Employee.dirty" style="color: red">
+              Không được để trống trường này .
+            </div>
+            <div *ngIf="editEmployeeForm.controls.code_Employee.errors?.pattern && editEmployeeForm.controls.code_Employee.dirty" style="color: red">
+              Mã nhân viên không đúng định dạng .
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label >Họ Và Tên <span class="text-danger">(*)</span>:</label>
+            <div class="input-group">
+              <input type="text" class="form-control"  placeholder="Nguyễn Văn A "  formControlName = "name_Employee" >
+            </div>
+            <div *ngIf="editEmployeeForm.controls.name_Employee.errors?.required && editEmployeeForm.controls.name_Employee.dirty" style="color: red">
+              Vui Nhập Họ Và Tên.
+            </div>
+            <div *ngIf="editEmployeeForm.controls.name_Employee.errors?.minlength && editEmployeeForm.controls.name_Employee.dirty" style="color: red">
+              Tên của bạn tối thiểu phải có 6 ký tự .
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label >Ngày sinh <span class="text-danger">(*)</span>:</label>
+              <input type="date" class="form-control" id="lastName" placeholder="dd-mm-yyyy" formControlName = "birthday_Employee">
+            </div>
+          </div>
+          <div *ngIf="editEmployeeForm.controls.birthday_Employee.errors?.required && editEmployeeForm.controls.birthday_Employee.dirty" style="color: red">
+            Vui lòng điền ngày tháng năm sinh.
+          </div>
+          <div *ngIf="editEmployeeForm.controls.birthday_Employee.hasError('ageUnder') && editEmployeeForm.controls.birthday_Employee.dirty" style="color: red">
+            Tuổi phải lớn hơn 18 .
+          </div>
+
+          <div class="d-block my-3 d-flex " >
+            <label >Giới tính <span class="text-danger">(*)</span>: </label>
+            <div class="custom-control custom-radio  mx-2 " >
+              <input type="radio" class="custom-control-input mx-2" id = "a" checked=""  [value]="true" name="gender_Employee"  formControlName="gender_Employee">
+              <label for="a" class="custom-control-label mx-2" >Nam 🙎‍♂</label>
+            </div>
+            <div class="custom-control custom-radio  mx-2">
+              <input type="radio" class="custom-control-input mx-2" id = "b" [value]="false" name="gender_Employee"  formControlName="gender_Employee">
+              <label for="b" class="custom-control-label mx-2">Nữ 🙎🏻‍♀</label>
+            </div>
+            <div class="custom-control custom-radio  mx-2">
+              <input type="radio" class="custom-control-input mx-2" id = "c" [value]="null" name="gender_Employee" formControlName="gender_Employee">
+              <label for="c" class="custom-control-label mx-2">Khác ⚧</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label >Tài Khoản <span class="text-danger">(*)</span>: </label>
+              <input type="text" class="form-control" required="" formControlName="email_Employee" >
+              <div *ngIf="editEmployeeForm.controls.email_Employee.errors?.required && editEmployeeForm.controls.email_Employee.dirty" style="color: red">
+                Vui lòng nhập tên tài khoản.
+              </div>
+              <div *ngIf="editEmployeeForm.controls.email_Employee.errors?.email && editEmployeeForm.controls.email_Employee.dirty" style="color: red">
+                tài khoản không đúng định dạng.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="last">Địa chỉ<span class="text-danger">(*)</span>:</label>
+              <input type="text" class="form-control" id="last" placeholder=""   formControlName="address_Employee" name="address_Employee" >
+              <div *ngIf="editEmployeeForm.controls.address_Employee.errors?.required && editEmployeeForm.controls.address_Employee.dirty" style="color: red">
+                Vui lòng nhập địa chỉ.
+              </div>
+              <div *ngIf="editEmployeeForm.controls.address_Employee.errors?.minlength && editEmployeeForm.controls.address_Employee.dirty" style="color: red">
+                Địa chỉ không hợp lệ.
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label >Số điện thoại <span class="text-danger">(*)</span>: </label>
+              <input type="text" class="form-control"  formControlName="phone_Employee" >
+              <div *ngIf="editEmployeeForm.controls.phone_Employee.errors?.required && editEmployeeForm.controls.phone_Employee.dirty" style="color: red">
+                Không được để trống trường này .
+              </div>
+              <div *ngIf="editEmployeeForm.controls.phone_Employee.errors?.pattern && editEmployeeForm.controls.phone_Employee.dirty" style="color: red">
+                Số điện thoại bạn không đúng định dạng .
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2" >
+              <label> Phân Quyền  <span class="text-danger">(*)</span>:</label>
+              <select  class="form-control" style="border-radius: 5px;" formControlName="employee_Type_Id">
+                <option  *ngFor="let item of listEmployeeType" [ngValue]="item.id" [selected]="item.id==editEmployeeForm.get('employee_Type_Id').value">{{item.nameEmployeeType}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 20px;">
+            <div class="col-4"></div>
+            <button class="btn btn-danger btn-lg btn-block col-2 m-2" routerLink="/employee">Quay Lại</button>
+            <button class="btn btn-primary btn-lg btn-block col-2 m-2" type="submit" (click)="update()">Lưu</button>
+            <div class="col-4"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--<div class="row">-->
+<!--  <div class="col-2">-->
+<!--    <table class="table table-striped table-bordered table-side-bar">-->
+<!--      <thead class="table-dark ">-->
+<!--      <tr>-->
+<!--        <th>Chức Năng</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr>-->
+<!--        <td routerLink="/list-customer" role="button"><h6 >Quản lý khách hàng</h6></td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td routerLink="/flight" role="button"><h6 >Quản lý chuyến bay</h6></td>-->
+<!--      </tr>-->
+<!--      &lt;!&ndash;            <tr>&ndash;&gt;-->
+<!--      &lt;!&ndash;              <td routerLink="/paymentTicket" role="button">Thanh toán</td>&ndash;&gt;-->
+<!--      &lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--      &lt;!&ndash;            <tr>&ndash;&gt;-->
+<!--      &lt;!&ndash;              <td routerLink="/historyPayment" role="button">Lịch sử giao dịch</td>&ndash;&gt;-->
+<!--      &lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--      <tr>-->
+<!--        <td routerLink="/ticket/list" role="button">Quản lí bán vé</td>-->
+<!--      </tr>-->
+<!--      &lt;!&ndash;            <tr>&ndash;&gt;-->
+<!--      &lt;!&ndash;              <td role="button">Đặt vé</td>&ndash;&gt;-->
+<!--      &lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--      <tr  routerLink="/report" role="button">-->
+<!--        <td >Thống kê</td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--  </div>-->
+<!--  <div class="col-md-8 order-md-1">-->
+<!--    <h4 class="mb-3 mt-5" style="text-align: center;">Thêm Mới Nhân Viên</h4>-->
+<!--    <form class="needs-validation was-validated" novalidate="" [formGroup]="editEmployeeForm" >-->
+<!--      <input type="hidden" formControlName="id">-->
+<!--      <div class="mb-3">-->
+<!--        <label >Mã Nhân Viên <span class="text-danger">(*)</span>:</label>-->
+<!--        <div class="input-group">-->
+<!--          <input type="text" disabled class="form-control"  placeholder="Mã Nhân Viên"  formControlName = "code_Employee" >-->
+<!--        </div>-->
+<!--        <div *ngIf="editEmployeeForm.controls.code_Employee.errors?.required && editEmployeeForm.controls.code_Employee.dirty" style="color: red">-->
+<!--          Không được để trống trường này .-->
+<!--        </div>-->
+<!--        <div *ngIf="editEmployeeForm.controls.code_Employee.errors?.pattern && editEmployeeForm.controls.code_Employee.dirty" style="color: red">-->
+<!--          Mã nhân viên không đúng định dạng .-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="mb-3">-->
+<!--        <label >Họ Và Tên <span class="text-danger">(*)</span>:</label>-->
+<!--        <div class="input-group">-->
+<!--          <input type="text" class="form-control"  placeholder="Nguyễn Văn A "  formControlName = "name_Employee" >-->
+<!--        </div>-->
+<!--        <div *ngIf="editEmployeeForm.controls.name_Employee.errors?.required && editEmployeeForm.controls.name_Employee.dirty" style="color: red">-->
+<!--          Vui Nhập Họ Và Tên.-->
+<!--        </div>-->
+<!--        <div *ngIf="editEmployeeForm.controls.name_Employee.errors?.minlength && editEmployeeForm.controls.name_Employee.dirty" style="color: red">-->
+<!--          Tên của bạn tối thiểu phải có 6 ký tự .-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-3 mb-3">-->
+<!--          <label >Ngày sinh <span class="text-danger">(*)</span>:</label>-->
+<!--          <input type="date" class="form-control" id="lastName" placeholder="dd-mm-yyyy" formControlName = "birthday_Employee">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div *ngIf="editEmployeeForm.controls.birthday_Employee.errors?.required && editEmployeeForm.controls.birthday_Employee.dirty" style="color: red">-->
+<!--        Vui lòng điền ngày tháng năm sinh.-->
+<!--      </div>-->
+<!--      <div *ngIf="editEmployeeForm.controls.birthday_Employee.hasError('ageUnder') && editEmployeeForm.controls.birthday_Employee.dirty" style="color: red">-->
+<!--        Tuổi phải lớn hơn 18 .-->
+<!--      </div>-->
+
+<!--      <div class="d-block my-3 d-flex " >-->
+<!--        <label >Giới tính <span class="text-danger">(*)</span>: </label>-->
+<!--        <div class="custom-control custom-radio  mx-2 " >-->
+<!--          <input type="radio" class="custom-control-input mx-2" id = "a" checked=""  [value]="true" name="gender_Employee"  formControlName="gender_Employee">-->
+<!--          <label for="a" class="custom-control-label mx-2" >Nam 🙎‍♂</label>-->
+<!--        </div>-->
+<!--        <div class="custom-control custom-radio  mx-2">-->
+<!--          <input type="radio" class="custom-control-input mx-2" id = "b" [value]="false" name="gender_Employee"  formControlName="gender_Employee">-->
+<!--          <label for="b" class="custom-control-label mx-2">Nữ 🙎🏻‍♀</label>-->
+<!--        </div>-->
+<!--        <div class="custom-control custom-radio  mx-2">-->
+<!--          <input type="radio" class="custom-control-input mx-2" id = "c" [value]="null" name="gender_Employee" formControlName="gender_Employee">-->
+<!--          <label for="c" class="custom-control-label mx-2">Khác ⚧</label>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="row">-->
+<!--        <div class="col-md-6 mb-3">-->
+<!--          <label >Tài Khoản <span class="text-danger">(*)</span>: </label>-->
+<!--          <input type="text" class="form-control" required="" formControlName="email_Employee" >-->
+<!--          <div *ngIf="editEmployeeForm.controls.email_Employee.errors?.required && editEmployeeForm.controls.email_Employee.dirty" style="color: red">-->
+<!--            Vui lòng nhập tên tài khoản.-->
+<!--          </div>-->
+<!--          <div *ngIf="editEmployeeForm.controls.email_Employee.errors?.email && editEmployeeForm.controls.email_Employee.dirty" style="color: red">-->
+<!--            tài khoản không đúng định dạng.-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-6 mb-3">-->
+<!--          <label for="last">Địa chỉ<span class="text-danger">(*)</span>:</label>-->
+<!--          <input type="text" class="form-control" id="last" placeholder=""   formControlName="address_Employee" name="address_Employee" >-->
+<!--          <div *ngIf="editEmployeeForm.controls.address_Employee.errors?.required && editEmployeeForm.controls.address_Employee.dirty" style="color: red">-->
+<!--            Vui lòng nhập địa chỉ.-->
+<!--          </div>-->
+<!--          <div *ngIf="editEmployeeForm.controls.address_Employee.errors?.minlength && editEmployeeForm.controls.address_Employee.dirty" style="color: red">-->
+<!--            Địa chỉ không hợp lệ.-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="row">-->
+<!--        <div class="col-md-6 mb-3">-->
+<!--          <label >Số điện thoại <span class="text-danger">(*)</span>: </label>-->
+<!--          <input type="text" class="form-control"  formControlName="phone_Employee" >-->
+<!--          <div *ngIf="editEmployeeForm.controls.phone_Employee.errors?.required && editEmployeeForm.controls.phone_Employee.dirty" style="color: red">-->
+<!--            Không được để trống trường này .-->
+<!--          </div>-->
+<!--          <div *ngIf="editEmployeeForm.controls.phone_Employee.errors?.pattern && editEmployeeForm.controls.phone_Employee.dirty" style="color: red">-->
+<!--            Số điện thoại bạn không đúng định dạng .-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="mb-3" >-->
+<!--        <label> Phân Quyền  <span class="text-danger">(*)</span>:</label>-->
+<!--        <select  class="" style="border-radius: 5px;" formControlName="employee_Type_Id">-->
+<!--          <option  *ngFor="let item of listEmployeeType" [ngValue]="item.id" [selected]="item.id==editEmployeeForm.get('employee_Type_Id').value">{{item.nameEmployeeType}}</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--      <div class="row" style="margin-bottom: 20px;">-->
+<!--        <div class="col-4"></div>-->
+<!--        <button class="btn btn-danger btn-lg btn-block col-2 m-2" routerLink="/employee">Quay Lại</button>-->
+<!--        <button class="btn btn-primary btn-lg btn-block col-2 m-2" type="submit" (click)="update()">Lưu</button>-->
+<!--        <div class="col-4"></div>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->

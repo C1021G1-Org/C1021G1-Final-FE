@@ -1,0 +1,55 @@
+<form (ngSubmit)="signIn()" [formGroup]="userForm">
+
+  <div class="container ">
+    <div class="row">
+      <div class="col-12 m-auto background">
+        <div class="d-flex justify-content-center">
+
+          <h1 class="mb-3">Đăng nhập</h1>
+          <!--                <button style="background: transparent; border: none; padding: 0px"><i class="material-icons" style="font-size:36px;color:red">cancel</i></button>-->
+        </div>
+        <div class="mb-3">
+          <label class="required">Email<span class="text-danger">(*)</span>:</label>
+          <div class="input-group">
+            <input type="text" formControlName="email" class="form-control" placeholder="Email"><br>
+          </div>
+          <p style="color: red"
+             *ngIf="emailNotExist &&!userForm.get('email').errors?.email &&userForm.get('email').value.length>0">Email
+            không tồn tại.</p>
+          <p style="color: red" *ngIf="userForm.get('email').errors?.email||checkEmail">Trường này phải có định dạng Email.</p>
+        </div>
+        <div class="mb-3">
+          <label class="required">Mật khẩu <span class="text-danger">(*)</span>:</label>
+          <div class="input-group">
+            <input type="password" formControlName="password" class="form-control" placeholder="Mật khẩu">
+          </div>
+          <div *ngIf="checkPassword" style="color: red">
+            Mật khẩu chưa đúng.
+          </div>
+        </div>
+        <hr class="mb-4">
+        <div class="mb-3 d-flex justify-content-between">
+          <div class="form-group form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" #rememberE value="remember" name="remember" type="checkbox"> Ghi nhớ đăng
+              nhập.
+            </label>
+          </div>
+          <div>
+            <button style="color: blue; background: transparent;padding: 0px; border: none" (click)="openDialog()">Quên mật khẩu.</button>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <div class="col-12  px-2 ">
+          <div class="d-flex justify-content-center px-5">
+            <button class="btn btn-danger p-2 m-2" mat-dialog-close>Huỷ</button>
+            <button  class="btn btn-primary p-2 m-2" (click)="remember(rememberE)">Đăng nhập</button>
+          </div>
+        </div>
+        <hr class="mb-4">
+
+      </div>
+
+    </div>
+  </div>
+</form>

@@ -1,0 +1,98 @@
+.container-fluid {
+  font-family: Bahnschrift, sans-serif;
+  z-index: -1;
+}
+
+h1 {
+  margin-top: 10px;
+  text-align: center;
+  color: black;
+}
+
+.table-side-bar tbody tr:hover {
+  background-color: beige;
+  color: #403E10;
+  font-weight: bold;
+  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  transform: translate3d(6px, 1px, 0);
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-property: all;
+  transition-timing-function: linear;
+  cursor: pointer;
+}
+
+.dropdown div a:hover {
+  background-color: #ffa8a8;
+  color: #403E10;
+  font-weight: bold;
+  box-shadow: red -1px 1px, red -2px 2px, red -3px 3px, red -4px 4px, red -5px 5px, red -6px 6px;
+  transform: translate3d(6px, 1px, 0);
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-property: all;
+  /*transition-timing-function: linear;*/
+}
+
+#layout{
+  /*margin-top: 10px;*/
+  /*margin-bottom: 1000rem;*/
+  padding: 20px;
+  /*background-image: url("https://balotrainghiem.com/wp-content/uploads/2017/05/DSC_3024.jpg");*/
+  /*background-size: 100%;*/
+}
+
+.table {
+  background-color: white;
+}
+
+.table-text-end {
+  text-align: right;
+}
+
+.btn-warning {
+  color: white;
+}
+
+.extra-small {
+  width: 2%;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.small {
+  width: 8%;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.medium {
+  width: 15%;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.extra-medium {
+  width: 20%;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+p {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+p:hover {
+  overflow: visible;
+  overflow-block: auto;
+}
+a{
+  cursor: pointer;
+}
+
+.disableButton{
+  cursor: not-allowed;
+}
+

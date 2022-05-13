@@ -1,0 +1,232 @@
+
+<h1 align="center">Quản lý chuyến bay</h1>
+<hr>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <table class="table table-striped table-bordered table-side-bar">
+        <thead class="table-dark ">
+        <tr>
+          <th>Chức Năng</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td routerLink="/list-customer" role="button"><h6 >Quản lý khách hàng</h6></td>
+        </tr>
+        <tr>
+          <td routerLink="/flight" role="button"><h6 >Quản lý chuyến bay</h6></td>
+        </tr>
+        <!--            <tr>-->
+        <!--              <td routerLink="/paymentTicket" role="button">Thanh toán</td>-->
+        <!--            </tr>-->
+        <!--            <tr>-->
+        <!--              <td routerLink="/historyPayment" role="button">Lịch sử giao dịch</td>-->
+        <!--            </tr>-->
+        <tr>
+          <td routerLink="/ticket/list" role="button">Quản lí bán vé</td>
+        </tr>
+        <!--            <tr>-->
+        <!--              <td role="button">Đặt vé</td>-->
+        <!--            </tr>-->
+        <tr  routerLink="/report" role="button">
+          <td >Thống kê</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-9">
+      <table class="table">
+        <thead class="table-dark">
+        <tr>
+          <th style="text-align: center">
+            Thêm mới chuyến bay
+          </th>
+        </tr>
+        </thead>
+      </table>
+      <form [formGroup]="createFlightForm" (ngSubmit)="createFlight()">
+        <div class="col-md-12 order-md-1 nen">
+            <div class="row">
+              <div class="col mb-3">
+                <label>Hãng hàng không <span class="text-danger">(*)</span>:</label>
+                <select class="form-control" name="airlineType" formControlName="airlineType">
+                  <option value="" selected>Chọn chuyến bay</option>
+                  <option [ngValue]="airlineType.id" *ngFor="let airlineType of listAirline">{{airlineType.nameAirline}}</option>
+                </select>
+                <div style="color: red"
+                     *ngIf ="createFlightForm.get('airlineType')?.errors?.required &&
+                      createFlightForm.get('airlineType').touched">
+                  Không được để trống nha!
+                </div>
+              </div>
+
+              <div class="col mb-3">
+                <label >Mã chuyến bay <span class="text-danger">(*)</span>:</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" name="codeFlight"
+                         formControlName="codeFlight" placeholder="Mã chuyến bay" (click)="validateCodeFlight()">
+                </div>
+                <div style="color: red">{{this.codeFlightError}}</div>
+                <div style="color: red"  role = "alert"
+                     *ngIf ="createFlightForm.get('codeFlight')?.errors?.required &&
+                      createFlightForm.get('codeFlight').touched">
+                  Không được để trống nha!
+                </div>
+                <div style="color: red" role = "alert"
+                     *ngIf ="createFlightForm.get('codeFlight')?.errors?.pattern &&
+                      createFlightForm.get('codeFlight').touched">
+                  Vui lòng nhập đúng định dạng. ([VJ|VN|BB|JT]XXXX) trong đó X là số từ (0-9)!
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col mb-3">
+                <label>Địa điểm đi <span class="text-danger">(*)</span>:</label>
+                <input list="from" class="form-control" name="fromFlight" formControlName="fromFlight" placeholder="Chọn điểm đi">
+                <datalist id="from">
+                  <option value="Hồ Chí Minh (SGN)">Hồ Chí Minh (SGN)</option>
+                  <option value="Cần Thơ (VCA)">Cần Thơ (VCA)</option>
+                  <option value="Côn Đảo (VCS)">Côn Đảo (VCS)</option>
+                  <option value="Phú Quốc (PQC)">Phú Quốc (PQC)</option>
+                  <option value="Rạch Giá (VKG)">Rạch Giá (VKG)</option>
+                  <option value="Cà Mau (CAH)">Cà Mau (CAH)</option>
+                  <option value="Hà Nội (HAN)">Hà Nội (HAN)</option>
+                  <option value="Hải Phòng (HPH)">Hải Phòng (HPH)</option>
+                  <option value="Vân Đồn (VDO)">Vân Đồn (VDO)</option>
+                  <option value="Điện Biên (DIN)">Điện Biên (DIN)</option>
+                  <option value="Đà Nẵng (DAD)">Đà Nẵng (DAD)</option>
+                  <option value="Thanh Hóa (THD)">Thanh Hóa (THD)</option>
+                  <option value="Vinh (VII)">Vinh (VII)</option>
+                  <option value="Huế (HUI)">Huế (HUI)</option>
+                  <option value="Đồng Hới (VDH)">Đồng Hới (VDH)</option>
+                  <option value="Chu Lai (VCL)">Chu Lai (VCL)</option>
+                  <option value="Quy Nhơn (UIH)">Quy Nhơn (UIH)</option>
+                  <option value="Tuy Hòa (TBB)">Tuy Hòa (TBB)</option>
+                  <option value="Nha Trang (NHA)">Nha Trang (NHA)</option>
+                  <option value="Pleiku (PXU)">Pleiku (PXU)</option>
+                  <option value="Ban Mê Thuột (BMV)">Ban Mê Thuột (BMV)</option>
+                  <option value="Đà Lạt (DLI)">Đà Lạt (DLI)</option>
+                </datalist>
+                <div style="color: red"
+                     *ngIf ="createFlightForm.get('fromFlight')?.errors?.required &&
+                      createFlightForm.get('fromFlight').touched">
+                  Không được để trống nha!
+                </div>
+                <div style="color: red"
+                     *ngIf ="createFlightForm.get('fromFlight')?.errors?.pattern &&
+                      createFlightForm.get('fromFlight').touched">
+                  Không được nhập ký tự đặt biệt!
+                </div>
+                <div style="color: red"
+                     *ngIf ="createFlightForm.get('fromFlight')?.errors?.minlength &&
+                      createFlightForm.get('fromFlight').touched">
+                  Không được nhập ít hơn 10 ký tự!
+                </div>
+                <div style="color: red"
+                     *ngIf ="createFlightForm.get('fromFlight')?.errors?.maxlength &&
+                      createFlightForm.get('fromFlight').touched">
+                  Không được nhập nhiều hơn 50 ký tự!
+                </div>
+
+              </div>
+              <div class="col mb-3">
+                <label>Địa điểm đến <span class="text-danger">(*)</span>:</label>
+                <input list="from1" class="form-control" name="toFlight" formControlName="toFlight" placeholder="Chọn điểm đến">
+                <datalist id="from1">
+                  <option value="Hồ Chí Minh (SGN)">Hồ Chí Minh (SGN)</option>
+                  <option value="Cần Thơ (VCA)">Cần Thơ (VCA)</option>
+                  <option value="Côn Đảo (VCS)">Côn Đảo (VCS)</option>
+                  <option value="Phú Quốc (PQC)">Phú Quốc (PQC)</option>
+                  <option value="Rạch Giá (VKG)">Rạch Giá (VKG)</option>
+                  <option value="Cà Mau (CAH)">Cà Mau (CAH)</option>
+                  <option value="Hà Nội (HAN)">Hà Nội (HAN)</option>
+                  <option value="Hải Phòng (HPH)">Hải Phòng (HPH)</option>
+                  <option value="Vân Đồn (VDO)">Vân Đồn (VDO)</option>
+                  <option value="Điện Biên (DIN)">Điện Biên (DIN)</option>
+                  <option value="Đà Nẵng (DAD)">Đà Nẵng (DAD)</option>
+                  <option value="Thanh Hóa (THD)">Thanh Hóa (THD)</option>
+                  <option value="Vinh (VII)">Vinh (VII)</option>
+                  <option value="Huế (HUI)">Huế (HUI)</option>
+                  <option value="Đồng Hới (VDH)">Đồng Hới (VDH)</option>
+                  <option value="Chu Lai (VCL)">Chu Lai (VCL)</option>
+                  <option value="Quy Nhơn (UIH)">Quy Nhơn (UIH)</option>
+                  <option value="Tuy Hòa (TBB)">Tuy Hòa (TBB)</option>
+                  <option value="Nha Trang (NHA)">Nha Trang (NHA)</option>
+                  <option value="Pleiku (PXU)">Pleiku (PXU)</option>
+                  <option value="Ban Mê Thuột (BMV)">Ban Mê Thuột (BMV)</option>
+                  <option value="Đà Lạt (DLI)">Đà Lạt (DLI)</option>
+                </datalist>
+                <div style="color: red"
+                     *ngIf ="createFlightForm.get('toFlight')?.errors?.required &&
+                      createFlightForm.get('toFlight').touched">
+                  Không được để trống nha!
+                </div>
+                <div style="color: red"
+                     *ngIf ="createFlightForm.get('toFlight')?.errors?.pattern &&
+                      createFlightForm.get('toFlight').touched">
+                  Không được nhập ký tự đặt biệt!
+                </div>
+                <div style="color: red"
+                     *ngIf ="createFlightForm.get('toFlight')?.errors?.minlength &&
+                      createFlightForm.get('toFlight').touched">
+                  Không được nhập ít hơn 10 ký tự!
+                </div>
+                <div style="color: red"
+                     *ngIf ="createFlightForm.get('toFlight')?.errors?.maxlength &&
+                      createFlightForm.get('toFlight').touched">
+                  Không được nhập nhiều hơn 50 ký tự!
+                </div>
+                <div style="color: red"
+                     *ngIf ="createFlightForm.hasError('checkDuplicate') &&
+                      createFlightForm.get('toFlight').touched">
+                  Địa điểm không được trùng nhau!
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col mb-3">
+                <label>Thời gian cất cánh <span class="text-danger">(*)</span>:</label>
+                <div class="input-group">
+                  <input type="datetime-local" class="form-control"
+                         placeholder="Thời gian cất cánh" name="dateStart" formControlName="dateStart">
+                </div>
+                <div style="color: red"
+                     *ngIf ="createFlightForm.get('dateStart')?.errors?.required &&
+                      createFlightForm.get('dateStart').touched">
+                  Không được để trống nha!
+                </div>
+              </div>
+              <div class="col mb-3">
+                <label>Thời gian hạ cánh <span class="text-danger">(*)</span>:</label>
+                <div class="input-group">
+                  <input type="datetime-local" class="form-control" name="dateEnd" formControlName="dateEnd"
+                         placeholder="Thời gian hạ cánh">
+                </div>
+                <div style="color: red"
+                     *ngIf ="createFlightForm.get('dateEnd')?.errors?.required &&
+                      createFlightForm.get('dateEnd').touched">
+                  Không được để trống nha!
+                </div>
+              </div>
+            </div>
+            <hr class="mb-4">
+          <div class="row">
+            <div class="col mb-3">
+              <div style="float: right">
+                <a class=" btn btn-dark" type="button" routerLink="/flight">Trở về</a>
+              </div>
+            </div>
+            <div class="col mb-3">
+              <button class="btn btn-primary" type="submit" [disabled]="createFlightForm.invalid">Lưu lại</button>
+            </div>
+            <hr class="mb-4">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+

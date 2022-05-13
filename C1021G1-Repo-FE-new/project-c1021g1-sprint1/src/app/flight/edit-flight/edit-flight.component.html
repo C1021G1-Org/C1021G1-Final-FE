@@ -1,0 +1,238 @@
+<h1 align="center">Quản lý chuyến bay</h1>
+<hr>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <table class="table table-striped table-bordered table-side-bar">
+        <thead class="table-dark ">
+        <tr>
+          <th>Chức Năng</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td routerLink="/list-customer" role="button"><h6 >Quản lý khách hàng</h6></td>
+        </tr>
+        <tr>
+          <td routerLink="/flight" role="button"><h6 >Quản lý chuyến bay</h6></td>
+        </tr>
+        <!--            <tr>-->
+        <!--              <td routerLink="/paymentTicket" role="button">Thanh toán</td>-->
+        <!--            </tr>-->
+        <!--            <tr>-->
+        <!--              <td routerLink="/historyPayment" role="button">Lịch sử giao dịch</td>-->
+        <!--            </tr>-->
+        <tr>
+          <td routerLink="/ticket/list" role="button">Quản lí bán vé</td>
+        </tr>
+        <!--            <tr>-->
+        <!--              <td role="button">Đặt vé</td>-->
+        <!--            </tr>-->
+        <tr  routerLink="/report" role="button">
+          <td >Thống kê</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-9">
+      <table class="table">
+        <thead class="table-dark">
+        <tr>
+          <th style="text-align: center">
+            Chỉnh sửa thông tin chuyến bay
+          </th>
+        </tr>
+        </thead>
+      </table>
+      <form [formGroup]="editFlightForm" (ngSubmit)="updateFlight()">
+        <div class="col-md-12 order-md-1 nen">
+          <div class="row">
+            <div class="col mb-3">
+              <label>Hãng hàng không <span class="text-danger">(*)</span>:</label>
+              <select class="form-control" name="airlineType">
+                <option  *ngFor="let airlineType of listAirline" [ngValue]="airlineType"
+                [selected]="editFlightForm.get('airlineType').value.nameAirline === airlineType.nameAirline">{{airlineType.nameAirline}}</option>
+              </select>
+              <div style="color: red"
+                   *ngIf ="editFlightForm.get('airlineType')?.errors?.required &&
+                      editFlightForm.get('airlineType').touched">
+                Không được để trống nha!
+              </div>
+            </div>
+
+            <div class="col mb-3">
+              <label >Mã chuyến bay <span class="text-danger">(*)</span>:</label>
+              <div class="input-group">
+                <input type="text" class="form-control" name="codeFlight" formControlName="codeFlight" placeholder="Mã chuyến bay">
+              </div>
+              <div style="color: red"
+                   *ngIf ="editFlightForm.get('codeFlight')?.errors?.required &&
+                      editFlightForm.get('codeFlight').touched">
+                Không được để trống nha!
+              </div>
+              <div style="color: red"
+                   *ngIf ="editFlightForm.get('codeFlight')?.errors?.pattern &&
+                      editFlightForm.get('codeFlight').touched">
+                Vui lòng nhập đúng định dạng. ([VJ|VN|BB|JT]XXXX) trong đó X là số từ (0-9)!
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label>Địa điểm đi <span class="text-danger">(*)</span>:</label>
+              <input list="from" value="" class="form-control" name="fromFlight" formControlName="fromFlight" placeholder="Chọn điểm đi">
+              <datalist id="from">
+                <option value="Hồ Chí Minh (SGN)">Hồ Chí Minh (SGN)</option>
+                <option value="Cần Thơ (VCA)">Cần Thơ (VCA)</option>
+                <option value="Côn Đảo (VCS)">Côn Đảo (VCS)</option>
+                <option value="Phú Quốc (PQC)">Phú Quốc (PQC)</option>
+                <option value="Rạch Giá (VKG)">Rạch Giá (VKG)</option>
+                <option value="Cà Mau (CAH)">Cà Mau (CAH)</option>
+                <option value="Hà Nội (HAN)">Hà Nội (HAN)</option>
+                <option value="Hải Phòng (HPH)">Hải Phòng (HPH)</option>
+                <option value="Vân Đồn (VDO)">Vân Đồn (VDO)</option>
+                <option value="Điện Biên (DIN)">Điện Biên (DIN)</option>
+                <option value="Đà Nẵng (DAD)">Đà Nẵng (DAD)</option>
+                <option value="Thanh Hóa (THD)">Thanh Hóa (THD)</option>
+                <option value="Vinh (VII)">Vinh (VII)</option>
+                <option value="Huế (HUI)">Huế (HUI)</option>
+                <option value="Đồng Hới (VDH)">Đồng Hới (VDH)</option>
+                <option value="Chu Lai (VCL)">Chu Lai (VCL)</option>
+                <option value="Quy Nhơn (UIH)">Quy Nhơn (UIH)</option>
+                <option value="Tuy Hòa (TBB)">Tuy Hòa (TBB)</option>
+                <option value="Nha Trang (NHA)">Nha Trang (NHA)</option>
+                <option value="Pleiku (PXU)">Pleiku (PXU)</option>
+                <option value="Ban Mê Thuột (BMV)">Ban Mê Thuột (BMV)</option>
+                <option value="Đà Lạt (DLI)">Đà Lạt (DLI)</option>
+              </datalist>
+              <div style="color: red"
+                   *ngIf ="editFlightForm.get('fromFlight')?.errors?.required &&
+                      editFlightForm.get('fromFlight').touched">
+                Không được để trống nha!
+              </div>
+              <div style="color: red"
+                   *ngIf ="editFlightForm.get('fromFlight')?.errors?.pattern &&
+                      editFlightForm.get('fromFlight').touched">
+                Không được nhập ký tự đặt biệt!
+              </div>
+              <div style="color: red"
+                   *ngIf ="editFlightForm.get('fromFlight')?.errors?.minlength &&
+                      editFlightForm.get('fromFlight').touched">
+                Không được nhập ít hơn 10 ký tự!
+              </div>
+              <div style="color: red"
+                   *ngIf ="editFlightForm.get('fromFlight')?.errors?.maxlength &&
+                      editFlightForm.get('fromFlight').touched">
+                Không được nhập nhiều hơn 50 ký tự!
+              </div>
+            </div>
+            <div class="col mb-3">
+              <label>Địa điểm đến <span class="text-danger">(*)</span>:</label>
+              <input list="from1" value="" class="form-control" name="toFlight" formControlName="toFlight" placeholder="Chọn điểm đến">
+              <datalist id="from1">
+                <option value="Hồ Chí Minh (SGN)">Hồ Chí Minh (SGN)</option>
+                <option value="Cần Thơ (VCA)">Cần Thơ (VCA)</option>
+                <option value="Côn Đảo (VCS)">Côn Đảo (VCS)</option>
+                <option value="Phú Quốc (PQC)">Phú Quốc (PQC)</option>
+                <option value="Rạch Giá (VKG)">Rạch Giá (VKG)</option>
+                <option value="Cà Mau (CAH)">Cà Mau (CAH)</option>
+                <option value="Hà Nội (HAN)">Hà Nội (HAN)</option>
+                <option value="Hải Phòng (HPH)">Hải Phòng (HPH)</option>
+                <option value="Vân Đồn (VDO)">Vân Đồn (VDO)</option>
+                <option value="Điện Biên (DIN)">Điện Biên (DIN)</option>
+                <option value="Đà Nẵng (DAD)">Đà Nẵng (DAD)</option>
+                <option value="Thanh Hóa (THD)">Thanh Hóa (THD)</option>
+                <option value="Vinh (VII)">Vinh (VII)</option>
+                <option value="Huế (HUI)">Huế (HUI)</option>
+                <option value="Đồng Hới (VDH)">Đồng Hới (VDH)</option>
+                <option value="Chu Lai (VCL)">Chu Lai (VCL)</option>
+                <option value="Quy Nhơn (UIH)">Quy Nhơn (UIH)</option>
+                <option value="Tuy Hòa (TBB)">Tuy Hòa (TBB)</option>
+                <option value="Nha Trang (NHA)">Nha Trang (NHA)</option>
+                <option value="Pleiku (PXU)">Pleiku (PXU)</option>
+                <option value="Ban Mê Thuột (BMV)">Ban Mê Thuột (BMV)</option>
+                <option value="Đà Lạt (DLI)">Đà Lạt (DLI)</option>
+              </datalist>
+              <div style="color: red"
+                   *ngIf ="editFlightForm.get('toFlight')?.errors?.required &&
+                      editFlightForm.get('toFlight').touched">
+                Không được để trống nha!
+              </div>
+              <div style="color: red"
+                   *ngIf ="editFlightForm.get('toFlight')?.errors?.pattern &&
+                      editFlightForm.get('toFlight').touched">
+                Không được nhập ký tự đặt biệt!
+              </div>
+              <div style="color: red"
+                   *ngIf ="editFlightForm.get('toFlight')?.errors?.minlength &&
+                      editFlightForm.get('toFlight').touched">
+                Không được nhập ít hơn 10 ký tự!
+              </div>
+              <div style="color: red"
+                   *ngIf ="editFlightForm.get('toFlight')?.errors?.maxlength &&
+                      editFlightForm.get('toFlight').touched">
+                Không được nhập nhiều hơn 50 ký tự!
+              </div>
+              <div style="color: red"
+                   *ngIf ="editFlightForm.hasError('checkDuplicate') &&
+                      editFlightForm.get('toFlight').touched">
+                Địa điểm không được trùng nhau!
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label>Thời gian cất cánh <span class="text-danger">(*)</span>:</label>
+              <div class="input-group">
+                <input type="datetime-local"
+                       [ngModel]="editFlightForm.get('dateStart').value | date : 'yyyy-MM-ddThh:mm:ss'"
+                       class="form-control"
+                       placeholder="yyyy-MM-ddTHH:mm:ss" name="dateStart" formControlName="dateStart">
+              </div>
+              <div style="color: red"
+                   *ngIf ="editFlightForm.get('dateStart')?.errors?.required &&
+                      editFlightForm.get('dateStart').touched">
+                Không được để trống nha!
+              </div>
+            </div>
+            <div class="col mb-3">
+              <label>Thời gian hạ cánh <span class="text-danger">(*)</span>:</label>
+              <div class="input-group">
+                <input type="datetime-local"
+                       [ngModel]="editFlightForm.get('dateEnd').value | date : 'yyyy-MM-ddThh:mm:ss'"
+                       class="form-control" name="dateEnd" formControlName="dateEnd"
+                       placeholder="Thời gian hạ cánh">
+              </div>
+              <div style="color: red"
+                   *ngIf ="editFlightForm.get('dateEnd')?.errors?.required &&
+                      editFlightForm.get('dateEnd').touched">
+                Không được để trống nha!
+              </div>
+            </div>
+          </div>
+          <hr class="mb-4">
+          <div class="row">
+            <div class="col mb-3">
+            <div style="float: right">
+              <a class=" btn btn-dark" type="button" routerLink="/flight">Trở về</a>
+            </div>
+            </div>
+            <div class="col mb-3">
+              <button class=" btn btn-danger" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646
+                6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1
+                .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5
+                 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0
+                 .168-.11l.178-.178z"/>
+                </svg>
+                Cập nhật</button>
+            </div>
+          </div>
+          <hr class="mb-4">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

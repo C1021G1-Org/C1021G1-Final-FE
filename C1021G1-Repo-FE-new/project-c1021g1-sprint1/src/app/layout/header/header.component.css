@@ -1,0 +1,48 @@
+html,body{
+  width: 100%;
+  height: 100%;
+  font-family: "Bahnschrift";
+}
+.navbar{
+  background: rgba(217,26,33,1) !important;
+}
+.navbar li a{
+  color: white !important;
+  font-weight: bold;
+}
+@media (min-width: 1024px){
+  .logo {
+    max-width: 265px;
+  }
+}
+.navbar-nav{
+
+}
+.link{
+  cursor: pointer;
+  color: white;
+  text-decoration:  none;
+}
+.navbar-toggler{
+  background-color: white;
+}
+.logo{
+  width: 200px;
+  height: 70px;
+  max-width: 500px;
+  object-fit: cover;
+
+}
+.navbar li a:hover{
+  color: rgba(217,26,33,1) !important;
+  font-weight: bold;
+}
+.nav-font{
+
+}
+.fa-user-circle{
+  color: white;
+}
+.custom-select{
+  width: 150px;
+}

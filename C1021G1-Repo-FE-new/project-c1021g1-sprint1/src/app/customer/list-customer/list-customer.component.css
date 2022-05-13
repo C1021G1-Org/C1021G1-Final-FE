@@ -1,0 +1,220 @@
+/*header {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*  !*font-family: 'Bahnschrift';*!*/
+/*  z-index: -1;*/
+/*}*/
+
+/*section.section1{*/
+/*  width: 100%;*/
+/*  height: 100vh;*/
+/*  box-sizing: border-box;*/
+/*  background-size: cover;*/
+/*}*/
+/*.navbar{*/
+/*  position: fixed;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  width: 100%;*/
+/*  height: 80px;*/
+/*  padding: 0 100px ;*/
+/*  box-sizing: border-box;*/
+/*  background-color: #e31b1b;*/
+/*  z-index: 10;*/
+/*}*/
+/*.login{*/
+/*  color: white;*/
+/*}*/
+/*nav .brand{*/
+/*  float: left;*/
+/*  height: 100%;*/
+/*  line-height: 80px;*/
+
+/*}*/
+/*nav .brand a{*/
+/*  margin-top: 0;*/
+/*  padding: 0;*/
+
+/*}*/
+/*nav ul{*/
+/*  float: right;*/
+/*  display: flex;*/
+/*  margin:0;*/
+/*  padding: 0;*/
+/*}*/
+/*nav ul li{*/
+/*  list-style: none;*/
+/*}*/
+/*nav ul li a{*/
+/*  position: relative;*/
+/*  display: block;*/
+/*  padding: 0 40px;*/
+/*  box-sizing: border-box;*/
+/*  color: #fff;*/
+/*  text-decoration: none;*/
+/*  transition: 0.5s*/
+/*}*/
+/*nav ul li a:before{*/
+/*  content: '';*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  background: #fff;*/
+/*  transform-origin: right;*/
+/*  z-index: -1;*/
+/*  transform: scaleX(0);*/
+/*  transition:  transform 0.5s;*/
+/*}*/
+
+/*section.section2{*/
+/*  padding: 150px;*/
+/*}*/
+/*.loginInput{*/
+/*  width: 100%;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  flex-direction: row;*/
+/*  justify-content: flex-end;*/
+/*}*/
+/*.loginInput1{*/
+/*  flex: 1;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  flex-direction: row;*/
+/*  justify-content: flex-end;*/
+/*}*/
+/*.jss1477{*/
+/*  color: #ffffff;*/
+/*  width: 14px;*/
+/*  height: 14px;*/
+/*}*/
+/*.jss1478{*/
+/*  color: #ffffff;*/
+/*  font-size: 13px;*/
+/*  font-style: normal;*/
+/*  font-weight: bold;*/
+/*  line-height: 1.13;*/
+/*  margin-left: 7px;*/
+/*  font-stretch: normal;*/
+/*  letter-spacing: normal;*/
+/*}*/
+
+/*.jss1480 {*/
+/*  margin-right: 7px;*/
+/*}*/
+.btn-outline-light:hover {
+  color: #e31b1b;
+}
+* {
+  box-sizing: border-box;
+
+}
+
+.container-fluid {
+  padding: 10px;
+  font-family: "Bahnschrift";
+  /*font-size: 15px;*/
+}
+
+#list {
+  /*border-style: solid;*/
+  margin-top: 50px;
+}
+#category {
+  /*border-style: solid;*/
+  /*float: left;*/
+  width: 30%;
+  height: 500px; /* only for demonstration, should be removed */
+  /*background: #ccc;*/
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.article {
+  /*float: left;*/
+  padding: 20px;
+  width: 70%;
+  background-color: #f1f1f1;
+  height: 300px; /* only for demonstration, should be removed */
+}
+@media (max-width: 600px) {
+  category, article {
+    width: 100%;
+    height: auto;
+  }
+}
+.choose {
+  margin-left: 270px;
+  margin-right: 5px;
+}
+th {
+  text-align: center;
+  /*background-color: black;*/
+  color: white;
+  font-size: 15px;
+  /*font-family: 'Bahnschrift';*/
+
+}
+h2 {
+  margin-top: 20px;
+  color: black;
+}
+
+.table {
+  border-style: solid;
+  background-color: white;
+}
+.table-dark {
+  color: white;
+
+}
+.dropdown div a:hover {
+  background-color: #ffa8a8;
+  color: #403E10;
+  font-weight: bold;
+  box-shadow: red -1px 1px, red -2px 2px, red -3px 3px, red -4px 4px, red -5px 5px, red -6px 6px;
+  transform: translate3d(6px, 1px, 0);
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+  transition-property: all;
+  /*transition-timing-function: line;*/
+}
+.table-side-bar td:hover {
+
+  background-color: beige;
+  color: #403E10;
+  font-weight: bold;
+
+  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  transform: translate3d(6px, 1px, 0);
+
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+  transition-property: all;
+  /*transition-timing-function: line;*/
+}
+
+.table-two th {
+  color: black;
+}
+
+#disableButton{
+  cursor: not-allowed;
+}
+
+.display {
+  display: none;
+}
+p {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+p:hover {
+  overflow: visible;
+  overflow-block: auto;
+
+}

@@ -1,0 +1,385 @@
+<div class="container-fluid">
+  <div class="row ml-3 d-flex justify-content-center">
+    <div class="col-md-6">
+      <div class="mt-3 font-weight-normal">
+        <h2>Thông Tin Chuyến Bay</h2>
+      </div>
+      <div class="ticked text-center ">
+        <div *ngFor="let item of flightList;index as i">
+          <div class="row mt-3">
+            <div class="col-md-4 ticked-left">
+              <h3 class="mt-2">{{item.airlineType.nameAirline}}</h3>
+              <img src="../../../assets/C1021G1_Airline_Logo-removebg-preview.png"
+                   style="height:200px; width: 100%;object-fit: cover"/>
+
+              <h4>Chuyến bay <span>{{item.codeFlight}}</span></h4>
+              <p>Khơi Hành: <span class="text-time">{{item.dateStart}}</span></p>
+              <!--              <div class="row">-->
+
+              <!--                <div class="col-md-6"><h3 class="title-text">Tân Sơn Nhất</h3></div>-->
+              <!--                <div class="col-md-6"><h3 class="title-text">Nội Bài</h3></div>-->
+              <!--              </div>-->
+              <div class="span-left"></div>
+
+
+            </div>
+            <div class="col-md-6 ticked-right">
+              <div class="span-left"></div>
+              <div class="row mt-2">
+                <div class="col-md-5"><h3 class="text-secondary">{{item.fromFlight}}</h3></div>
+                <div class="col-md-2"><h3 class="text-secondary"><i class="fa fa-plane" aria-hidden="true"
+                                                                    style="font-size: 40px; color: cornflowerblue"></i>
+                </h3>
+                </div>
+                <div class="col-md-5"><h3 class="text-secondary">{{item.toFlight}}</h3></div>
+              </div>
+              <!--          <form class="needs-validation was-validated mt-3">-->
+              <div class="row mt-3">
+                <div class="col-md-5">
+                  <table class="table table-borderless">
+                    <tbody>
+
+                    <tr>
+                      <td colspan="2">
+
+                        <select class="form-control" required="" #numTicket
+                                (click)="setNumTicket(numTicket.value,i)">
+
+
+                          <option value="" disabled selected>Số Vé</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
+                        <div *ngIf="numTicket.value==''&& checkInvalid">
+                          <span class="text-danger">số vé không được để trống</span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+
+                        <select #typeSeat class="form-control"
+                                (click)="getValue(typeSeat.value,numTicket.value,i)">
+                          <!--                      (change)="typeSeat.value"-->
+                          <option value="" disabled selected>Loại Vé</option>
+                          <option [ngValue]="itemX.nameSeatType"
+                                  *ngFor="let itemX of seatTypeList">{{itemX.nameSeatType | titlecase}}</option>
+                        </select>
+                        <div *ngIf="typeSeat.value==''&& checkInvalid">
+                          <span class="text-danger">loại vé không được để trống</span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    </tbody>
+                  </table>
+                  <button type="button" class="btn btn-box"
+                          [disabled]="seatChoice"
+                          *ngIf="i==0"
+                          (click)="updatePriceTicket(typeSeat.value,numTicket.value,i)">Chọn
+                    <!--                          checkInvalidButton1 ||-->
+                    <!--                    checkInvalid||typeSeat.value==''||numTicket.value==''||-->
+
+                  </button>
+                  <button type="button" class="btn btn-box"
+
+                          [disabled]="seatChoice"
+                          *ngIf="i==1"
+                          (click)="updatePriceTicket(typeSeat.value,numTicket.value,i)">Chọn
+                    <!--                    checkInvalidButton2||-->
+                  </button>
+                  <!--              (click)="getTicketNum(i,item.id,typeSeat.value,numTicket.value)"-->
+
+                </div>
+                <div class="col-md-7">
+                  <table class="table mt-2 table-borderless">
+                    <tbody>
+
+                    <tr>
+                      <td><p style="width: 70px">Giá Vé:</p></td>
+                      <td><p> {{item.airlineType.priceAirline|currency :"VND"}}</p>
+                        <!--                    *ngIf="typeSeat.value == 'vip'; then price1 else price2"-->
+                        <!--                    <ng-template #price1>500,000 VND</ng-template>-->
+                        <!--                    <ng-template #price2>300,000 VND</ng-template>-->
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><p style="width: 70px">Chi Phí:</p></td>
+                      <td>
+                        <p *ngIf="seatTypePrice1 && i==0"> {{seatTypePrice1|currency :"VND"}} </p>
+                        <p *ngIf="seatTypePrice2 && i==1"> {{seatTypePrice2|currency :"VND"}} </p>
+                        <p *ngIf="!seatTypePrice1 && i==0"> ₫0</p>
+                        <p *ngIf="!seatTypePrice2 && i==1"> ₫0</p>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+
+                  <h4 class="text-color">Tổng Giá: <span
+                    *ngIf="priceTicket1 && i==0">{{priceTicket1|currency :"VND"}} </span>
+                    <span *ngIf="priceTicket2 && i==1"> {{priceTicket2|currency :"VND"}} </span>
+                    <span *ngIf="!priceTicket1 && i==0"> ₫0</span>
+                    <span *ngIf="!priceTicket2 && i==1"> ₫0</span>
+                  </h4>
+
+                </div>
+              </div>
+              <!--          </form>-->
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class="bottom-box row mt-3">
+          <div class="col-md-2">
+            <button type="button" class="btn btn-box2">Hủy</button>
+          </div>
+          <div class="col-md-2">
+
+            <!--            [disabled]="updateOk1  || updateOk2 "-->
+            <button type="button" class="btn btn-box2"  (click)="createTicketPage()">
+              Đặt
+              Vé
+            </button>
+          </div>
+          <div class="col-md-8">
+            <h3 class="text-color">Tổng Giá: <span>{{sumPrice|currency :"VND"}}</span></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mt-3" *ngIf="seatList.length>0">
+      <div class="row" *ngIf="seatList.length>0">
+        <h3 class="align-items-center font-weight-normal  m-auto">Bảng lựa chon vị trí ghế cho chuyến đi</h3>
+      </div>
+      <div class="row " *ngIf="seatList.length>0">
+        <div class="col-3 mt-3 d-flex" *ngFor="let itemx of seatList;index as m">
+
+          <button class="seat-box btn-outline-secondary" [style.background]="itemx.status_seat ? 'red':'green'"
+                  (click)="changeStyleButton(m,itemx,$event)">{{itemx.code_seat}}
+            <i class="material-icons"
+               style="font-size:36px">event_seat</i>
+          </button>
+        </div>
+      </div>
+      <div class="row mt-3" *ngIf="seatList2.length>0">
+        <h3 class="align-items-center m-auto">Bảng lựa chon vị trí ghế cho chuyến về</h3>
+
+      </div>
+      <div class="row" *ngIf="seatList2.length>0">
+        <div class="col-3 mt-3" *ngFor="let itemH of seatList2;index as n">
+          <button class="seat-box btn-outline-secondary" [style.background]="itemH.status_seat ? 'red':'green'"
+                  (click)="changeStyleButton(n,itemH,$event)"
+          >{{itemH.code_seat}}<i class="material-icons" style="font-size:36px">event_seat</i></button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--<div class="container-fluid">-->
+<!--  <div class="row ml-3 d-flex">-->
+<!--    <div class="col-md-6 ">-->
+<!--      <div class="mt-3">-->
+<!--        <h2>Thông Tin Chuyến Bay</h2>-->
+<!--      </div>-->
+<!--      <div class="ticked text-center ">-->
+<!--        <div *ngFor="let item of flightList;index as i">-->
+<!--          <div class="row mt-3">-->
+<!--            <div class="col-md-4 ticked-left">-->
+<!--              <h3 class="mt-2">{{item.airlineType.nameAirline}}</h3>-->
+<!--              <img src="../../../assets/C1021G1_Airline_Logo-removebg-preview.png"-->
+<!--                   style="height:200px; width: 100%;object-fit: cover"/>-->
+
+<!--              <h4>Chuyến bay <span>{{item.codeFlight}}</span></h4>-->
+<!--              <p>Khơi Hành: <span class="text-time">{{item.dateStart}}</span></p>-->
+<!--              <div class="row">-->
+
+<!--                <div class="col-md-6"><h3 class="title-text">Tân Sơn Nhất</h3></div>-->
+<!--                <div class="col-md-6"><h3 class="title-text">Nội Bài</h3></div>-->
+<!--              </div>-->
+<!--              <div class="span-left"></div>-->
+
+
+<!--            </div>-->
+<!--            <div class="col-md-6 ticked-right">-->
+<!--              <div class="span-left"></div>-->
+<!--              <div class="row mt-2">-->
+<!--                <div class="col-md-5"><h3 class="text-secondary">{{item.fromFlight}}</h3></div>-->
+<!--                <div class="col-md-2"><h3 class="text-secondary"><i class="fa fa-plane" aria-hidden="true"-->
+<!--                                                                    style="font-size: 40px; color: cornflowerblue"></i>-->
+<!--                </h3>-->
+<!--                </div>-->
+<!--                <div class="col-md-5"><h3 class="text-secondary">{{item.toFlight}}</h3></div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash;          <form class="needs-validation was-validated mt-3">&ndash;&gt;-->
+<!--              <div class="row mt-3">-->
+<!--                <div class="col-md-5">-->
+<!--                  <table class="table table-borderless">-->
+<!--                    <tbody>-->
+
+<!--                    <tr>-->
+<!--                      <td colspan="2">-->
+
+<!--                        <select class="form-control" required="" #numTicket-->
+<!--                                (click)="setNumTicket(numTicket.value,i)">-->
+
+
+<!--                          <option value="" disabled selected>Số Vé</option>-->
+<!--                          <option value="1">1</option>-->
+<!--                          <option value="2">2</option>-->
+<!--                          <option value="3">3</option>-->
+<!--                          <option value="4">4</option>-->
+<!--                          <option value="5">5</option>-->
+<!--                        </select>-->
+<!--                        <div *ngIf="numTicket.value==''&& checkInvalid">-->
+<!--                          <span class="text-danger">số vé không được để trống</span>-->
+<!--                        </div>-->
+<!--                      </td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                      <td></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                      <td colspan="2">-->
+
+<!--                        <select #typeSeat class="form-control"-->
+<!--                                (click)="getValue(typeSeat.value,numTicket.value,i)">-->
+<!--                          &lt;!&ndash;                      (change)="typeSeat.value"&ndash;&gt;-->
+<!--                          <option value="" disabled selected>Loại Vé</option>-->
+<!--                          <option [ngValue]="itemX.nameSeatType"-->
+<!--                                  *ngFor="let itemX of seatTypeList">{{itemX.nameSeatType | titlecase}}</option>-->
+<!--                        </select>-->
+<!--                        <div *ngIf="typeSeat.value==''&& checkInvalid">-->
+<!--                          <span class="text-danger">loại vé không được để trống</span>-->
+<!--                        </div>-->
+<!--                      </td>-->
+<!--                    </tr>-->
+
+<!--                    </tbody>-->
+<!--                  </table>-->
+<!--                  <button type="button" class="btn btn-box"-->
+<!--                          [disabled]="seatChoice"-->
+<!--                          *ngIf="i==0"-->
+<!--                          (click)="updatePriceTicket(typeSeat.value,numTicket.value,i)">Chọn-->
+<!--                    &lt;!&ndash;                          checkInvalidButton1 ||&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    checkInvalid||typeSeat.value==''||numTicket.value==''||&ndash;&gt;-->
+
+<!--                  </button>-->
+<!--                  <button type="button" class="btn btn-box"-->
+
+<!--                          [disabled]="seatChoice"-->
+<!--                          *ngIf="i==1"-->
+<!--                          (click)="updatePriceTicket(typeSeat.value,numTicket.value,i)">Chọn-->
+<!--                    &lt;!&ndash;                    checkInvalidButton2||&ndash;&gt;-->
+<!--                  </button>-->
+<!--                  &lt;!&ndash;              (click)="getTicketNum(i,item.id,typeSeat.value,numTicket.value)"&ndash;&gt;-->
+
+<!--                </div>-->
+<!--                <div class="col-md-7">-->
+<!--                  <table class="table mt-2 table-borderless">-->
+<!--                    <tbody>-->
+
+<!--                    <tr>-->
+<!--                      <td><p>Giá Mỗi Vé:</p></td>-->
+<!--                      <td><p>{{item.airlineType.priceAirline|currency :"VND"}}</p>-->
+<!--                        &lt;!&ndash;                    *ngIf="typeSeat.value == 'vip'; then price1 else price2"&ndash;&gt;-->
+<!--                        &lt;!&ndash;                    <ng-template #price1>500,000 VND</ng-template>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                    <ng-template #price2>300,000 VND</ng-template>&ndash;&gt;-->
+<!--                      </td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                      <td></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                      <td><p>Thuế Và Chi Phí:</p></td>-->
+<!--                      <td>-->
+<!--                        <p *ngIf="seatTypePrice1 && i==0"> {{seatTypePrice1|currency :"VND"}} </p>-->
+<!--                        <p *ngIf="seatTypePrice2 && i==1"> {{seatTypePrice2|currency :"VND"}} </p>-->
+<!--                        <p *ngIf="!seatTypePrice1 && i==0"> ₫0</p>-->
+<!--                        <p *ngIf="!seatTypePrice2 && i==1"> ₫0</p>-->
+<!--                      </td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                  </table>-->
+
+
+<!--                  <h4 class="text-color">Tổng Giá: <span-->
+<!--                    *ngIf="priceTicket1 && i==0">{{priceTicket1|currency :"VND"}} </span>-->
+<!--                    <span *ngIf="priceTicket2 && i==1">{{priceTicket2|currency :"VND"}} </span>-->
+<!--                    <span *ngIf="!priceTicket1 && i==0"> ₫0</span>-->
+<!--                    <span *ngIf="!priceTicket2 && i==1"> ₫0</span>-->
+<!--                  </h4>-->
+
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash;          </form>&ndash;&gt;-->
+
+<!--            </div>-->
+
+
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="bottom-box row mt-3">-->
+<!--          <div class="col-md-2">-->
+<!--            <button type="button" class="btn btn-box2">Hủy</button>-->
+<!--          </div>-->
+<!--          <div class="col-md-2">-->
+<!--            &lt;!&ndash;            || updateOk2&ndash;&gt;-->
+<!--            &lt;!&ndash;            [disabled]="updateOk1 "&ndash;&gt;-->
+<!--            <button type="button" class="btn btn-box2" (click)="createTicketPage()">-->
+<!--              Đặt-->
+<!--              Vé-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <div class="col-md-8">-->
+<!--            <h3 class="text-color">Tổng Giá: <span>{{sumPrice|currency :"VND"}}</span></h3>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-md-6 mt-3">-->
+<!--      <div class="row" *ngIf="flightList[0]">-->
+<!--        <h3 class="align-items-center">Bảng lựa chon vị trí ghế cho chuyến đi</h3>-->
+<!--      </div>-->
+<!--      <div class="row " *ngIf="flightList[0]">-->
+<!--        <div class="col-3 mt-3" *ngFor="let itemx of seatList;index as m">-->
+<!--          <button class="seat-box btn-outline-secondary" [style.background]="itemx.status_seat ? 'red':'green'"-->
+<!--                  (click)="changeStyleButton(m,itemx,$event)">{{itemx.code_seat}}</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row mt-3" *ngIf="flightList[1]">-->
+<!--        <h3 class="align-items-center">Bảng lựa chon vị trí ghế cho chuyến về</h3>-->
+
+<!--      </div>-->
+<!--      <div class="row" *ngIf="flightList[1]">-->
+<!--        <div class="col-3 mt-3" *ngFor="let itemH of seatList2;index as n">-->
+<!--          <button class="seat-box btn-outline-secondary" [style.background]="itemH.status_seat ? 'red':'green'"-->
+<!--          >{{itemH.code_seat}}</button>-->
+<!--&lt;!&ndash;          (click)="changeStyleButton(n,itemH,$event)"&ndash;&gt;-->
+
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--</div>-->

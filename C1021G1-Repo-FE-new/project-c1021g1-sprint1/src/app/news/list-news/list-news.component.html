@@ -1,0 +1,469 @@
+
+<body>
+<div class="container">
+  <div class="col-12 mt-5">
+    <div class="bg-white pl-0 mr-3">
+      <div class="item-card">
+        <div class="row">
+          <div class="col-8">
+            <div class="d-flex justify-content-between">
+              <div class="tag-discount">
+                <div class="discount">Tin tức</div>
+              </div>
+
+              <button class="btn btn-outline-danger"  routerLink="/news/list-news/create" *ngIf="checkRoleAdmin">+ Thêm mới</button>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="pr-0" *ngFor="let item of newsList">
+              <br>
+              <div class="item-content mr-0 borderDiv">
+                <div>
+                  <img src="{{item.imageNews}}" routerLink="/news/detail-news/{{item.id}}"
+                       style="width: 230px; height: 130px">
+                </div>
+                <div>
+                  <h3 class="title">
+                    <a routerLink="/news/detail-news/{{item.id}}">
+                      {{item.titleNews}}
+                    </a>
+                  </h3>
+                  <div class="title-1">
+                    {{item.descriptionNews}}
+                  </div>
+                  <!--hiển thị drop dow xóa sửa-->
+                  <div>
+                    <div class="dropdown dropright" *ngIf="checkRoleAdmin">
+                      <button class="btn dropdown-toggle" type="button" id="dropdownMenu1"
+                              data-toggle="dropdown"
+                              aria-expanded="false">
+                      </button>
+                      <div class="dropdown-menu"  aria-labelledby="dropdownMenu1">
+                        <button class="dropdown-item" type="button">
+                          <a class="btn" routerLink="/news/list-news/update/{{item.id}}">Chỉnh sửa</a>
+                        </button>
+                        <button class="dropdown-item d-flex" type="button">
+                          <a class="btn" (click)="openDialog(item.id)">Xóa tin</a>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-grid m-2 d-md-flex justify-content-md-end">
+                    <a routerLink="/news/detail-news/{{item.id}}">
+                      Xem thêm ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--hiển thị tin nổi bật-->
+          <div class="col-4">
+            <div class="tag-discount">
+              <div class="news d-flex justify-content-center align-items-center ml-2">Tin tức nổi bật
+              </div>
+            </div>
+            <div class="px-0" style="border:1px solid lightgray">
+              <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img
+                      src="https://duhocbgc.com/wp-content/uploads/2019/04/hinh-anh-dep-may-bay-tren-troi_041752987.jpg"
+                      class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="https://media.vneconomy.vn/images/upload/2021/11/26/anh-dep-may-bay-cuoi-chieu-041751300.jpg"
+                      class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="http://cdn.reatimes.vn/mediav2/media_old/upload/TpENmpXygELMN6olCYYQg/files/M%C3%A1y%20bay%202.jpg"
+                      class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="http://yeumaybay.com/wp-content/uploads/2016/11/DSC_0782.1m.jpg" class="d-block w-100"
+                         alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="http://cdn.reatimes.vn/mediav2/media_old/upload/TpENmpXygELMN6olCYYQg/files/M%C3%A1y%20bay%202.jpg"
+                      class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="https://media.vneconomy.vn/images/upload/2021/11/26/anh-dep-may-bay-cuoi-chieu-041751300.jpg"
+                      class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-target="#carouselExampleFade"
+                        data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-target="#carouselExampleFade"
+                        data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </button>
+              </div>
+              <div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://nld.mediacdn.vn/2017/636334847885181300-airport-1497931330882.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a routerLink="/home/">Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://vietjet.net/includes/uploads/2014/09/ve-may-bay-gia-re-vietjet-600x400.png"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://i.pinimg.com/originals/44/ff/dc/44ffdceb0dbca9b2bebbd46f7773b812.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://i.pinimg.com/736x/0a/46/05/0a4605c7d25287e3bc14b44233d0646f.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://binhminhdigital.com/StoreData/PageData/3962/Meo-chup-nhung-buc-hinh-tu-canh-cua-may-bay-Binhminhdigital.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://indotech.vn/hinh-anh-may-bay-cat-canh-dep/imager_3_8092_700.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://topchiase24h.com/wp-content/uploads/2021/04/1-19.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://visabaongoc.com/wp-content/uploads/2018/06/sai-canh-bay-cao-cung-ve-may-bay-gia-re-bao-ngoc.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://cafebiz.cafebizcdn.vn/thumb_w/600/2017/photo-1-1501086819743-41-35-349-619-crop-1501086894178-1501165582473-crop-1501165661031.png"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://baogiatran.vn/Medias/Images/photo-1-1486487864875.png"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://vnn-imgs-a1.vgcloud.vn/znews-photo.zadn.vn/w660/Uploaded/reyxqqskxq/2019_11_18/4.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://cc.1cdn.vn/2019/09/17/media-cungcau-vn_http-cdncnncom-cnnnext-dam-assets-190913165408-vh-vzy-qantas-737-838-bne-cns-20180819-epx29413-cnn-web-1228.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://doanhnhanngaynay.vn/wp-content/uploads/2020/07/may-bay-vietnam_airlines.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://photo-cms-anninhthudo.zadn.vn/w660/Uploaded/2022/wpjwcdhnw/2020_12_17/antd-vietjet-6255.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="https://vtv1.mediacdn.vn/thumb_w/600/2018/11/30/44a288cf7b8992d7cb98-15435497835501921934719-crop-1543549792306790081535.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="http://baokhanhhoa.vn/dataimages/201609/original/images1168337_may_bay_Vietjet_Air123.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="http://baokhanhhoa.vn/dataimages/201609/original/images1168337_may_bay_Vietjet_Air123.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="http://baokhanhhoa.vn/dataimages/201609/original/images1168337_may_bay_Vietjet_Air123.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+                <div class="item-content1 ml-0 ttnb">
+                  <div>
+                    <img
+                      src="http://baokhanhhoa.vn/dataimages/201609/original/images1168337_may_bay_Vietjet_Air123.jpg"
+                      alt="mount" style="width: 90px; height: 70px">
+                  </div>
+                  <div>
+                    <header>
+                      <h3 class="title-1">
+                        <a title=''>Thứ bạn trao tôi không chỉ là tiền
+                          mà còn cả bầu trời niềm tin.
+                          Nên tôi chẳng bao giờ bán Rẻ bản thân để mất chữ tín</a>
+                      </h3>
+                    </header>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+<!--phân trang-->
+<div class="mt-3">
+  <div class="row m-0 d-flex justify-content-center">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a
+            (click)="firstPage()"
+            [class.disableButton]="indexPagination <= 0"
+            class="page-link" style="color: black" aria-label="Firsts">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a [class.disableButton]="indexPagination <= 0"
+             (click)="previousPage()"
+             class="page-link" style="color: black" aria-label="Previous">
+            <span aria-hidden="true">&lt;</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" style="color: black">{{indexPagination + 1}}</a></li>
+        <li class="page-item"><a class="page-link" style="color: black">/</a></li>
+        <li class="page-item"><a class="page-link" style="color: black">{{totalPagination}}</a></li>
+
+        <li class="page-item">
+          <a
+            (click)="nextPage()"
+            [class.disableButton]="indexPagination >= totalPagination -1"
+            class="page-link" style="color: black" aria-label="Next">
+            <span aria-hidden="true">&gt;</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a (click)="lastPage()"
+             [class.disableButton]="indexPagination >= totalPagination -1"
+             class="page-link" style="color: black" aria-label="LastPage">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+

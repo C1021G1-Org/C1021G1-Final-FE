@@ -1,0 +1,47 @@
+/*.container-fluid {*/
+/*  background-image: url("https://balotrainghiem.com/wp-content/uploads/2017/05/DSC_3024.jpg");*/
+/*  background-size: cover;*/
+/*}*/
+
+.table {
+  background-color: white;
+}
+
+.dropdown div a:hover {
+  background-color: #ffa8a8;
+  color: #403E10;
+  font-weight: bold;
+  box-shadow: red -1px 1px, red -2px 2px, red -3px 3px, red -4px 4px, red -5px 5px, red -6px 6px;
+  transform: translate3d(6px, 1px, 0);
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+  transition-property: all;
+  /*transition-timing-function: line;*/
+}
+.table-side-bar tr:hover {
+  cursor: pointer;
+  background-color: beige;
+  color: #403E10;
+  font-weight: bold;
+
+  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  transform: translate3d(6px, 1px, 0);
+
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+  transition-property: all;
+  /*transition-timing-function: line;*/
+}
+.disableButton{
+  cursor: not-allowed;
+}
+
+.a{
+  cursor: pointer;
+}
+.display{
+  display: none;
+}
+.b{
+  cursor: pointer;
+}
